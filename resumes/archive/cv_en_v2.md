@@ -1,3 +1,5 @@
+<!-- ARCHIVED: 2026-06-25 — Merged into resumes/cv_en.md (the canonical English master CV). This file is retained for historical reference only. -->
+
 # Emanuel Ignacio Arias
 
 **Project Leader | Engineering Manager | Technical Program Manager**
