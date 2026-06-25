@@ -1,6 +1,6 @@
 # 🗺️ Roadmap — De Pipeline Manual a Agente Hermes
 
-> **Última actualización:** 2026-06-25 17:00 UTC-3 (F6 completado — corazón del matcher ✅)
+> **Última actualización:** 2026-06-25 17:20 UTC-3 (F7 + F8 completados)
 > **Objetivo:** Convertir este pipeline de optimización de CV (guiado por LLM) en un agente Hermes autónomo con datos estructurados, matching algorítmico, y feedback loop.
 > **Framework:** SDD (Spec-Driven Development) con worktrees paralelos para cambios independientes.
 
@@ -16,8 +16,8 @@
 | **F4** | Motor de extracción de keywords | F3 | 1 | ✅ Completo |
 | **F5** | JD Scraper multi-source | Ninguna | 1 | ✅ Completo |
 | **F6** | Matching engine | F3 + F4 + F5 | 1 | ✅ Completo |
-| **F7** | Scoring engine cuantitativo | F4 + F6 | 1 | ⬜ Pendiente |
-| **F8** | CV Assembler | F3 + F6 | 1 | ⬜ Pendiente |
+| **F7** | Scoring engine cuantitativo | F4 + F6 | 1 | ✅ Completo |
+| **F8** | CV Assembler | F3 + F6 | 1 | ✅ Completo |
 | **F9** | Cover letter generator | F8 | 1 | ⬜ Pendiente |
 | **F10** | Analytics y feedback loop | F6 + F7 | 1 | ⬜ Pendiente |
 | **F11** | Agente Hermes (orquestador) | F8 + F9 + F10 | 1 | ⬜ Pendiente |

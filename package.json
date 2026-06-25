@@ -8,7 +8,8 @@
     "test:watch": "vitest",
     "validate-cv": "node scripts/validate-cv.mjs",
     "extract-keywords": "node scripts/extract-keywords.js",
-    "fetch-jd": "node scripts/fetch-jd.js"
+    "fetch-jd": "node scripts/fetch-jd.js",
+    "score-cv": "node scripts/score-cv.js"
   },
   "dependencies": {
     "markdown-it": "^14.0.0",
