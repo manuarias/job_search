@@ -10,7 +10,7 @@
 
 | Fase | Cambio | Dependencias | Agentes | Estado |
 |------|--------|-------------|---------|--------|
-| **F1** | Consolidar CVs fuente | Ninguna | 1 | ⬜ Pendiente |
+| **F1** | Consolidar CVs fuente | Ninguna | 1 | ✅ Completo |
 | **F2** | Infraestructura de tests | F1 | 1 | ⬜ Pendiente |
 | **F3** | Modelo de datos del CV | F1 | 1 | ⬜ Pendiente |
 | **F4** | Motor de extracción de keywords | F3 | 1 | ⬜ Pendiente |
