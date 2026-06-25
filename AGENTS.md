@@ -7,7 +7,7 @@ These rules define the exact workflow for optimizing resumes/CVs against specifi
 ## Project Context
 
 - **Project Root:** `/Users/earias/Documents/job_search/`
-- **Master CV (source, NEVER modified):** `resumes/cv_en.md` (and other language variants if they exist)
+- **Master CVs (source, NEVER modified):** `resumes/cv_en.md` and `resumes/cv_es.md`
 - **Optimized Template:** `resumes/resume_template/template_optimized.md`
 - **Applications Directory:** `applications/` (all JD-specific optimizations go here)
 - **Tracking File:** `applications/jd-tracking.md`
@@ -31,7 +31,8 @@ All JD-specific optimizations live under `applications/`:
 
 ```
 resumes/
-├── cv_en.md                              ← Source CV (DO NOT TOUCH)
+├── cv_en.md                              ← Source CV English (DO NOT TOUCH)
+├── cv_es.md                              ← Source CV Spanish (DO NOT TOUCH)
 └── resume_template/
     ├── template.md                        ← Original generic template
     └── template_optimized.md             ← Impact-first template (USE THIS)

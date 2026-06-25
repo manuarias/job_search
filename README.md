@@ -46,6 +46,7 @@ job_search/
 │   └── README.md          ← Guía del pdf-builder
 ├── resumes/               ← CVs fuente (NO MODIFICAR)
 │   ├── cv_en.md           ← CV maestro en inglés
+│   ├── cv_es.md           ← CV maestro en español
 │   └── resume_template/
 │       ├── template.md
 │       └── template_optimized.md
@@ -173,6 +174,7 @@ job_search/
 │   └── README.md          ← pdf-builder guide
 ├── resumes/               ← Source CVs (DO NOT MODIFY)
 │   ├── cv_en.md           ← Master CV in English
+│   ├── cv_es.md           ← Master CV in Spanish
 │   └── resume_template/
 │       ├── template.md
 │       └── template_optimized.md
