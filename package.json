@@ -1,0 +1,12 @@
+{
+  "name": "job-search",
+  "version": "1.0.0",
+  "description": "CV optimization workflow with PDF generation",
+  "scripts": {
+    "build-cv": "node pdf-builder/build-cv.js"
+  },
+  "dependencies": {
+    "markdown-it": "^14.0.0",
+    "playwright": "^1.41.0"
+  }
+}

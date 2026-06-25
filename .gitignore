@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# macOS
+.DS_Store
+
+# Local runtime state
+.atl/
+.pi/
+
+# Generated artifacts (regenerable from .md sources)
+applications/**/*.pdf
+applications/**/*.html

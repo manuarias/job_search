@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - {{candidate_name}}</title>
+  <style>
+    /* ==========================================================
+       RESET & BASE
+       ========================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: A4;
+      margin: 1.2cm;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.35;
+      color: #1f2937;
+      background: #ffffff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .cv-container {
+      max-width: 100%;
+    }
+
+    /* ==========================================================
+       HEADER
+       ========================================================== */
+    .cv-header {
+      border-bottom: 2pt solid #1e40af;
+      padding-bottom: 5pt;
+      margin-bottom: 8pt;
+    }
+
+    .cv-header h1 {
+      font-size: 20pt;
+      font-weight: 700;
+      color: #111827;
+      letter-spacing: -0.02em;
+      margin-bottom: 2pt;
+    }
+
+    .cv-titles {
+      font-size: 10pt;
+      font-weight: 600;
+      color: #1e40af;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 2pt;
+    }
+
+    .cv-contact {
+      font-size: 9pt;
+      color: #4b5563;
+    }
+
+    .cv-contact a {
+      color: #1e40af;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ==========================================================
+       SECTIONS (General)
+       ========================================================== */
+    section {
+      margin-bottom: 7pt;
+    }
+
+    section h2 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #1e40af;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4pt;
+      padding-bottom: 2pt;
+      border-bottom: 1pt solid #e5e7eb;
+    }
+
+    /* ==========================================================
+       PROFESSIONAL SUMMARY
+       ========================================================== */
+    .professional-summary ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .professional-summary li {
+      position: relative;
+      padding-left: 11pt;
+      margin-bottom: 3pt;
+      font-size: 9pt;
+      line-height: 1.35;
+    }
+
+    .professional-summary li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #1e40af;
+      font-size: 7pt;
+      top: 1pt;
+    }
+
+    /* ==========================================================
+       CORE COMPETENCIES
+       ========================================================== */
+    .core-competencies ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .core-competencies li {
+      position: relative;
+      padding-left: 11pt;
+      margin-bottom: 3pt;
+      font-size: 9pt;
+      line-height: 1.35;
+    }
+
+    .core-competencies li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #1e40af;
+      font-size: 7pt;
+      top: 1pt;
+    }
+
+    .core-competencies strong {
+      color: #111827;
+      font-weight: 700;
+    }
+
+    /* ==========================================================
+       CORE SKILLS
+       ========================================================== */
+    .core-skills ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .core-skills li {
+      position: relative;
+      padding-left: 11pt;
+      margin-bottom: 2pt;
+      font-size: 9pt;
+      line-height: 1.35;
+    }
+
+    .core-skills li::before {
+      content: '▪';
+      position: absolute;
+      left: 0;
+      color: #1e40af;
+      font-size: 6pt;
+      top: 1pt;
+    }
+
+    /* ==========================================================
+       PROFESSIONAL EXPERIENCE — Single Line Header
+       ========================================================== */
+    .job-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 3pt 8pt;
+      margin-top: 5pt;
+      margin-bottom: 2pt;
+    }
+
+    .job-header .company {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #111827;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .job-header .job-info {
+      font-size: 9pt;
+      color: #374151;
+    }
+
+    .job-header .dates {
+      font-size: 9pt;
+      font-style: italic;
+      color: #6b7280;
+      margin-left: auto;
+    }
+
+    .job-description {
+      font-size: 9pt;
+      color: #4b5563;
+      margin-bottom: 3pt;
+      font-style: italic;
+    }
+
+    .professional-experience ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 4pt;
+    }
+
+    .professional-experience li {
+      position: relative;
+      padding-left: 11pt;
+      margin-bottom: 2pt;
+      font-size: 9pt;
+      line-height: 1.35;
+      text-align: justify;
+    }
+
+    .professional-experience li::before {
+      content: '▪';
+      position: absolute;
+      left: 0;
+      color: #1e40af;
+      font-size: 6pt;
+      top: 2pt;
+    }
+
+    .professional-experience li strong {
+      color: #111827;
+      font-weight: 700;
+    }
+
+    /* Compact earlier experience */
+    .earlier-experience ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 2pt;
+    }
+
+    .earlier-experience li {
+      position: relative;
+      padding-left: 11pt;
+      margin-bottom: 1pt;
+      font-size: 9pt;
+      line-height: 1.35;
+    }
+
+    .earlier-experience li::before {
+      content: '▪';
+      position: absolute;
+      left: 0;
+      color: #1e40af;
+      font-size: 6pt;
+      top: 1pt;
+    }
+
+    /* ==========================================================
+       EDUCATION & CERTIFICATIONS
+       ========================================================== */
+    .education ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .education li {
+      position: relative;
+      padding-left: 11pt;
+      margin-bottom: 2pt;
+      font-size: 9pt;
+      line-height: 1.35;
+    }
+
+    .education li::before {
+      content: '▪';
+      position: absolute;
+      left: 0;
+      color: #1e40af;
+      font-size: 6pt;
+      top: 1pt;
+    }
+
+    /* ==========================================================
+       EXTRA SECTIONS (catch-all)
+       ========================================================== */
+    .extra-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .extra-section li {
+      position: relative;
+      padding-left: 11pt;
+      margin-bottom: 4pt;
+      font-size: 9.5pt;
+      line-height: 1.4;
+    }
+
+    .extra-section li::before {
+      content: '▪';
+      position: absolute;
+      left: 0;
+      color: #1e40af;
+      font-size: 6pt;
+      top: 1pt;
+    }
+
+    /* ==========================================================
+       PRINT / PAGE BREAK RULES
+       ========================================================== */
+    h2, .job-header {
+      page-break-after: avoid;
+    }
+
+    ul, li {
+      page-break-inside: avoid;
+    }
+
+    .job-header {
+      orphans: 3;
+      widows: 3;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-container">
+
+    <!-- ==========================================================
+         HEADER: Nombre, Títulos, Contacto
+         ========================================================== -->
+    <header class="cv-header">
+      <h1>{{candidate_name}}</h1>
+      <p class="cv-titles">{{candidate_titles}}</p>
+      <p class="cv-contact">{{candidate_contact}}</p>
+    </header>
+
+    <!-- ==========================================================
+         PROFESSIONAL SUMMARY
+         ========================================================== -->
+    <section class="professional-summary">
+      <h2>Professional Summary</h2>
+      {{professional_summary}}
+    </section>
+
+    <!-- ==========================================================
+         CORE COMPETENCIES
+         ========================================================== -->
+    <section class="core-competencies">
+      <h2>Core Competencies</h2>
+      {{core_competencies}}
+    </section>
+
+    <!-- ==========================================================
+         CORE SKILLS
+         ========================================================== -->
+    <section class="core-skills">
+      <h2>Core Skills</h2>
+      {{core_skills}}
+    </section>
+
+    <!-- ==========================================================
+         PROFESSIONAL EXPERIENCE
+         ========================================================== -->
+    <section class="professional-experience">
+      <h2>Professional Experience</h2>
+      {{professional_experience}}
+    </section>
+
+    <!-- ==========================================================
+         EDUCATION & CERTIFICATIONS
+         ========================================================== -->
+    <section class="education">
+      <h2>Education & Certifications</h2>
+      {{education}}
+    </section>
+
+    <!-- ==========================================================
+         EXTRA SECTIONS (dinámico — si el MD tiene más secciones)
+         ========================================================== -->
+    {{extra_sections}}
+
+  </div>
+</body>
+</html>
