@@ -547,4 +547,27 @@ async function main() {
   }
 }
 
-main();
+// Only run main() when called directly (node build-cv.js), not when required for tests
+if (require.main === module) {
+  main();
+}
+
+// ==========================================================
+// EXPORTS (para testing)
+// ==========================================================
+
+module.exports = {
+  extractSections,
+  parseHeader,
+  parseExperience,
+  parseJobHeader,
+  isBullet,
+  extractBullet,
+  hasDate,
+  looksLikeCompany,
+  renderSimpleSection,
+  readFile,
+  writeFile,
+  escapeHtml,
+  buildCV
+};
