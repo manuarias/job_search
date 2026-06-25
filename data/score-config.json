@@ -1,0 +1,87 @@
+{
+  "version": "1.0.0",
+  "description": "F7 Scoring Engine — 3-category weighted rubric combining ATS parseability, keyword alignment, and recruiter appeal. Mechanical quick wins and gap-to-target analysis.",
+  "weights": {
+    "atsParseability": 0.40,
+    "keywordAlignment": 0.30,
+    "recruiterAppeal": 0.30
+  },
+  "targetScore": 90,
+  "ats": {
+    "requiredSections": [
+      "contact",
+      "professionalSummary",
+      "coreCompetencies",
+      "skills",
+      "professionalExperience"
+    ],
+    "dateFormat": "YYYY-MM",
+    "dateRegex": "^(?:19|20)\\d\\d-(?:0[1-9]|1[0-2])$",
+    "mdChecks": {
+      "tables": true,
+      "specialChars": ["→", "←", "⇒", "⇐", "●", "○", "▪", "▸", "►"],
+      "headerLabels": {
+        "contact": ["contact", "contact information", "personal details"],
+        "professionalSummary": ["professional summary", "summary", "profile", "about me"],
+        "coreCompetencies": ["core competencies", "competencies", "key competencies", "areas of expertise"],
+        "skills": ["skills", "core skills", "technical skills", "technologies"],
+        "professionalExperience": ["professional experience", "experience", "work experience", "work history", "employment"],
+        "education": ["education", "academic background", "qualifications", "certifications"]
+      }
+    },
+    "deductions": {
+      "missingSection": 15,
+      "dateFormatViolation": 5,
+      "mdTable": 10,
+      "mdSpecialChar": 3,
+      "mdMissingHeader": 10,
+      "nonStandardId": 3
+    }
+  },
+  "recruiter": {
+    "thresholds": {
+      "metricsRatio": 0.5,
+      "actionVerbRatio": 0.6,
+      "maxBulletLines": 2
+    },
+    "actionVerbs": [
+      "built", "architected", "scaled", "optimized", "reduced", "led",
+      "shipped", "designed", "implemented", "delivered", "managed",
+      "launched", "automated", "owned", "negotiated", "drove", "mentored",
+      "directed", "orchestrated", "established", "defined", "transformed",
+      "accelerated", "improved", "increased", "achieved", "created",
+      "developed", "deployed", "overhauled", "spearheaded", "introduced",
+      "eliminated", "recovered", "migrated", "consolidated", "restructured"
+    ],
+    "readability": {
+      "backend": "regex",
+      "maxSyllablesPerWord": 3,
+      "maxWordsPerSentence": 25
+    },
+    "subWeights": {
+      "metricsRatio": 0.30,
+      "actionVerbRatio": 0.30,
+      "bulletLengthCompliance": 0.20,
+      "readability": 0.20
+    }
+  },
+  "keywordAlignment": {
+    "floorMultiplier": 0.95,
+    "ceilingMultiplier": 1.0,
+    "emptyMatchDefault": 50
+  },
+  "quickWins": {
+    "patterns": {
+      "passiveVoice": "\\b(?:was|were|has been|have been|had been|will be|is|are)\\s+(?:not\\s+)?(?:\\w+ly\\s+)?(\\w+(?:ed|en|t)\\b)",
+      "bulletLength": "^.{200,}$"
+    },
+    "priorities": {
+      "missing-metric": "high",
+      "date-format": "high",
+      "passive-voice": "medium",
+      "bullet-length": "medium",
+      "missing-section": "high",
+      "non-standard-id": "low"
+    }
+  }
+}
