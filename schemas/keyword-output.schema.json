@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://job-search.dev/schemas/keyword-output.schema.json",
+  "title": "Keyword Extraction Output",
+  "description": "Output format for the F4 keyword extractor. Represents the result of extracting hard (technical) and soft (behavioral) keywords from a job description, along with seniority signals and extraction metadata.",
+  "type": "object",
+  "required": ["hardKeywords", "softKeywords", "senioritySignals", "metadata"],
+  "properties": {
+    "hardKeywords": {
+      "type": "array",
+      "description": "Technical/hard keywords extracted from the job description. Each entry includes the matched term, its taxonomy category, and match confidence.",
+      "items": {
+        "$ref": "#/$defs/hardKeyword"
+      }
+    },
+    "softKeywords": {
+      "type": "array",
+      "description": "Soft/behavioral keywords extracted from the job description (e.g. 'leadership', 'stakeholder management', 'cross-functional collaboration').",
+      "items": {
+        "$ref": "#/$defs/softKeyword"
+      }
+    },
+    "senioritySignals": {
+      "$ref": "#/$defs/senioritySignals",
+      "description": "Signals extracted from the JD that indicate expected seniority level."
+    },
+    "metadata": {
+      "$ref": "#/$defs/extractionMetadata",
+      "description": "Metadata about the extraction process itself (timing, source, taxonomy version, etc.)."
+    }
+  },
+  "additionalProperties": false,
+
+  "$defs": {
+    "hardKeyword": {
+      "type": "object",
+      "description": "A technical/hard keyword matched against the taxonomy. Represents a skill, tool, language, framework, cloud service, or database found in the JD text.",
+      "required": ["term", "category", "matched"],
+      "properties": {
+        "term": {
+          "type": "string",
+          "description": "The canonical keyword term from the taxonomy (e.g. 'Kubernetes', not 'K8s'). Always in English."
+        },
+        "category": {
+          "type": "string",
+          "enum": ["languages", "frameworks", "tools", "cloud", "methodologies", "databases"],
+          "description": "The taxonomy category this keyword belongs to."
+        },
+        "matched": {
+          "type": "string",
+          "description": "The actual text that triggered the match in the JD (e.g. 'K8s' matched against variant mapping → term 'Kubernetes')."
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confidence score for the match (0.0 to 1.0). 1.0 = exact taxonomy match. Lower values = fuzzy or semantic match."
+        },
+        "frequency": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of times this keyword (or its variants) appeared in the JD text."
+        },
+        "mustHave": {
+          "type": "boolean",
+          "description": "Whether this keyword appears in the must-have/requirements section (true) vs nice-to-have/preferred section (false)."
+        },
+        "context": {
+          "type": "string",
+          "description": "A short excerpt from the JD showing the keyword in context (up to ~100 chars)."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "softKeyword": {
+      "type": "object",
+      "description": "A soft/behavioral keyword extracted from the JD. Represents interpersonal, leadership, or communication skills.",
+      "required": ["term", "matched"],
+      "properties": {
+        "term": {
+          "type": "string",
+          "description": "The canonical soft skill term (e.g. 'Stakeholder Management', 'Cross-Functional Collaboration')."
+        },
+        "matched": {
+          "type": "string",
+          "description": "The actual text that triggered the match in the JD."
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confidence score for the match (0.0 to 1.0)."
+        },
+        "frequency": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of times this soft skill appeared in the JD text."
+        },
+        "mustHave": {
+          "type": "boolean",
+          "description": "Whether this appears in the must-have section."
+        },
+        "context": {
+          "type": "string",
+          "description": "A short excerpt from the JD showing the keyword in context."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "senioritySignals": {
+      "type": "object",
+      "description": "Indicators extracted from the JD about the expected seniority level of the role.",
+      "required": ["yearsMinimum", "yearsPreferred", "level", "signals", "title"],
+      "properties": {
+        "yearsMinimum": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Minimum years of experience explicitly stated in the JD. 0 if not stated."
+        },
+        "yearsPreferred": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Preferred years of experience. 0 if not stated."
+        },
+        "level": {
+          "type": "string",
+          "enum": ["junior", "mid", "senior", "staff", "principal", "director", "vp", "c-level", "unknown"],
+          "description": "Inferred seniority level based on title, years, and JD language."
+        },
+        "signals": {
+          "type": "array",
+          "description": "The specific text signals from the JD that informed the seniority level inference.",
+          "items": {
+            "$ref": "#/$defs/senioritySignal"
+          }
+        },
+        "title": {
+          "type": "string",
+          "description": "The role title as extracted from the JD (e.g. 'Senior Technical Program Manager')."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "senioritySignal": {
+      "type": "object",
+      "description": "A single signal that contributed to the seniority inference.",
+      "required": ["type", "value"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["years_explicit", "title_keyword", "scope", "team_lead", "strategy", "mentorship", "budget", "stakeholder"],
+          "description": "Category of the signal. 'years_explicit' = explicit 'X+ years' phrase; 'title_keyword' = seniority keyword in role title; 'scope' = organizational scope language; 'team_lead' = team leadership mention; 'strategy' = strategic planning mention; 'mentorship' = mentoring mention; 'budget' = budget/P&L ownership; 'stakeholder' = stakeholder management scope."
+        },
+        "value": {
+          "type": "string",
+          "description": "The extracted value or matched text. For 'years_explicit', the number of years (e.g. '5'). For other types, the relevant snippet."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "extractionMetadata": {
+      "type": "object",
+      "description": "Metadata about the keyword extraction process for audit, reproducibility, and debugging.",
+      "required": ["extractedAt", "taxonomyVersion"],
+      "properties": {
+        "extractedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of when extraction was performed."
+        },
+        "taxonomyVersion": {
+          "type": "string",
+          "description": "Version of the keyword taxonomy used (from keyword-taxonomy.json)."
+        },
+        "jdSource": {
+          "type": "string",
+          "enum": ["url", "text", "file"],
+          "description": "How the JD was provided: via URL scraping, plain text paste, or file upload."
+        },
+        "jdUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The original JD URL if jdSource is 'url'."
+        },
+        "jdWordCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Word count of the JD text after cleanup (for stats/debugging)."
+        },
+        "processingTimeMs": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Time taken to run extraction in milliseconds."
+        },
+        "extractorVersion": {
+          "type": "string",
+          "description": "Version of the extractor module itself (e.g. '1.0.0')."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
