@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "description": "Default weights for the 5 CV-JD match scorers. All weights must sum to 1.0. Overridable via matchCV options.weights.",
+  "weights": {
+    "hardKeywords": 0.30,
+    "softKeywords": 0.20,
+    "domainMatch": 0.20,
+    "seniorityFit": 0.15,
+    "fuzzyMatch": 0.15
+  },
+  "thresholds": {
+    "strong": 0.80,
+    "moderate": 0.60,
+    "weak": 0.40
+  },
+  "recommendationLevels": {
+    "apply": { "minScore": 0.75, "label": "Strong match — apply with confidence" },
+    "tailor": { "minScore": 0.55, "label": "Moderate match — tailor CV and apply" },
+    "gap": { "minScore": 0.35, "label": "Weak match — significant gaps to address" },
+    "skip": { "minScore": 0.00, "label": "Poor match — reconsider or upskill first" }
+  }
+}

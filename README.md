@@ -267,12 +267,47 @@ The first time Playwright runs, it downloads Chromium automatically (~100MB).
 
 ---
 
+## Engineering Tools
+
+| Command | Description |
+|---------|-------------|
+| `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description (F4) |
+| `node scripts/match-cv.js <cv.json> <keywords.json>` | Score a CV against JD keywords (F6) |
+| `npm test` | Run all tests (Vitest) |
+
+### F6 Matcher — Architecture
+
+The `lib/matcher.js` module scores a structured CV against JD keywords across five dimensions:
+
+| Scorer | Weight | What it measures |
+|--------|--------|------------------|
+| Hard Keywords | 30% | Direct match of technical terms in CV text |
+| Soft Keywords | 20% | Behavioral skill match via synonym expansion |
+| Domain Match | 20% | Keyword-to-domain alignment (Jaccard similarity) |
+| Seniority Fit | 15% | Years of experience + role level comparison |
+| Fuzzy Match | 15% | Bigram token overlap (lexical similarity) |
+
+**Future extension — Embedding-based semantic matching:**
+
+The `fuzzyMatch` scorer currently uses bigram overlap (lexical). This is an intentional placeholder. To upgrade:
+
+1. Replace `scoreFuzzyMatch()` in `lib/matcher.js` with an embedding model call
+2. Embed CV narrative text (flattenCVText) → vector
+3. Embed JD text (reconstructed from keywords) → vector
+4. Return cosine similarity of the two vectors
+5. No other scorer or interface changes needed
+
+Local options (zero API cost): `@xenova/transformers` (ONNX runtime, all-MiniLM-L6-v2) or `@supabase/edge-runtime` compatible models. API-based options: OpenAI embeddings, Cohere, or any OpenAI-compatible endpoint.
+
 ## Quick Reference
 
 | Command | Description |
 |---------|-------------|
 | `node pdf-builder/build-cv.js <input.md> <output.pdf>` | Generate PDF from optimized CV |
+| `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description |
+| `node scripts/match-cv.js <cv.json> <keywords.json>` | Score CV against JD keywords |
 | `npm install` | Install dependencies (run once) |
+| `npm test` | Run all test suites |
 | `npx playwright install chromium` | Reinstall Chromium if needed |
 
 ## License

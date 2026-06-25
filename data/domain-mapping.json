@@ -1,0 +1,133 @@
+{
+  "version": "1.0.0",
+  "description": "Keyword-to-domain mapping table. Maps CV achievement domains and JD keyword categories to normalized business/technical domains for domain-alignment scoring.",
+  "domains": [
+    {
+      "id": "delivery-management",
+      "label": "Delivery & Program Management",
+      "keywords": [
+        "roadmap", "roadmapping", "roadmap planning", "milestones", "milestone",
+        "success criteria", "program delivery", "delivery management",
+        "program management", "technical program", "project management",
+        "epic breakdown", "epic", "story", "user story", "backlog management",
+        "dependency management", "dependencies", "release planning",
+        "sprint planning", "quarterly planning", "multi-quarter",
+        "execution", "delivery", "shipped", "launched", "go-to-market",
+        "end-to-end delivery", "delivery velocity", "forecasting",
+        "SDLC", "software development life cycle"
+      ]
+    },
+    {
+      "id": "agile-leadership",
+      "label": "Agile & Process Leadership",
+      "keywords": [
+        "agile", "scrum", "kanban", "scrum master", "agile coach",
+        "sprint", "standup", "retrospective", "retro",
+        "agile ceremonies", "agile processes", "lean", "SAFe",
+        "process optimization", "operating model", "workflow",
+        "continuous improvement", "delivery process", "Jira workflow",
+        "ticket sizing", "story points", "velocity", "burn-down",
+        "cycle time", "lead time", "WIP limits"
+      ]
+    },
+    {
+      "id": "backend-engineering",
+      "label": "Backend & Systems Engineering",
+      "keywords": [
+        "Java", "Python", "JavaScript", "TypeScript", "Go", "Node.js",
+        "REST API", "REST", "API", "GraphQL", "gRPC", "microservices",
+        "distributed systems", "high-concurrency", "high-throughput",
+        "performance", "scalability", "reliability", "uptime", "SLA",
+        "backend", "server-side", "service", "endpoint", "API design",
+        "SOLID", "design patterns", "system design", "architecture",
+        "event-driven", "message queue", "caching", "circuit breaker"
+      ]
+    },
+    {
+      "id": "cloud-infrastructure",
+      "label": "Cloud & Infrastructure",
+      "keywords": [
+        "AWS", "Amazon Web Services", "GCP", "Google Cloud", "Azure",
+        "Kubernetes", "K8s", "Docker", "container", "containerization",
+        "CI/CD", "CI", "CD", "continuous integration", "continuous delivery",
+        "deployment", "pipeline", "Jenkins", "GitHub Actions", "CircleCI",
+        "infrastructure", "Infrastructure as Code", "IaC", "Terraform",
+        "CloudFormation", "Ansible", "serverless", "Lambda",
+        "monitoring", "observability", "Datadog", "New Relic", "Prometheus",
+        "Grafana", "logging", "alerting", "incident management", "SRE"
+      ]
+    },
+    {
+      "id": "automation",
+      "label": "Automation & Tooling",
+      "keywords": [
+        "n8n", "workflow automation", "automation", "automated",
+        "webhooks", "HTTP request", "JSON transformation", "API integration",
+        "AI copilot", "AI", "artificial intelligence", "LLM", "GPT",
+        "Copilot", "machine learning", "ML", "scripting", "tooling",
+        "productivity", "efficiency", "automation pipeline",
+        "self-service", "developer experience", "DX", "platform engineering"
+      ]
+    },
+    {
+      "id": "leadership",
+      "label": "Leadership & People Management",
+      "keywords": [
+        "mentor", "mentored", "mentoring", "mentorship", "coach", "coached",
+        "coaching", "led team", "lead team", "team lead", "tech lead",
+        "project leader", "engineering manager", "people manager",
+        "career growth", "promotion", "performance review", "1:1",
+        "one-on-one", "team development", "talent development",
+        "hiring", "interviewing", "onboarding", "retention",
+        "team culture", "psychological safety", "feedback"
+      ]
+    },
+    {
+      "id": "data-engineering",
+      "label": "Data & Analytics",
+      "keywords": [
+        "SQL", "MySQL", "PostgreSQL", "MongoDB", "CouchDB", "Redis",
+        "Elasticsearch", "data modeling", "database design", "schema",
+        "ETL", "data pipeline", "analytics", "metrics", "KPI",
+        "dashboard", "reporting", "data-driven", "data driven",
+        "statistics", "data analysis", "BigQuery", "Snowflake",
+        "relational", "NoSQL", "document database"
+      ]
+    },
+    {
+      "id": "stakeholder-engagement",
+      "label": "Stakeholder Engagement & Communication",
+      "keywords": [
+        "stakeholder", "stakeholders", "stakeholder management",
+        "stakeholder alignment", "executive", "C-suite", "VP",
+        "director", "leadership team", "business stakeholders",
+        "technical stakeholders", "non-technical stakeholders",
+        "cross-functional", "cross functional", "cross-team",
+        "presentation", "executive summary", "status update",
+        "communication", "briefing", "reporting", "alignment",
+        "buy-in", "negotiation", "influence", "persuasion"
+      ]
+    },
+    {
+      "id": "quality-engineering",
+      "label": "Quality & Reliability Engineering",
+      "keywords": [
+        "testing", "test automation", "QA", "quality assurance",
+        "code review", "pull request", "PR review", "code quality",
+        "technical debt", "refactoring", "best practices", "standards",
+        "linting", "static analysis", "SonarQube", "coverage",
+        "incident response", "incident management", "postmortem",
+        "RCA", "root cause analysis", "MTTR", "error budget",
+        "SLO", "SLI", "reliability", "availability"
+      ]
+    }
+  ],
+  "jdCategoryToDomain": {
+    "languages": "backend-engineering",
+    "frameworks": "backend-engineering",
+    "tools": "automation",
+    "cloud": "cloud-infrastructure",
+    "methodologies": "agile-leadership",
+    "databases": "data-engineering"
+  }
+}
