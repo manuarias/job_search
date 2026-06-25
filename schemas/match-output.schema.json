@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://job-search.dev/schemas/match-output.schema.json",
+  "title": "CV-JD Match Output",
+  "description": "Output format for the F6 CV-JD matcher. Represents the result of scoring a CV against a job description's extracted keywords across five dimensions: hard keywords, soft keywords, domain alignment, seniority fit, and fuzzy/semantic match.",
+  "type": "object",
+  "required": ["overall", "scorers", "summary", "recommendation", "metadata"],
+  "properties": {
+    "overall": {
+      "$ref": "#/$defs/scoreDetail",
+      "description": "Weighted aggregate of all five scorers."
+    },
+    "scorers": {
+      "type": "object",
+      "description": "Individual scorer results.",
+      "required": ["hardKeywords", "softKeywords", "domainMatch", "seniorityFit", "fuzzyMatch"],
+      "properties": {
+        "hardKeywords": { "$ref": "#/$defs/scorerResult" },
+        "softKeywords": { "$ref": "#/$defs/scorerResult" },
+        "domainMatch": { "$ref": "#/$defs/scorerResult" },
+        "seniorityFit": { "$ref": "#/$defs/scorerResult" },
+        "fuzzyMatch": { "$ref": "#/$defs/scorerResult" }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "$ref": "#/$defs/matchSummary",
+      "description": "Human-readable summary of what matched and what didn't."
+    },
+    "recommendation": {
+      "$ref": "#/$defs/recommendation",
+      "description": "Structured recommendation based on match quality."
+    },
+    "metadata": {
+      "$ref": "#/$defs/matchMetadata",
+      "description": "Metadata about the match run."
+    }
+  },
+  "additionalProperties": false,
+
+  "$defs": {
+    "scoreDetail": {
+      "type": "object",
+      "required": ["score", "maxScore", "percentage"],
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Raw score value."
+        },
+        "maxScore": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Maximum possible score for this dimension."
+        },
+        "percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Normalized score (score / maxScore), 0.0 to 1.0."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "scorerResult": {
+      "type": "object",
+      "required": ["score", "maxScore", "percentage", "weight", "weightedScore", "details"],
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Raw score for this scorer."
+        },
+        "maxScore": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Maximum possible score."
+        },
+        "percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Normalized score (0.0 to 1.0)."
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Weight applied to this scorer in the overall aggregate."
+        },
+        "weightedScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Contribution to overall: percentage × weight."
+        },
+        "details": {
+          "type": "object",
+          "description": "Scorer-specific detail. Structure varies per scorer."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "matchSummary": {
+      "type": "object",
+      "required": ["strengths", "gaps", "keywordCoverage"],
+      "properties": {
+        "strengths": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Areas where the CV matches the JD well."
+        },
+        "gaps": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Areas where the CV falls short against the JD."
+        },
+        "keywordCoverage": {
+          "type": "object",
+          "required": ["matched", "total", "percentage"],
+          "properties": {
+            "matched": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of JD keywords matched in the CV."
+            },
+            "total": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Total number of JD keywords."
+            },
+            "percentage": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Coverage percentage."
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "recommendation": {
+      "type": "object",
+      "required": ["level", "label", "actions"],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["apply", "tailor", "gap", "skip"],
+          "description": "Recommended action level."
+        },
+        "label": {
+          "type": "string",
+          "description": "Human-readable recommendation label."
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["priority", "action", "impact"],
+            "properties": {
+              "priority": {
+                "type": "string",
+                "enum": ["high", "medium", "low"],
+                "description": "Priority of this action."
+              },
+              "action": {
+                "type": "string",
+                "description": "What the candidate should do."
+              },
+              "impact": {
+                "type": "string",
+                "enum": ["high", "medium", "low"],
+                "description": "Estimated impact on match score."
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "matchMetadata": {
+      "type": "object",
+      "required": ["matchedAt", "matcherVersion"],
+      "properties": {
+        "matchedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp."
+        },
+        "matcherVersion": {
+          "type": "string",
+          "description": "Version of the matcher module."
+        },
+        "cvSource": {
+          "type": "string",
+          "description": "Path or identifier for the CV input."
+        },
+        "jdSource": {
+          "type": "string",
+          "description": "Path or identifier for the JD keywords input."
+        },
+        "weightsUsed": {
+          "type": "object",
+          "properties": {
+            "hardKeywords": { "type": "number" },
+            "softKeywords": { "type": "number" },
+            "domainMatch": { "type": "number" },
+            "seniorityFit": { "type": "number" },
+            "fuzzyMatch": { "type": "number" }
+          },
+          "additionalProperties": false,
+          "description": "Weights applied in this run."
+        },
+        "processingTimeMs": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Time to run the match in milliseconds."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

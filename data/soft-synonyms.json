@@ -1,0 +1,120 @@
+{
+  "version": "1.0.0",
+  "description": "Synonym expansion dictionary for soft-skill matching. Maps canonical JD soft-skill terms to alternate phrasings commonly found in CV narratives. Used by the soft-keyword scorer in the matcher.",
+  "synonyms": {
+    "Leadership": [
+      "led", "lead", "leading", "leader", "tech lead", "technical lead",
+      "project leader", "team lead", "directed", "headed", "oversaw",
+      "guided", "spearheaded"
+    ],
+    "Communication": [
+      "communicated", "presented", "reported", "liaised", "conveyed",
+      "briefed", "articulated", "authored", "documented", "wrote"
+    ],
+    "Stakeholder Management": [
+      "stakeholder", "stakeholders", "business stakeholders", "stakeholder alignment",
+      "cross-team alignment", "executive updates", "stakeholder buy-in",
+      "managed expectations", "business partners", "key partners"
+    ],
+    "Cross-Functional Collaboration": [
+      "cross-functional", "cross functional", "cross-team", "cross-team coordination",
+      "multi-team", "interdisciplinary", "worked across", "collaborated with",
+      "partnered with", "coordinated across", "across teams", "multiple teams"
+    ],
+    "Ownership": [
+      "owned", "ownership", "end-to-end", "end to end", "accountable",
+      "accountability", "responsible for", "took ownership", "drove",
+      "single-threaded", "full ownership"
+    ],
+    "Strategic Thinking": [
+      "strategy", "strategic", "roadmap", "roadmaps", "multi-quarter",
+      "long-term", "vision", "business objectives", "strategic planning",
+      "forward-looking", "planning horizon"
+    ],
+    "Problem Solving": [
+      "solved", "resolved", "troubleshoot", "troubleshooting", "debug",
+      "debugged", "debugging", "root cause", "RCA", "investigated",
+      "diagnosed", "fixed", "resolution", "resolved issues"
+    ],
+    "Detail-Oriented": [
+      "detail-oriented", "detail oriented", "meticulous", "thorough",
+      "precision", "quality standards", "execution quality", "attention to detail",
+      "rigor", "high-quality"
+    ],
+    "Adaptability": [
+      "adapted", "adaptable", "flexible", "pivoted", "adjusted",
+      "fast-paced", "dynamic", "evolving", "changing priorities",
+      "resilient", "resilience"
+    ],
+    "Initiative": [
+      "initiative", "proactive", "proactively", "self-starter", "self-driven",
+      "self-motivated", "autonomously", "independently", "identified opportunity",
+      "took initiative", "drove change"
+    ],
+    "Mentoring": [
+      "mentored", "mentoring", "mentorship", "coached", "coaching",
+      "coach", "developed team", "career growth", "promotions", "grew",
+      "junior developers", "career development", "trained"
+    ],
+    "Team Building": [
+      "built team", "hired", "hiring", "onboarding", "onboarded",
+      "team development", "talent development", "grew team",
+      "people management", "team growth", "staffing"
+    ],
+    "Collaboration": [
+      "collaborated", "collaboration", "collaborative", "team player",
+      "teamwork", "paired", "pair programming", "worked together",
+      "joint effort", "co-developed"
+    ],
+    "Decision Making": [
+      "decided", "decision", "tradeoff", "trade-off", "prioritized",
+      "prioritization", "data-driven", "data driven", "chose",
+      "selected approach", "evaluated options"
+    ],
+    "Risk Management": [
+      "risk", "mitigation", "mitigated", "mitigate", "contingency",
+      "risk assessment", "identified risks", "risk analysis",
+      "de-risked", "risk mitigation"
+    ],
+    "Influence": [
+      "influenced", "influence", "persuaded", "negotiated", "negotiation",
+      "built consensus", "drove alignment", "secured buy-in",
+      "convinced", "championed", "advocated"
+    ],
+    "Facilitation": [
+      "facilitated", "facilitation", "scrum master", "sprint planning",
+      "standups", "retrospectives", "agile ceremonies", "workshops",
+      "led sessions", "moderated"
+    ],
+    "Time Management": [
+      "managed time", "prioritized", "prioritization", "met deadlines",
+      "on schedule", "on time", "forecasting", "delivery velocity",
+      "workload management", "capacity planning"
+    ],
+    "Written Communication": [
+      "documented", "documentation", "wrote", "author", "authored",
+      "technical writing", "specifications", "integration guides",
+      "API specs", "written", "documenting"
+    ],
+    "Business Acumen": [
+      "business case", "ROI", "cost savings", "revenue", "budget",
+      "P&L", "business impact", "business goals", "business context",
+      "commercial", "bottom line"
+    ],
+    "Growth Mindset": [
+      "learned", "learning", "continuous improvement", "improved",
+      "self-taught", "upskilled", "curious", "growth",
+      "always learning", "professional development"
+    ],
+    "Agile Mindset": [
+      "agile", "scrum", "kanban", "sprint", "iterative",
+      "continuous delivery", "continuous improvement", "lean",
+      "agile processes", "scrum master", "retrospective"
+    ],
+    "Autonomy": [
+      "autonomous", "autonomously", "self-directed", "self-managed",
+      "independent", "independently", "without supervision",
+      "self-sufficient", "took ownership"
+    ]
+  }
+}
