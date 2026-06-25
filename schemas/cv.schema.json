@@ -1,0 +1,470 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://job-search.dev/schemas/cv.schema.json",
+  "title": "CV Data Model",
+  "description": "Structured CV representation for the job_search optimization pipeline. Supports English (en) and Spanish (es) language variants with technical keywords preserved in English.",
+  "type": "object",
+  "required": [
+    "lang",
+    "contact",
+    "professionalSummary",
+    "coreCompetencies",
+    "skills",
+    "professionalExperience"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to the JSON Schema version used for validation."
+    },
+    "lang": {
+      "type": "string",
+      "enum": ["en", "es"],
+      "description": "Root language discriminator. 'en' for English, 'es' for Spanish. Technical keywords (skills, tools, job titles, methodologies) MUST remain in English regardless of this value."
+    },
+    "contact": {
+      "$ref": "#/$defs/contact"
+    },
+    "professionalSummary": {
+      "type": "array",
+      "minItems": 1,
+      "description": "3-5 scannable bullets summarizing key career achievements and value proposition.",
+      "items": {
+        "$ref": "#/$defs/summaryItem"
+      }
+    },
+    "coreCompetencies": {
+      "type": "array",
+      "minItems": 1,
+      "description": "4-6 competency bullets mapping to JD must-haves. Each pairs a competency area with a brief achievement-backed description.",
+      "items": {
+        "$ref": "#/$defs/competency"
+      }
+    },
+    "skills": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Categorized technical and soft skills. Each entry groups related skills under a category label.",
+      "items": {
+        "$ref": "#/$defs/skillCategory"
+      }
+    },
+    "professionalExperience": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Primary professional experience with quantified achievements. Ordered most-recent-first.",
+      "items": {
+        "$ref": "#/$defs/experience"
+      }
+    },
+    "earlierExperience": {
+      "type": "array",
+      "description": "Simplified earlier career entries without achievement tracking. Used for roles older than the primary experience window.",
+      "items": {
+        "$ref": "#/$defs/earlierExperience"
+      }
+    },
+    "education": {
+      "type": "array",
+      "description": "Academic degrees and relevant coursework.",
+      "items": {
+        "$ref": "#/$defs/education"
+      }
+    },
+    "languages": {
+      "type": "array",
+      "description": "Spoken/written language proficiencies.",
+      "items": {
+        "$ref": "#/$defs/language"
+      }
+    },
+    "certifications": {
+      "type": "array",
+      "description": "Professional certifications and licenses.",
+      "items": {
+        "$ref": "#/$defs/certification"
+      }
+    },
+    "$metadata": {
+      "$ref": "#/$defs/metadata"
+    }
+  },
+  "additionalProperties": false,
+
+  "$defs": {
+    "contact": {
+      "type": "object",
+      "description": "Contact information block. Name and titles are required; location and contact channels are optional.",
+      "required": ["name", "titles"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Full name as it appears on the CV header."
+        },
+        "titles": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Job title(s) kept in English regardless of CV language (e.g. 'Technical Program Manager', 'Engineering Manager').",
+          "items": { "type": "string" }
+        },
+        "location": {
+          "type": "string",
+          "description": "City and country, e.g. 'Buenos Aires, Argentina'."
+        },
+        "phone": {
+          "type": "string",
+          "description": "Contact phone number."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email address."
+        },
+        "linkedin": {
+          "type": "string",
+          "description": "LinkedIn profile URL."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "summaryItem": {
+      "type": "object",
+      "description": "A single professional summary bullet — action-oriented, metric-backed when possible.",
+      "required": ["text"],
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The summary bullet text, e.g. 'Reduced deployment time by 40% through CI/CD pipeline automation across 3 engineering teams.'"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Forward-compatible tags for filtering and categorization.",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "competency": {
+      "type": "object",
+      "description": "A core competency pairing a domain area with a brief achievement-backed justification.",
+      "required": ["title", "description"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Competency area label (e.g. 'Technical Program Leadership', 'Cross-Functional Collaboration')."
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief justification, ideally with a metric or concrete outcome."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Forward-compatible tags.",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "skillCategory": {
+      "type": "object",
+      "description": "A group of related skills under a category label (e.g. 'Languages & Frameworks'). All skill names MUST be in English.",
+      "required": ["category", "items"],
+      "properties": {
+        "category": {
+          "type": "string",
+          "description": "Skill category label, e.g. 'Languages & Frameworks', 'Cloud & DevOps', 'Project Management'."
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Individual skill names in English.",
+          "items": { "type": "string" }
+        },
+        "proficiency": {
+          "type": "string",
+          "description": "Optional proficiency level (free-text, pending F6 structure requirements)."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Forward-compatible tags.",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "experience": {
+      "type": "object",
+      "description": "A professional experience entry in the primary career window. Contains quantified achievements with structured metadata.",
+      "required": ["id", "company", "role", "dates", "achievements", "tags"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Stable UUID v4 identifier for cross-referencing across the pipeline. Generated via crypto.randomUUID()."
+        },
+        "company": {
+          "type": "string",
+          "description": "Company/organization name."
+        },
+        "role": {
+          "type": "string",
+          "description": "Job title in English (e.g. 'Technical Program Manager')."
+        },
+        "location": {
+          "type": "string",
+          "description": "City, country, or 'Remote'."
+        },
+        "dates": {
+          "$ref": "#/$defs/dates"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional role summary paragraph (one-liner context about team scope, product, or responsibilities)."
+        },
+        "achievements": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Quantified, impact-driven achievement bullets for this role.",
+          "items": {
+            "$ref": "#/$defs/achievement"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "description": "Forward-compatible tags for filtering (e.g. ['remote', 'startup-stage', 'b2b']).",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "achievement": {
+      "type": "object",
+      "description": "A single quantified achievement bullet with structured metadata for programmatic matching and analysis.",
+      "required": ["id", "text", "metrics", "technologies", "domains", "impact", "tags"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Stable UUID v4 identifier. Generated via crypto.randomUUID()."
+        },
+        "text": {
+          "type": "string",
+          "description": "The achievement bullet text (English for 'en' CV, Spanish for 'es' CV, technical keywords always in English)."
+        },
+        "metrics": {
+          "type": "array",
+          "description": "Quantifiable metrics extracted from this achievement. Use '[NEEDS METRIC: ...]' when source lacks a verifiable number — NEVER invent values.",
+          "items": {
+            "$ref": "#/$defs/metric"
+          }
+        },
+        "technologies": {
+          "type": "array",
+          "description": "Technologies, tools, and platforms mentioned in this achievement (always in English).",
+          "items": { "type": "string" }
+        },
+        "domains": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Domain classification for matching against JD requirements. Each achievement maps to one or more domains.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "delivery-management",
+              "backend-engineering",
+              "automation",
+              "leadership",
+              "frontend",
+              "data-engineering",
+              "devops"
+            ]
+          }
+        },
+        "impact": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "Estimated business impact level of this achievement. 'high' = cross-team/customer-facing, 'medium' = team-level, 'low' = individual."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Forward-compatible tags for ad-hoc categorization.",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "metric": {
+      "type": "object",
+      "description": "A single quantified metric from an achievement. Value MAY be '[NEEDS METRIC: ...]' when the source CV lacks a verifiable number.",
+      "required": ["type", "value"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Metric category: e.g. 'percentage-improvement', 'dollar-saved', 'time-reduction', 'users-impacted', 'team-size', 'delivery-throughput'.",
+          "enum": [
+            "percentage-improvement",
+            "dollar-saved",
+            "time-reduction",
+            "users-impacted",
+            "team-size",
+            "delivery-throughput",
+            "uptime",
+            "other"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "description": "Numeric or descriptive value. Use '[NEEDS METRIC: <what would fit>]' when the source Markdown contains no verifiable number — NEVER invent a value."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "dates": {
+      "type": "object",
+      "description": "Date range for an experience or education entry. Normalized to YYYY-MM format. End may be 'Present' for current roles.",
+      "required": ["start", "end"],
+      "properties": {
+        "start": {
+          "type": "string",
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])$",
+          "description": "Start date in YYYY-MM format (e.g. '2021-03'). Spanish months normalized: Ene→01, Feb→02, Mar→03, Abr→04, May→05, Jun→06, Jul→07, Ago→08, Sep→09, Oct→10, Nov→11, Dic→12."
+        },
+        "end": {
+          "type": "string",
+          "oneOf": [
+            { "const": "Present" },
+            { "pattern": "^\\d{4}-(0[1-9]|1[0-2])$" }
+          ],
+          "description": "End date in YYYY-MM format, or 'Present' for current roles."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "earlierExperience": {
+      "type": "object",
+      "description": "Simplified entry for roles older than the primary experience window. No UUID id or achievements array — these are excluded from algorithmic matching.",
+      "required": ["company", "role", "dates"],
+      "properties": {
+        "company": {
+          "type": "string",
+          "description": "Company/organization name."
+        },
+        "role": {
+          "type": "string",
+          "description": "Job title in English."
+        },
+        "location": {
+          "type": "string",
+          "description": "City, country, or 'Remote'."
+        },
+        "dates": {
+          "$ref": "#/$defs/dates"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "education": {
+      "type": "object",
+      "description": "Academic degree or certification program entry.",
+      "required": ["degree", "institution"],
+      "properties": {
+        "degree": {
+          "type": "string",
+          "description": "Degree name (e.g. 'B.S. Computer Science', 'MBA')."
+        },
+        "institution": {
+          "type": "string",
+          "description": "Institution name."
+        },
+        "year": {
+          "type": "string",
+          "pattern": "^\\d{4}$",
+          "description": "Graduation year."
+        },
+        "dates": {
+          "$ref": "#/$defs/dates",
+          "description": "Date range for multi-year programs (optional; prefer 'year' for single-year programs)."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "language": {
+      "type": "object",
+      "description": "Spoken/written language proficiency entry.",
+      "required": ["language", "proficiency"],
+      "properties": {
+        "language": {
+          "type": "string",
+          "description": "Language name in English (e.g. 'Spanish', 'English', 'Portuguese')."
+        },
+        "proficiency": {
+          "type": "string",
+          "enum": ["native", "fluent", "advanced", "intermediate", "basic"],
+          "description": "Proficiency level."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "certification": {
+      "type": "object",
+      "description": "Professional certification or license.",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Certification name (e.g. 'AWS Solutions Architect', 'Google Project Management Certificate')."
+        },
+        "issuer": {
+          "type": "string",
+          "description": "Issuing organization."
+        },
+        "year": {
+          "type": "string",
+          "pattern": "^\\d{4}$",
+          "description": "Year obtained."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "metadata": {
+      "type": "object",
+      "description": "Forward-compatible metadata block for schema versioning, provenance tracking, and extensibility.",
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "description": "Semantic version of the schema used to generate this JSON instance (e.g. '1.0.0')."
+        },
+        "generatedBy": {
+          "type": "string",
+          "description": "Identifier for the process or agent that generated this JSON (e.g. 'f3-cv-data-model')."
+        },
+        "migratedAt": {
+          "type": "string",
+          "format": "date",
+          "description": "ISO 8601 date when the JSON was migrated from source Markdown (e.g. '2026-06-25')."
+        },
+        "lastOptimizedFor": {
+          "type": "string",
+          "description": "Reference code of the last JD this CV was optimized against (e.g. 'AGIL')."
+        },
+        "version": {
+          "type": "string",
+          "description": "Instance version string for tracking revisions."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
