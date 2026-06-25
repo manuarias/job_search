@@ -1,0 +1,150 @@
+{
+  "version": "1.0.0",
+  "description": "Dictionary of soft/behavioral skills matched against job descriptions. Each entry maps a canonical English term to case-insensitive search patterns covering English and Spanish variants.",
+  "terms": [
+    {
+      "term": "Leadership",
+      "patterns": ["leadership", "liderazgo", "leading teams", "liderar equipos", "team leadership", "tech lead", "technical leadership", "lead and mentor"]
+    },
+    {
+      "term": "Communication",
+      "patterns": ["communication", "comunicación", "communicate", "verbal communication", "written communication", "communication skills", "strong communication", "habilidades de comunicación", "comunicación efectiva", "capacidad de comunicación", "presentation skills", "comunicarse"]
+    },
+    {
+      "term": "Stakeholder Management",
+      "patterns": ["stakeholder", "stakeholders", "stakeholder management", "stakeholder alignment", "gestión de stakeholders", "manage stakeholders", "business stakeholders", "technical and non-technical stakeholders"]
+    },
+    {
+      "term": "Cross-Functional Collaboration",
+      "patterns": ["cross-functional", "cross functional", "multifuncional", "cross-team", "interdisciplinary", "interdisciplinario", "collaborate across", "colaboración multifuncional", "trabajo interdisciplinario", "cross functional teams"]
+    },
+    {
+      "term": "Ownership",
+      "patterns": ["ownership", "own the", "owned", "accountability", "accountable", "responsable", "take ownership", "end-to-end ownership", "own delivery"]
+    },
+    {
+      "term": "Collaboration",
+      "patterns": ["collaboration", "collaborative", "colaboración", "colaborativo", "colaborativa", "colaborar", "trabajo en equipo", "trabajar en equipo", "team player", "teamwork", "work together", "pair programming"]
+    },
+    {
+      "term": "Strategic Thinking",
+      "patterns": ["strategic thinking", "strategic", "pensamiento estratégico", "pensar estratégicamente", "long-term vision", "strategy", "business strategy", "product strategy"]
+    },
+    {
+      "term": "Problem Solving",
+      "patterns": ["problem solving", "problem-solving", "resolución de problemas", "solve complex", "troubleshoot", "analytical skills", "root cause", "debug", "solucionar problemas"]
+    },
+    {
+      "term": "Detail-Oriented",
+      "patterns": ["detail-oriented", "detail oriented", "attention to detail", "meticulous", "orientado al detalle", "atención al detalle", "execution quality"]
+    },
+    {
+      "term": "Adaptability",
+      "patterns": ["adaptability", "adaptable", "adaptabilidad", "flexible", "adaptarse", "fast-paced", "dynamic environment", "entorno dinámico", "resilience", "resiliencia", "resiliente"]
+    },
+    {
+      "term": "Initiative",
+      "patterns": ["initiative", "iniciativa", "self-starter", "proactive", "proactivo", "proactiva", "self-motivated", "drive", "self-driven", "autonomía", "autogestión", "autónomo", "autónoma"]
+    },
+    {
+      "term": "Mentoring",
+      "patterns": ["mentoring", "mentorship", "mentoría", "coach", "coaching", "mentor", "develop others", "career development", "desarrollo profesional", "growth"]
+    },
+    {
+      "term": "Team Building",
+      "patterns": ["team building", "team development", "building teams", "construcción de equipos", "hiring", "onboarding", "talent development", "people management", "gestión de equipos"]
+    },
+    {
+      "term": "Conflict Resolution",
+      "patterns": ["conflict resolution", "resolución de conflictos", "mediate", "mediation", "de-escalation", "consensus building"]
+    },
+    {
+      "term": "Negotiation",
+      "patterns": ["negotiation", "negociación", "negotiate", "negociar", "influence without authority", "persuasion"]
+    },
+    {
+      "term": "Presentation",
+      "patterns": ["presentation", "presentación", "present to", "public speaking", "executive presentations", "presentar a"]
+    },
+    {
+      "term": "Facilitation",
+      "patterns": ["facilitation", "facilitación", "facilitate", "facilitar", "workshop", "sprint planning", "standups", "retrospectives"]
+    },
+    {
+      "term": "Time Management",
+      "patterns": ["time management", "gestión del tiempo", "prioritization", "priorización", "multitasking", "meet deadlines", "cumplir plazos", "organizational skills"]
+    },
+    {
+      "term": "Decision Making",
+      "patterns": ["decision making", "decision-making", "toma de decisiones", "decisive", "tradeoff", "trade-off", "prioritize", "data-driven", "data driven"]
+    },
+    {
+      "term": "Critical Thinking",
+      "patterns": ["critical thinking", "pensamiento crítico", "systems thinking", "analytical", "analítico", "evaluate", "assess"]
+    },
+    {
+      "term": "Creativity",
+      "patterns": ["creativity", "creative", "creatividad", "creativo", "innovation", "innovación", "innovative", "innovador", "think outside the box", "out-of-the-box"]
+    },
+    {
+      "term": "Emotional Intelligence",
+      "patterns": ["emotional intelligence", "inteligencia emocional", "empathy", "empatía", "empathic", "empático", "self-awareness", "people-first", "people first"]
+    },
+    {
+      "term": "Customer Focus",
+      "patterns": ["customer focus", "customer-focused", "client focus", "orientado al cliente", "user empathy", "user-centered", "customer success", "user experience"]
+    },
+    {
+      "term": "Business Acumen",
+      "patterns": ["business acumen", "business sense", "business-minded", "ROI", "P&L", "budget", "budget management", "cost optimization", "revenue impact"]
+    },
+    {
+      "term": "Written Communication",
+      "patterns": ["written communication", "comunicación escrita", "documentation", "documentación", "technical writing", "writing skills", "documenting", "author"]
+    },
+    {
+      "term": "Active Listening",
+      "patterns": ["active listening", "escucha activa", "listen", "understand needs", "comprender necesidades", "feedback", "receptivo"]
+    },
+    {
+      "term": "Delegation",
+      "patterns": ["delegation", "delegación", "delegate", "delegar", "empower", "empoderar", "distribute work", "workload balancing"]
+    },
+    {
+      "term": "Growth Mindset",
+      "patterns": ["growth mindset", "mentalidad de crecimiento", "continuous learning", "aprendizaje continuo", "always learning", "curious", "curiosidad", "curiosity", "learn quickly", "fast learner"]
+    },
+    {
+      "term": "Remote Collaboration",
+      "patterns": ["remote", "remoto", "distributed team", "equipo distribuido", "async", "asynchronous", "asincrónico", "remote-first", "remote first", "work from home", "WFH"]
+    },
+    {
+      "term": "Agile Mindset",
+      "patterns": ["agile mindset", "scrum master", "agile coach", "agile environment", "agile processes", "lean thinking", "continuous improvement", "mejora continua", "iterative"]
+    },
+    {
+      "term": "Risk Management",
+      "patterns": ["risk management", "gestión de riesgos", "mitigation", "mitigación", "risk assessment", "identify risks", "identificar riesgos"]
+    },
+    {
+      "term": "Influence",
+      "patterns": ["influence", "influencia", "influencing", "persuade", "drive alignment", "stakeholder buy-in", "build consensus"]
+    },
+    {
+      "term": "Work Ethic",
+      "patterns": ["work ethic", "ética de trabajo", "commitment", "compromiso", "dedicated", "dedicado", "reliable", "confiable", "responsible", "responsable"]
+    },
+    {
+      "term": "Passion",
+      "patterns": ["passion", "pasión", "apasionado", "enthusiastic", "entusiasta", "love what", "driven", "motivated"]
+    },
+    {
+      "term": "Humility",
+      "patterns": ["humility", "humildad", "humble", "humilde", "no ego", "open to feedback", "abierto al feedback", "learn from mistakes", "aprender de errores"]
+    },
+    {
+      "term": "Autonomy",
+      "patterns": ["autonomy", "autonomía", "self-directed", "self-managed", "autogestión", "autónomo", "independent", "independiente", "work independently"]
+    }
+  ]
+}
