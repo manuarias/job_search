@@ -1,6 +1,6 @@
 # 🗺️ Roadmap — De Pipeline Manual a Agente Hermes
 
-> **Última actualización:** 2026-06-25
+> **Última actualización:** 2026-06-25 (F2 completado)
 > **Objetivo:** Convertir este pipeline de optimización de CV (guiado por LLM) en un agente Hermes autónomo con datos estructurados, matching algorítmico, y feedback loop.
 > **Framework:** SDD (Spec-Driven Development) con worktrees paralelos para cambios independientes.
 
@@ -11,7 +11,7 @@
 | Fase | Cambio | Dependencias | Agentes | Estado |
 |------|--------|-------------|---------|--------|
 | **F1** | Consolidar CVs fuente | Ninguna | 1 | ✅ Completo |
-| **F2** | Infraestructura de tests | F1 | 1 | ⬜ Pendiente |
+| **F2** | Infraestructura de tests | F1 | 1 | ✅ Completo |
 | **F3** | Modelo de datos del CV | F1 | 1 | ⬜ Pendiente |
 | **F4** | Motor de extracción de keywords | F3 | 1 | ⬜ Pendiente |
 | **F5** | JD Scraper multi-source | Ninguna | 1 | ⬜ Pendiente |
