@@ -1,0 +1,114 @@
+{
+  "overall": {
+    "score": 72,
+    "maxScore": 100,
+    "percentage": 0.72
+  },
+  "scorers": {
+    "hardKeywords": {
+      "score": 38,
+      "maxScore": 50,
+      "percentage": 0.76,
+      "weight": 0.25,
+      "weightedScore": 0.19,
+      "details": {
+        "matchedKeywords": 15,
+        "totalKeywords": 20,
+        "matchedTerms": ["Jira", "Agile", "Scrum", "CI/CD", "Docker", "Kubernetes", "Node.js", "React", "API", "Microservices", "Cloud", "AWS", "GitHub", "SQL", "TypeScript"],
+        "missingTerms": ["GraphQL", "Terraform", "gRPC", "Kafka", "Elasticsearch"],
+        "mustHaveMatched": 5,
+        "mustHaveTotal": 7
+      }
+    },
+    "softKeywords": {
+      "score": 18,
+      "maxScore": 25,
+      "percentage": 0.72,
+      "weight": 0.25,
+      "weightedScore": 0.18,
+      "details": {
+        "matchedKeywords": 7,
+        "totalKeywords": 10,
+        "matchedTerms": ["leadership", "stakeholder management", "cross-functional", "mentorship", "strategic planning", "execution", "communication"],
+        "missingTerms": ["change management", "vendor management", "conflict resolution"]
+      }
+    },
+    "domainMatch": {
+      "score": 12,
+      "maxScore": 15,
+      "percentage": 0.80,
+      "weight": 0.25,
+      "weightedScore": 0.20,
+      "details": {
+        "matchedDomains": ["backend-engineering", "cloud-infrastructure", "devops", "platform-engineering"],
+        "missingDomains": ["data-engineering"]
+      }
+    },
+    "seniorityFit": {
+      "score": 8,
+      "maxScore": 10,
+      "percentage": 0.80,
+      "weight": 0.25,
+      "weightedScore": 0.20,
+      "details": {
+        "requiredYears": 5,
+        "actualYears": 10,
+        "levelMatch": "exceeds",
+        "signalsMatched": ["led teams", "shipped complex programs", "mentored engineers"]
+      }
+    },
+    "fuzzyMatch": {
+      "score": 2,
+      "maxScore": 5,
+      "percentage": 0.40,
+      "weight": 0.25,
+      "weightedScore": 0.10,
+      "details": {
+        "semanticMatches": [
+          { "jdTerm": "delivery management", "cvTerm": "end-to-end delivery", "confidence": 0.8 },
+          { "jdTerm": "operational excellence", "cvTerm": "operational workflows", "confidence": 0.7 }
+        ]
+      }
+    }
+  },
+  "summary": {
+    "strengths": [
+      "Strong match on hard technical keywords (15/20)",
+      "Excellent seniority fit (10 years vs 5 required)",
+      "Good domain alignment in backend and cloud infrastructure"
+    ],
+    "gaps": [
+      "Missing GraphQL and Kafka experience",
+      "No explicit data engineering domain experience"
+    ],
+    "keywordCoverage": {
+      "matched": 15,
+      "total": 20,
+      "percentage": 0.75
+    }
+  },
+  "recommendation": {
+    "level": "tailor",
+    "label": "Moderate match — tailor CV",
+    "actions": [
+      {
+        "type": "add",
+        "keyword": "GraphQL",
+        "reason": "Missing hard keyword. If you have any GraphQL experience, surface it."
+      },
+      {
+        "type": "reframe",
+        "keyword": "change management",
+        "reason": "Consider reframing process improvement work as change management."
+      }
+    ]
+  },
+  "metadata": {
+    "matchedAt": "2026-06-01T12:00:00.000Z",
+    "matcherVersion": "1.0.0",
+    "taxonomyVersion": "1.0.0",
+    "cvWordCount": 850,
+    "jdWordCount": 620,
+    "processingTimeMs": 45
+  }
+}
