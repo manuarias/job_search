@@ -10,7 +10,8 @@
     "extract-keywords": "node scripts/extract-keywords.js",
     "fetch-jd": "node scripts/fetch-jd.js",
     "score-cv": "node scripts/score-cv.js",
-    "analytics": "node scripts/analytics.js"
+    "analytics": "node scripts/analytics.js",
+    "hermes": "node scripts/hermes.js"
   },
   "dependencies": {
     "markdown-it": "^14.0.0",
