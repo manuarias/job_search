@@ -551,6 +551,11 @@ async function main() {
 // ── CLI entry guard ───────────────────────────────────────────────────
 if (require.main === module) {
   main().catch(e => {
+    if (e.code === 'SEARCH_RESULTS_PAGE') {
+      // Error message is already formatted — print directly without "Fatal:" prefix
+      console.error(e.message);
+      process.exit(1);
+    }
     console.error(`Fatal: ${e.message}`);
     process.exit(1);
   });
