@@ -12,7 +12,7 @@ The system MUST export `runPipeline(input, opts)` from `lib/hermes.js`. The func
 
 - GIVEN `input` is a valid URL string and `opts` is `{}`
 - WHEN `runPipeline(input, opts)` resolves
-- THEN the result contains all 16 fields with correct types: `ref` (string), `score` (number), `status` equal to `'success'`, `files` (object with artifact paths), `dir` (string)
+- THEN the result contains all 16 fields with correct types: `ref` (string), `score` (number), `status` equal to `'done'`, `files` (array of artifact filenames), `dir` (string)
 
 #### Scenario: Invalid input
 
@@ -38,7 +38,7 @@ Given `node scripts/hermes.js <url>`, terminal output (stderr) and all generated
 
 - GIVEN `scripts/hermes.js` receives `--help`
 - WHEN the process runs
-- THEN usage text prints to stdout, exit code is 0, no pipeline steps execute
+- THEN usage text prints to stderr, exit code is 1, no pipeline steps execute
 
 ---
 
