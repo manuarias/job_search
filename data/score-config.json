@@ -53,6 +53,16 @@
       "developed", "deployed", "overhauled", "spearheaded", "introduced",
       "eliminated", "recovered", "migrated", "consolidated", "restructured"
     ],
+    "actionVerbsEs": [
+      "construí", "arquitecté", "escalé", "optimicé", "reduje", "lideré",
+      "entregué", "diseñé", "implementé", "modernicé", "gestioné",
+      "lancé", "automaticé", "lideré", "negocié", "impulsé", "mentoricé",
+      "dirigí", "orquesté", "establecí", "definí", "transformé",
+      "aceleré", "mejoré", "incrementé", "logré", "creé",
+      "desarrollé", "desplegué", "reformé", "encabecé", "introduje",
+      "eliminé", "recuperé", "migré", "consolidé", "reestructureé",
+      "participé", "revisé", "mantuve", "realicé"
+    ],
     "readability": {
       "backend": "regex",
       "maxSyllablesPerWord": 3,

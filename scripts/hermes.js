@@ -279,7 +279,7 @@ function stepScore(state) {
   const cvData = loadCVData(state.lang);
   const matchPath = path.join(state.dir, 'match.json');
   const matchResult = JSON.parse(fs.readFileSync(matchPath, 'utf8'));
-  const scoreResult = scoreCV(cvData, matchResult);
+  const scoreResult = scoreCV(cvData, matchResult, { lang: state.lang });
 
   const scorePath = path.join(state.dir, 'score.json');
   fs.writeFileSync(scorePath, JSON.stringify(scoreResult, null, 2), 'utf8');

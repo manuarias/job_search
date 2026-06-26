@@ -4,7 +4,7 @@
  * F7 Score CV — CLI entry point
  *
  * Usage:
- *   node scripts/score-cv.js <cv.json> <match.json> [--target N] [--cv-md path]
+ *   node scripts/score-cv.js <cv.json> <match.json> [--target N] [--cv-md path] [--lang en|es]
  *
  * Reads a structured CV JSON file and an F6 match output JSON file,
  * runs the 3-category scoring rubric (ATS 40%, Keyword 30%, Recruiter 30%),
@@ -48,6 +48,13 @@ function parseArgs(argv) {
     } else if (arg === '--cv-md' && i + 1 < args.length) {
       options.cvMdPath = args[i + 1];
       i += 2;
+    } else if (arg === '--lang' && i + 1 < args.length) {
+      const langVal = args[i + 1];
+      if (langVal !== 'en' && langVal !== 'es') {
+        return { error: `Invalid --lang value: "${langVal}". Must be "en" or "es".` };
+      }
+      options.lang = langVal;
+      i += 2;
     } else if (arg === '--help' || arg === '-h') {
       return { help: true };
     } else if (arg.startsWith('-')) {
@@ -62,7 +69,7 @@ function parseArgs(argv) {
 }
 
 function printUsage() {
-  console.error('Usage: node scripts/score-cv.js <cv.json> <match.json> [--target N] [--cv-md path]');
+  console.error('Usage: node scripts/score-cv.js <cv.json> <match.json> [--target N] [--cv-md path] [--lang en|es]');
   console.error('');
   console.error('  cv.json      — structured CV data (matching cv.schema.json)');
   console.error('  match.json   — F6 match output (matching match-output.schema.json)');
@@ -70,9 +77,11 @@ function printUsage() {
   console.error('Options:');
   console.error('  --target N   — target score for gap analysis (default: 90, range: 0–100)');
   console.error('  --cv-md path — path to rendered CV Markdown for ATS MD checks');
+  console.error('  --lang en|es — language selector: en (default) or es');
   console.error('');
   console.error('Example:');
   console.error('  node scripts/score-cv.js data/cv_en.json match-output.json --target 85');
+  console.error('  node scripts/score-cv.js data/cv_es.json match-output.json --lang es');
 }
 
 // ── Main ────────────────────────────────────────────────────────────────────

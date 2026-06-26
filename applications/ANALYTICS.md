@@ -1,17 +1,17 @@
 # Analytics Report — Job Applications
 
 **Generated:** 2026-06-26
-**Applications tracked:** 5
+**Applications tracked:** 6
 
 ## Score Distribution
 
 | Metric | Value |
 |--------|-------|
-| Min | 79 |
+| Min | 64 |
 | Max | 88 |
-| Mean | 84.5 |
-| Median | 88 |
-| Count | 5 |
+| Mean | 81.1 |
+| Median | 83.8 |
+| Count | 6 |
 
 ## Keyword Correlation
 
@@ -52,7 +52,7 @@ Callback rate (non-Closed / total) per score bucket:
 | Score Range | Applications | Responded | Callback Rate |
 |-------------|-------------|-----------|---------------|
 | ≥85 | 3 | 0 | 0% |
-| <80 | 2 | 1 | 50% |
+| <80 | 3 | 1 | 33.3% |
 
 ## Response Summary
 
@@ -60,5 +60,6 @@ Callback rate (non-Closed / total) per score bucket:
 |--------|-------|
 | Closed | 4 |
 | Submitted | 1 |
+| — | 1 |
 
-**Overall response rate:** 20% (1/5)
+**Overall response rate:** 16.7% (1/6)
