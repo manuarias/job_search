@@ -1,13 +1,30 @@
 # CV Optimization Agent Rules
 
-These rules define the exact workflow for optimizing resumes/CVs against specific Job Descriptions (JD) in the `job_search` project. Follow these instructions precisely to ensure reproducible, high-quality results.
+These rules define the workflow for optimizing resumes/CVs against specific Job Descriptions (JD) in the `job_search` project. Follow these instructions precisely to ensure reproducible, high-quality results.
+
+---
+
+## Quick Start — Hermes Agent 🚀
+
+The automated pipeline handles everything in one command:
+
+```bash
+node scripts/hermes.js <jd-url-or-text>
+```
+
+This runs: scrape JD → extract keywords → match against CV → score → assemble optimized CV → generate cover letter → save all artifacts to `applications/{REF}/`.
+
+See `README.md` for full CLI options (interactive mode, batch, PDF, etc.).
+
+The **manual 5-step workflow** below is the fallback for cases where you want full control over each phase.
 
 ---
 
 ## Project Context
 
 - **Project Root:** `/Users/earias/Documents/job_search/`
-- **Master CVs (source, NEVER modified):** `resumes/cv_en.md` and `resumes/cv_es.md`
+- **Master CVs (source, NEVER modified):** `resumes/cv_en.md` (English) and `resumes/cv_es.md` (Spanish)
+- **Structured CV data:** `data/cv_en.json` and `data/cv_es.json` (auto-generated, used by pipeline)
 - **Optimized Template:** `resumes/resume_template/template_optimized.md`
 - **Applications Directory:** `applications/` (all JD-specific optimizations go here)
 - **Tracking File:** `applications/jd-tracking.md`
@@ -27,28 +44,63 @@ These rules define the exact workflow for optimizing resumes/CVs against specifi
 
 ## Folder Structure
 
-All JD-specific optimizations live under `applications/`:
-
 ```
-resumes/
-├── cv_en.md                              ← Source CV English (DO NOT TOUCH)
-├── cv_es.md                              ← Source CV Spanish (DO NOT TOUCH)
-└── resume_template/
-    ├── template.md                        ← Original generic template
-    └── template_optimized.md             ← Impact-first template (USE THIS)
-
-applications/
-├── jd-tracking.md                         ← Master tracking table
-└── [REF]/                                 ← Per-JD folder (e.g., AGIL/)
-    ├── job-description.md
-    ├── 01-ats-diagnostic.md
-    ├── 02-recruiter-eye-test.md
-    ├── 03-achievement-rewrite.md
-    ├── 04-keyword-fusion.md
-    ├── 05-final-score.md
-    ├── README.md
-    ├── arias_emanuel-en-[REF].md         ← Final CV in English
-    └── arias_emanuel-es-[REF].md         ← Final CV in Spanish (if needed)
+job_search/
+├── AGENTS.md              ← Optimization workflow rules (this file)
+├── ROADMAP.md             ← Improvement roadmap (completed ✅)
+├── README.md              ← Project overview & usage
+├── data/                  ← Structured data (CVs, taxonomies, configs)
+│   ├── cv_en.json         ← Structured CV in English
+│   ├── cv_es.json         ← Structured CV in Spanish
+│   ├── keyword-taxonomy.json  ← Tech keyword dictionary (~117 terms)
+│   ├── soft-synonyms.json ← Soft skill synonym mappings
+│   ├── domain-mapping.json← Keyword → domain lookup table
+│   ├── match-weights.json ← Matching engine weight config
+│   ├── score-config.json  ← Scoring engine config
+│   └── jd-tracking.json   ← Structured application tracking
+├── schemas/               ← JSON Schemas
+│   ├── cv.schema.json     ← CV data model schema
+│   ├── keyword-output.schema.json
+│   ├── match-output.schema.json
+│   └── README.md          ← Schema documentation
+├── lib/                   ← Core modules
+│   ├── matcher.js         ← F6: CV-JD matching engine
+│   ├── scorer.js          ← F7: Quantified scoring engine
+│   ├── assembler.js       ← F8: CV Markdown assembler
+│   ├── cover-letter.js    ← F9: Cover letter skeleton generator
+│   ├── analytics.js       ← F10: Application analytics
+│   ├── keyword-extractor.js  ← F4: Keyword extraction engine
+│   ├── jd-scraper.js      ← F5: JD URL scraper
+│   └── soft-skills.json   ← Soft skill detection dictionary
+├── scripts/               ← CLI entry points
+│   ├── hermes.js          ← 🚀 Full pipeline orchestrator
+│   ├── fetch-jd.js        ← Scrape JD from URL
+│   ├── extract-keywords.js← Extract keywords from JD text
+│   ├── match-cv.js        ← Match CV against JD keywords
+│   ├── score-cv.js        ← Score CV-JD alignment
+│   ├── assemble-cv.js     ← Generate optimized CV Markdown
+│   ├── generate-cover-letter.js ← Generate cover letter skeleton
+│   ├── analytics.js       ← Generate ANALYTICS.md report
+│   └── validate-cv.mjs    ← Validate CV JSON against schema
+├── pdf-builder/           ← PDF generator
+│   ├── build-cv.js        ← MD → PDF (Node.js + Playwright)
+│   └── cv-template.html   ← Professional HTML/CSS template
+├── resumes/               ← Source CVs (DO NOT MODIFY)
+│   ├── cv_en.md           ← Master CV in English
+│   ├── cv_es.md           ← Master CV in Spanish
+│   ├── archive/           ← Archived CV versions
+│   └── resume_template/
+│       └── template_optimized.md
+└── applications/          ← Job applications (one folder per REF)
+    ├── jd-tracking.md     ← Application tracking table
+    ├── ANALYTICS.md       ← Auto-generated analytics report
+    └── [REF]/             ← Per-application folder
+        ├── job-description.md
+        ├── keywords.json
+        ├── match.json
+        ├── score.json
+        ├── arias_emanuel-[en/es]-[REF].md
+        └── cover-letter.md
 ```
 
 ---

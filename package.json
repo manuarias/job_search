@@ -10,6 +10,9 @@
     "extract-keywords": "node scripts/extract-keywords.js",
     "fetch-jd": "node scripts/fetch-jd.js",
     "score-cv": "node scripts/score-cv.js",
+    "match-cv": "node scripts/match-cv.js",
+    "assemble-cv": "node scripts/assemble-cv.js",
+    "cover-letter": "node scripts/generate-cover-letter.js",
     "analytics": "node scripts/analytics.js",
     "hermes": "node scripts/hermes.js"
   },
