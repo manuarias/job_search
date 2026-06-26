@@ -1,0 +1,122 @@
+{
+  "hardKeywords": [
+    {
+      "term": "Python",
+      "category": "languages",
+      "matched": "Python",
+      "confidence": 1,
+      "frequency": 4,
+      "mustHave": false,
+      "context": "…Guardar en Mis favoritos\n\n\n\nDenunciar empleo\n\n\n\nOcultar aviso\n\n\n\n\n\n\n\n\n\nOferta oculta\n\n\n\n\n\nMostrar oferta\n\n\n\n\n\n\n\n\n\n\nYa…"
+    },
+    {
+      "term": "DevOps",
+      "category": "methodologies",
+      "matched": "DevOps",
+      "confidence": 1,
+      "frequency": 2,
+      "mustHave": false,
+      "context": "…[\nBETA S.A.\n](https://ar.computrabajo.com/empresas/ofertas-de-trabajo-de-beta-sa-F48874A65A14E6EF)…"
+    },
+    {
+      "term": "Microsoft Azure",
+      "category": "cloud",
+      "matched": "Azure",
+      "confidence": 1,
+      "frequency": 2,
+      "mustHave": false,
+      "context": "…contraseña no coinciden\n\n\n\n\nPrueba de nuevo para **activar la alerta**.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[\n¿Has olvidado…"
+    },
+    {
+      "term": "Java",
+      "category": "languages",
+      "matched": "java",
+      "confidence": 1,
+      "frequency": 12,
+      "mustHave": false,
+      "context": "# Trabajo de lider tecnico java | Ofertas laborales Argentina 2026\n\nTrabajo de lider…"
+    },
+    {
+      "term": "PHP",
+      "category": "languages",
+      "matched": "PHP",
+      "confidence": 1,
+      "frequency": 2,
+      "mustHave": false,
+      "context": "…##\n[\nRef. 21135: L&#xED;der T&#xE9;cnico Backend (Java / Microservicios / Azure) / Remoto / 2 v…"
+    },
+    {
+      "term": "SQL",
+      "category": "languages",
+      "matched": "SQL",
+      "confidence": 1,
+      "frequency": 2,
+      "mustHave": false,
+      "context": "…Capital Federal\n\n\n\n\n\nHace 5 horas\n\n\n\n\n\n\n\nPostular\n\n\n\nGuardar en Mis favoritos\n\n\n\nDenunciar empleo\n\n\n\nOcultar…"
+    },
+    {
+      "term": "Amazon Web Services",
+      "category": "cloud",
+      "matched": "AWS",
+      "confidence": 1,
+      "frequency": 4,
+      "mustHave": false,
+      "context": "…ultores)\n\n\n\n\n\nZ&#xE1;rate, Buenos Aires\n\n\n\n\n\nHace 5 horas\n\n\n\n\n\n\n\nPostular\n\n\n\nGuardar en Mis favoritos\n\n\n\nDenunciar…"
+    },
+    {
+      "term": "Elasticsearch",
+      "category": "databases",
+      "matched": "Es",
+      "confidence": 1,
+      "frequency": 5,
+      "mustHave": false,
+      "context": "…ado\n\n\nVista\n\n\n\n\n\n\n\n\n\n\n4,1\n\n\n\n\n[\nYel\n](https://ar.computrabajo.com/yelsolutions)\n\n\n\n\n\nParque Patricios,…"
+    }
+  ],
+  "softKeywords": [
+    {
+      "term": "Ownership",
+      "matched": "Responsable",
+      "confidence": 0.9,
+      "frequency": 1,
+      "mustHave": false,
+      "context": "…Mostrar oferta\n\n\n\n\n\n\n\n\n\n\n\n##\n[\nDesarrollador Mainframe Cobol\n](/ofertas-de-trabajo/oferta-de-t…"
+    },
+    {
+      "term": "Remote Collaboration",
+      "matched": "Remoto",
+      "confidence": 0.9,
+      "frequency": 19,
+      "mustHave": false,
+      "context": "…Urgente\n\n\n53\n\n\n\n-\n\nDesde ayer\n\n\n2\n\n\n\n-\n\n&#xDA;ltimos 3 d&#xED;as\n\n\n5\n\n\n\n-\n\n&#xDA;ltima semana\n\n\n19…"
+    },
+    {
+      "term": "Work Ethic",
+      "matched": "Responsable",
+      "confidence": 0.9,
+      "frequency": 1,
+      "mustHave": false,
+      "context": "…Mostrar oferta\n\n\n\n\n\n\n\n\n\n\n\n##\n[\nDesarrollador Mainframe Cobol\n](/ofertas-de-trabajo/oferta-de-t…"
+    }
+  ],
+  "senioritySignals": {
+    "yearsMinimum": 0,
+    "yearsPreferred": 0,
+    "level": "mid",
+    "signals": [
+      {
+        "type": "title_keyword",
+        "value": "semi-senior"
+      }
+    ],
+    "title": "Trabajo de lider tecnico java | Ofertas laborales Argentina 2026"
+  },
+  "metadata": {
+    "extractedAt": "2026-06-26T13:48:26.356Z",
+    "taxonomyVersion": "1.0.0",
+    "jdSource": "text",
+    "jdWordCount": 1687,
+    "processingTimeMs": 35,
+    "extractorVersion": "1.0.0"
+  }
+}

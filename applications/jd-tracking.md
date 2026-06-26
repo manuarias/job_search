@@ -8,6 +8,7 @@ Registro único de todas las postulaciones. Ordenado por fecha de creación (má
 
 | REF | Company | Role | JD | Final CV | Score | Status | Created | Updated |
 |-----|---------|------|-----|----------|-------|--------|---------|---------|
+| ARXX | Ar | Trabajo de lider tecnico java | Ofertas laborales Argentina 2026 | [JD](ARXX/job-description.md) | 64/100 | — | In Progress | 2026-06-26 || 2026-06-26 |
 | HUMA | Humand | Engineering Manager | [JD](HUMA/job-description.md) | [CV](HUMA/arias_emanuel-es-HUMA.md) | 88/100 | Closed | 2026-05-21 | 2026-06-04 |
 | VANT | Vantegrate | Salesforce Developer Junior | [JD](VANT/job-description.md) | [CV](VANT/arias_emanuel-es-VANT.md) | 79/100 | Closed | 2026-05-21 | 2026-06-04 |
 | SIMR | Simera | Java Developer (Mid-Level) | [JD](SIMR/job-description.md) | [CV](SIMR/arias_emanuel-en-SIMR.md) | 88/100 | Closed | 2026-05-07 | 2026-05-21 |

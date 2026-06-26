@@ -1,0 +1,172 @@
+{
+  "overall": {
+    "score": 32,
+    "maxScore": 100,
+    "percentage": 0.3167
+  },
+  "scorers": {
+    "hardKeywords": {
+      "score": 2,
+      "maxScore": 8,
+      "percentage": 0.25,
+      "weight": 0.3,
+      "weightedScore": 0.075,
+      "details": {
+        "score": 2,
+        "maxScore": 8,
+        "percentage": 0.25,
+        "matched": [
+          "Python",
+          "Java"
+        ],
+        "missed": [
+          "DevOps",
+          "Microsoft Azure",
+          "PHP",
+          "SQL",
+          "Amazon Web Services",
+          "Elasticsearch"
+        ],
+        "total": 8
+      }
+    },
+    "softKeywords": {
+      "score": 1,
+      "maxScore": 3,
+      "percentage": 0.3333333333333333,
+      "weight": 0.2,
+      "weightedScore": 0.0667,
+      "details": {
+        "score": 1,
+        "maxScore": 3,
+        "percentage": 0.3333333333333333,
+        "matched": [
+          "Ownership"
+        ],
+        "missed": [
+          "Remote Collaboration",
+          "Work Ethic"
+        ],
+        "total": 3
+      }
+    },
+    "domainMatch": {
+      "score": 1,
+      "maxScore": 4,
+      "percentage": 0.125,
+      "weight": 0.2,
+      "weightedScore": 0.025,
+      "details": {
+        "score": 1,
+        "maxScore": 4,
+        "percentage": 0.125,
+        "cvDomains": [
+          "delivery-management",
+          "leadership",
+          "backend-engineering",
+          "automation",
+          "devops"
+        ],
+        "jdDomains": [
+          "backend-engineering",
+          "agile-leadership",
+          "cloud-infrastructure",
+          "data-engineering"
+        ],
+        "matched": [
+          "backend-engineering"
+        ],
+        "missed": [
+          "agile-leadership",
+          "cloud-infrastructure",
+          "data-engineering"
+        ],
+        "total": 4
+      }
+    },
+    "seniorityFit": {
+      "score": 1,
+      "maxScore": 1,
+      "percentage": 1,
+      "weight": 0.15,
+      "weightedScore": 0.15,
+      "details": {
+        "score": 1,
+        "maxScore": 1,
+        "percentage": 1,
+        "cvYears": 8.5,
+        "jdYears": 0,
+        "cvLevel": "senior",
+        "jdLevel": "mid",
+        "yearsFit": 1,
+        "levelFit": 1
+      }
+    },
+    "fuzzyMatch": {
+      "score": 0,
+      "maxScore": 24,
+      "percentage": 0,
+      "weight": 0.15,
+      "weightedScore": 0,
+      "details": {
+        "score": 0,
+        "maxScore": 24,
+        "percentage": 0
+      }
+    }
+  },
+  "summary": {
+    "strengths": [
+      "Seniority level aligns well with role"
+    ],
+    "gaps": [
+      "Missing 6 technical keywords",
+      "Soft-skill gaps: Remote Collaboration, Work Ethic",
+      "Domain coverage gap (13%)",
+      "Narrative language differs from JD"
+    ],
+    "keywordCoverage": {
+      "matched": 3,
+      "total": 11,
+      "percentage": 0.27
+    }
+  },
+  "recommendation": {
+    "level": "skip",
+    "label": "Poor match — reconsider or upskill first",
+    "actions": [
+      {
+        "priority": "high",
+        "action": "Improve semantic alignment: the CV's narrative language differs from the JD. Rewrite the professional summary and competency bullets using the JD's exact terminology and phrasing.",
+        "impact": "high"
+      },
+      {
+        "priority": "high",
+        "action": "Bridge domain gaps: agile-leadership, cloud-infrastructure, data-engineering. Reframe existing achievements to show experience in these areas, or identify adjacent experience that transfers.",
+        "impact": "high"
+      },
+      {
+        "priority": "high",
+        "action": "Add missing technical keywords to CV: DevOps, Microsoft Azure, PHP, SQL, Amazon Web Services and 1 more. Weave these into achievements and skills sections.",
+        "impact": "high"
+      },
+      {
+        "priority": "high",
+        "action": "Highlight behavioral skills missing from CV: Remote Collaboration, Work Ethic. Rewrite bullets using the JD's exact language for these soft skills.",
+        "impact": "high"
+      }
+    ]
+  },
+  "metadata": {
+    "matchedAt": "2026-06-26T13:48:26.361Z",
+    "matcherVersion": "1.0.0",
+    "weightsUsed": {
+      "hardKeywords": 0.3,
+      "softKeywords": 0.2,
+      "domainMatch": 0.2,
+      "seniorityFit": 0.15,
+      "fuzzyMatch": 0.15
+    },
+    "processingTimeMs": 4
+  }
+}
