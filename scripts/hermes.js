@@ -27,6 +27,7 @@ const { matchCV } = require('../lib/matcher');
 const { scoreCV } = require('../lib/scorer');
 const { assembleCV } = require('../lib/assembler');
 const { generateCoverLetter } = require('../lib/cover-letter');
+const { generateReport } = require('../lib/reporter');
 
 // ── Paths ─────────────────────────────────────────────────────────────────
 const PROJECT_ROOT = path.resolve(__dirname, '..');
@@ -449,6 +450,14 @@ async function runPipeline(input, opts) {
     updateTrackingJson(ref, scrapeResult.company, scrapeResult.title, scoreResult.final, 'Ready');
   } catch {
     // Score may not exist if skipped
+  }
+
+  // Pipeline report
+  try {
+    const reportText = generateReport(state);
+    console.error(reportText);
+  } catch (e) {
+    console.error(`⚠️  Report generation failed: ${e.message}`);
   }
 
   // PDF generation
