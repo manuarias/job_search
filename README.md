@@ -53,6 +53,29 @@ job_search/
 └── package.json           ← Dependencias
 ```
 
+### 🚀 Hermes — Pipeline automatizado
+
+Hermes (`scripts/hermes.js`) automatiza todo el pipeline de optimización en un solo comando. Encadena los pasos: scrape → extraer keywords → matchear → puntuar → ensamblar CV → cover letter. Persiste estado en disco para sobrevivir crashes.
+
+```bash
+# Desde URL
+node scripts/hermes.js https://boards.greenhouse.io/empresa/jobs/123
+
+# Desde texto
+node scripts/hermes.js "Buscamos un Senior Engineer con experiencia en..."
+
+# Modo interactivo (aprobación paso a paso)
+node scripts/hermes.js https://... --interactive
+
+# Batch (un archivo con una URL por línea)
+node scripts/hermes.js --batch urls.txt
+
+# Forzar idioma + generar PDF
+node scripts/hermes.js https://... --lang en --pdf
+```
+
+Opciones: `--lang en|es`, `--interactive`, `--batch <file>`, `--pdf`, `--help`
+
 ### Cómo usarlo (flujo completo)
 
 #### Paso 0: Inicializar la postulación
@@ -181,6 +204,29 @@ job_search/
 └── package.json           ← Dependencies
 ```
 
+### 🚀 Hermes — Automated Pipeline
+
+Hermes (`scripts/hermes.js`) automates the entire optimization pipeline in a single command. It chains the steps: scrape → extract keywords → match → score → assemble CV → cover letter. Filesystem-based state survives crashes.
+
+```bash
+# From URL
+node scripts/hermes.js https://boards.greenhouse.io/company/jobs/123
+
+# From text
+node scripts/hermes.js "We are looking for a Senior Engineer with..."
+
+# Interactive mode (step-by-step approval)
+node scripts/hermes.js https://... --interactive
+
+# Batch mode (one URL per line)
+node scripts/hermes.js --batch urls.txt
+
+# Force language + generate PDF
+node scripts/hermes.js https://... --lang en --pdf
+```
+
+Options: `--lang en|es`, `--interactive`, `--batch <file>`, `--pdf`, `--help`
+
 ### How to use it (complete workflow)
 
 #### Step 0: Initialize the application
@@ -271,6 +317,7 @@ The first time Playwright runs, it downloads Chromium automatically (~100MB).
 
 | Command | Description |
 |---------|-------------|
+| `node scripts/hermes.js <jd-url-or-text>` | Full pipeline: scrape → CV → cover letter (F11) |
 | `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description (F4) |
 | `node scripts/match-cv.js <cv.json> <keywords.json>` | Score a CV against JD keywords (F6) |
 | `npm test` | Run all tests (Vitest) |
@@ -303,11 +350,13 @@ Local options (zero API cost): `@xenova/transformers` (ONNX runtime, all-MiniLM-
 
 | Command | Description |
 |---------|-------------|
+| `node scripts/hermes.js <jd-url-or-text>` | Full pipeline: scrape → CV → cover letter |
 | `node pdf-builder/build-cv.js <input.md> <output.pdf>` | Generate PDF from optimized CV |
 | `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description |
 | `node scripts/match-cv.js <cv.json> <keywords.json>` | Score CV against JD keywords |
 | `npm install` | Install dependencies (run once) |
 | `npm test` | Run all test suites |
+| `npm run hermes -- <jd-url>` | Hermes pipeline (via npm script) |
 | `npx playwright install chromium` | Reinstall Chromium if needed |
 
 ## License
