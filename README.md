@@ -91,6 +91,8 @@ node scripts/hermes.js https://... --lang en --pdf
 
 Opciones: `--lang en|es`, `--interactive`, `--batch <file>`, `--pdf`, `--help`
 
+> **Para agentes de IA:** usá la API programática en vez del CLI. Ver [`AGENTS.md`](./AGENTS.md#for-ai-agents-) para ejemplos con `require('./lib/hermes').runPipeline()`.
+
 ### Cómo usarlo (flujo completo)
 
 #### Paso 0: Inicializar la postulación
