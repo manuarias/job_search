@@ -20,6 +20,81 @@ The **manual 5-step workflow** below is the fallback for cases where you want fu
 
 ---
 
+## For AI Agents 🤖
+
+> **If you are an LLM agent, use the programmatic API. Do NOT spawn `node scripts/hermes.js` as a subprocess.**
+
+### Quick API
+
+```js
+const { runPipeline } = require('./lib/hermes');
+
+// Analyze a JD — URL or raw text, any language
+const r = await runPipeline(jdUrlOrText, { lang: 'es' });
+```
+
+### Result object
+
+```js
+r.status          // 'done' | 'error' | 'paused'
+r.score           // 73 (0–100)
+r.categories      // { atsParseability, keywordAlignment, recruiterAppeal }
+r.matchLevel      // 'apply' | 'consider' | 'tailor' | 'skip' | 'gap'
+r.keywordCoverage // 0.27 (0–1)
+r.gap             // -17 (points to reach 90)
+r.recommendation  // "Improve semantic alignment: ..."
+r.reportCard      // Formatted text card (same as REPORT.md)
+r.files           // ['cv.md', 'cover-letter.md', 'REPORT.md', ...]
+r.dir             // '/abs/path/to/applications/REF'
+r.ref             // 'ARXX'
+r.company         // 'Acme Corp'
+r.role            // 'Senior Engineer'
+r.lang            // 'es' | 'en'
+```
+
+### Decision guide
+
+| Signal | Meaning | Agent action |
+|--------|---------|-------------|
+| `r.score >= 80` | Strong match | Ready to submit or fine-tune |
+| `r.score >= 65 && r.score < 80` | Decent match | Review quick wins; keyword gaps fixable |
+| `r.score < 65` | Weak match | Skip or major CV rewrite needed |
+| `r.matchLevel === 'apply'` | Excellent alignment | Apply with confidence |
+| `r.matchLevel === 'skip'` | Poor alignment | Don't submit; find better-fit JDs |
+| `r.gap <= 5` | Near target (90) | Small tweaks to reach 90+ |
+| `r.status === 'error'` | Step failed | `r.score` and `r.files` may still have partial data |
+
+### Example: batch filter
+
+```js
+const { runPipeline } = require('./lib/hermes');
+
+for (const jd of jobDescriptions) {
+  const r = await runPipeline(jd, { lang: 'es' });
+  if (r.score >= 75 && r.matchLevel !== 'skip') {
+    console.log(`✅ ${r.ref}: ${r.score}/100 — ${r.files.join(', ')}`);
+  } else {
+    console.log(`❌ ${r.ref}: ${r.score}/100 — skip`);
+  }
+}
+```
+
+### Error handling
+
+```js
+try {
+  const r = await runPipeline(url, { lang: 'es' });
+  // r.code === 'SEARCH_RESULTS_PAGE' won't happen — those are thrown
+} catch (e) {
+  if (e.code === 'SEARCH_RESULTS_PAGE') {
+    // e.searchDetection.suggestedUrls has individual posting URLs
+    console.log('⚠️ Search page detected. Try one of:', e.searchDetection.suggestedUrls);
+  }
+}
+```
+
+---
+
 ## Project Context
 
 - **Project Root:** `/Users/earias/Documents/job_search/`
