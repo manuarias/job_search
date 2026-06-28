@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
+/** @deprecated Use scripts/build-pdf.js + lib/pdf-builder.js instead. Kept as reference. */
+
 /**
- * CV PDF Builder
+ * CV PDF Builder (DEPRECATED)
  * 
  * Convierte un CV en Markdown a PDF profesional.
  * Uso: node build-cv.js <input.md> <output.pdf>
