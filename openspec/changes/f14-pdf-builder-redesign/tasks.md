@@ -25,13 +25,13 @@ Chain strategy: pending
 
 ## Phase 1: Core Renderers (PR 1)
 
-- [ ] 1.1 Create `lib/pdf-builder.js` with `escapeHtml()` helper (copy from `build-cv.js` L40-50 area) and `renderHeader(contact)` — outputs `<header>` with `<h1>`, `.cv-titles`, `.cv-contact`. Verify: `renderHeader({name:'A',titles:['TPM'],email:'a@b.com',linkedin:'in/a'})` returns valid HTML with escaped entities.
-- [ ] 1.2 Add `renderSummary(items)` — renders `<ul>` of up to 3 `<li>` from `[{text, tags}]`. Empty array → empty string. Verify: 0/1/3 items, XSS in text escaped.
-- [ ] 1.3 Add `renderCompetencies(items)` — renders `<ul>` of up to 4 `<li>` with `<strong>` title + description. Empty → empty string. Verify: 0/4 items, special chars escaped.
-- [ ] 1.4 Add `renderSkills(skills, hkDetails?)` — import `reorderSkills` from `lib/assembler.js`. Render `<ul>` per category with JD-matched items first. No match → original order. Verify: with/without match data, empty skills.
-- [ ] 1.5 Add `renderExperience(exp, earlier?, matchResult?, opts?)` — import `selectAchievements` from `lib/assembler.js`. Render `.job-header` per role + ranked `<ul>` achievements. Limit by `maxAchievementsPerRole` (default 4). Earlier experience as compact section. Verify: 1/5 roles, 6 achievements with limit=4, missing match → impact desc order.
-- [ ] 1.6 Add `renderEducation(edu, certs?, langs?)` — render `<ul>` with degree+institution. Extra sections for certs/languages if non-empty. Verify: with/without optional arrays.
-- [ ] 1.7 Create `lib/pdf-builder.test.js` — Vitest unit tests for all 6 renderers. Cover: valid input, empty arrays, HTML entity escaping (Scenario 2.3), achievement limit (Scenario 2.2), skills with/without match. Use inline fixtures. Run: `npx vitest run lib/pdf-builder.test.js`.
+- [x] 1.1 Create `lib/pdf-builder.js` with `escapeHtml()` helper (copy from `build-cv.js` L40-50 area) and `renderHeader(contact)` — outputs `<header>` with `<h1>`, `.cv-titles`, `.cv-contact`. Verify: `renderHeader({name:'A',titles:['TPM'],email:'a@b.com',linkedin:'in/a'})` returns valid HTML with escaped entities.
+- [x] 1.2 Add `renderSummary(items)` — renders `<ul>` of up to 3 `<li>` from `[{text, tags}]`. Empty array → empty string. Verify: 0/1/3 items, XSS in text escaped.
+- [x] 1.3 Add `renderCompetencies(items)` — renders `<ul>` of up to 4 `<li>` with `<strong>` title + description. Empty → empty string. Verify: 0/4 items, special chars escaped.
+- [x] 1.4 Add `renderSkills(skills, hkDetails?)` — import `reorderSkills` from `lib/assembler.js`. Render `<ul>` per category with JD-matched items first. No match → original order. Verify: with/without match data, empty skills.
+- [x] 1.5 Add `renderExperience(exp, earlier?, matchResult?, opts?)` — import `selectAchievements` from `lib/assembler.js`. Render `.job-header` per role + ranked `<ul>` achievements. Limit by `maxAchievementsPerRole` (default 4). Earlier experience as compact section. Verify: 1/5 roles, 6 achievements with limit=4, missing match → impact desc order.
+- [x] 1.6 Add `renderEducation(edu, certs?, langs?)` — render `<ul>` with degree+institution. Extra sections for certs/languages if non-empty. Verify: with/without optional arrays.
+- [x] 1.7 Create `lib/pdf-builder.test.js` — Vitest unit tests for all 6 renderers. Cover: valid input, empty arrays, HTML entity escaping (Scenario 2.3), achievement limit (Scenario 2.2), skills with/without match. Use inline fixtures. Run: `npx vitest run lib/pdf-builder.test.js`.
 
 ## Phase 2: Orchestrator + CLI (PR 2)
 
