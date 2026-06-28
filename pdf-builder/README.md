@@ -52,13 +52,17 @@ La primera vez que corre Playwright, descarga Chromium automáticamente (~100MB)
 
 ## Uso
 
-### Comando básico
+> ⚠️ **Deprecado.** Este script fue reemplazado por `lib/pdf-builder.js` + `scripts/build-pdf.js`.  
+> Usá `node scripts/build-pdf.js <ref> [--lang en|es]` en su lugar.  
+> Este archivo se mantiene como referencia histórica.
+
+### Comando básico (legacy)
 
 ```bash
 node pdf-builder/build-cv.js <input.md> <output.pdf>
 ```
 
-### Ejemplo
+### Ejemplo (legacy)
 
 ```bash
 cd /Users/earias/Documents/job_search

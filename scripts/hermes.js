@@ -63,7 +63,7 @@ function printUsage() {
   console.error('  --lang en|es     Force output language (default: auto-detect from JD)');
   console.error('  --interactive    Step-by-step approval mode (y/n/q after each step)');
   console.error('  --batch <file>   Process a file with one JD URL per line');
-  console.error('  --pdf            Generate PDF after CV assembly (requires build-cv.js)');
+  console.error('  --pdf            Generate PDF after CV assembly (requires playwright)');
   console.error('  --help, -h       Show this help');
   console.error('');
   console.error('Examples:');

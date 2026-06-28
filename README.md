@@ -136,14 +136,14 @@ Seguir el flujo definido en `AGENTS.md`:
 
 ```bash
 # Desde el root del proyecto
-node pdf-builder/build-cv.js \
-  applications/AGIL/arias_emanuel-en-AGIL.md \
-  applications/AGIL/arias_emanuel-en-AGIL.pdf
+node scripts/build-pdf.js AGIL --lang en
 ```
 
 Esto genera:
 - `applications/AGIL/arias_emanuel-en-AGIL.html` — Preview para revisar
 - `applications/AGIL/arias_emanuel-en-AGIL.pdf` — PDF final listo para enviar
+
+El PDF se genera directo desde los datos estructurados (`data/cv_en.json` + `match.json`), sin parsear Markdown.
 
 #### Paso 7: Actualizar tracking
 
@@ -301,9 +301,7 @@ Follow the workflow defined in `AGENTS.md`:
 
 ```bash
 # From the project root
-node pdf-builder/build-cv.js \
-  applications/AGIL/arias_emanuel-en-AGIL.md \
-  applications/AGIL/arias_emanuel-en-AGIL.pdf
+node scripts/build-pdf.js AGIL --lang en
 ```
 
 This generates:
@@ -349,6 +347,7 @@ The first time Playwright runs, it downloads Chromium automatically (~100MB).
 | Command | Description |
 |---------|-------------|
 | `node scripts/hermes.js <jd-url-or-text>` | Full pipeline: scrape → CV → cover letter (F11) |
+| `node scripts/build-pdf.js <ref> [--lang en\|es]` | Generate A4 PDF from structured CV data (F14) |
 | `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description (F4) |
 | `node scripts/match-cv.js <cv.json> <keywords.json>` | Score a CV against JD keywords (F6) |
 | `npm test` | Run all tests (Vitest) |
@@ -382,12 +381,13 @@ Local options (zero API cost): `@xenova/transformers` (ONNX runtime, all-MiniLM-
 | Command | Description |
 |---------|-------------|
 | `node scripts/hermes.js <jd-url-or-text>` | Full pipeline: scrape → CV → cover letter |
-| `node pdf-builder/build-cv.js <input.md> <output.pdf>` | Generate PDF from optimized CV |
+| `node scripts/build-pdf.js <ref> [--lang en|es]` | Generate PDF from structured CV data |
 | `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description |
 | `node scripts/match-cv.js <cv.json> <keywords.json>` | Score CV against JD keywords |
 | `npm install` | Install dependencies (run once) |
 | `npm test` | Run all test suites |
 | `npm run hermes -- <jd-url>` | Hermes pipeline (via npm script) |
+| `npm run pdf <ref>` | Generate PDF from structured CV data |
 | `npx playwright install chromium` | Reinstall Chromium if needed |
 
 ## License

@@ -157,9 +157,11 @@ job_search/
 │   ├── generate-cover-letter.js ← Generate cover letter skeleton
 │   ├── analytics.js       ← Generate ANALYTICS.md report
 │   └── validate-cv.mjs    ← Validate CV JSON against schema
-├── pdf-builder/           ← PDF generator
-│   ├── build-cv.js        ← MD → PDF (Node.js + Playwright)
-│   └── cv-template.html   ← Professional HTML/CSS template
+├── pdf-builder/           ← PDF generator (deprecated)
+│   ├── build-cv.js        ← @deprecated — use lib/pdf-builder.js instead
+│   └── cv-template.html   ← Professional HTML/CSS template (shared)
+├── lib/                   ← Core modules
+│   ├── pdf-builder.js     ← JSON → HTML → PDF (F14)
 ├── resumes/               ← Source CVs (DO NOT MODIFY)
 │   ├── cv_en.md           ← Master CV in English
 │   ├── cv_es.md           ← Master CV in Spanish
