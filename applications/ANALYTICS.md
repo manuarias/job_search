@@ -1,6 +1,6 @@
 # Analytics Report — Job Applications
 
-**Generated:** 2026-06-26
+**Generated:** 2026-06-28
 **Applications tracked:** 6
 
 ## Score Distribution

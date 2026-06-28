@@ -1,0 +1,299 @@
+{
+  "final": 82,
+  "categories": {
+    "atsParseability": {
+      "score": 100,
+      "maxScore": 100,
+      "percentage": 1,
+      "weight": 0.4,
+      "weightedScore": 0.4,
+      "details": {
+        "missingSections": [],
+        "dateIssues": [],
+        "mdIssues": [],
+        "idIssues": [],
+        "cvMdChecked": false
+      }
+    },
+    "keywordAlignment": {
+      "score": 51,
+      "maxScore": 100,
+      "percentage": 0.51,
+      "weight": 0.3,
+      "weightedScore": 0.153,
+      "details": {
+        "f6Score": 52,
+        "multiplierUsed": 0.976,
+        "f6MatchLevel": "gap"
+      }
+    },
+    "recruiterAppeal": {
+      "score": 88,
+      "maxScore": 100,
+      "percentage": 0.88,
+      "weight": 0.3,
+      "weightedScore": 0.264,
+      "details": {
+        "totalBullets": 18,
+        "metricsCount": 6,
+        "metricsRatio": 0.3333,
+        "metricsSubScore": 67,
+        "actionVerbCount": 13,
+        "actionVerbRatio": 0.7222,
+        "actionVerbSubScore": 100,
+        "bulletLengthCompliant": 18,
+        "bulletLengthTotal": 18,
+        "bulletLengthCompliance": 1,
+        "bulletLengthSubScore": 100,
+        "readabilityScore": 87,
+        "passiveVoiceCount": 0,
+        "bulletIssues": [
+          {
+            "location": "summary[0]",
+            "flags": [
+              "missing-metric",
+              "missing-action-verb"
+            ],
+            "textPreview": "Project Leader with 10+ years across the SDLC, leading cross-functional squads a"
+          },
+          {
+            "location": "experience[0].achievement[0]",
+            "flags": [
+              "missing-metric"
+            ],
+            "textPreview": "Owned end-to-end delivery of the 'Product Bundles' technical program — a complex"
+          },
+          {
+            "location": "experience[1].achievement[0]",
+            "flags": [
+              "missing-metric"
+            ],
+            "textPreview": "Designed and implemented scalable Java backend services for high-traffic Marketp"
+          },
+          {
+            "location": "experience[1].achievement[1]",
+            "flags": [
+              "missing-metric"
+            ],
+            "textPreview": "Transformed CI/CD and Git workflows, reducing deployment friction and improving "
+          },
+          {
+            "location": "experience[1].achievement[2]",
+            "flags": [
+              "missing-metric"
+            ],
+            "textPreview": "Mentored Junior and Semi-Senior developers through structured code reviews and p"
+          },
+          {
+            "location": "experience[2].achievement[0]",
+            "flags": [
+              "missing-action-verb"
+            ],
+            "textPreview": "Maintained and evolved internal Java core components for the Marketplace ecosyst"
+          },
+          {
+            "location": "experience[2].achievement[1]",
+            "flags": [
+              "missing-metric",
+              "missing-action-verb"
+            ],
+            "textPreview": "Reviewed 8–12 pull requests per week across a squad of 9, applying quality stand"
+          },
+          {
+            "location": "experience[2].achievement[2]",
+            "flags": [
+              "missing-metric"
+            ],
+            "textPreview": "Led functional analysis and backlog refinement sessions, translating product req"
+          },
+          {
+            "location": "experience[3].achievement[0]",
+            "flags": [
+              "missing-metric"
+            ],
+            "textPreview": "Developed and maintained internal Java microservices and REST APIs, enforcing st"
+          },
+          {
+            "location": "experience[3].achievement[1]",
+            "flags": [
+              "missing-metric",
+              "missing-action-verb"
+            ],
+            "textPreview": "Participated in code review processes and production incident triage, building f"
+          },
+          {
+            "location": "experience[4].achievement[0]",
+            "flags": [
+              "missing-metric"
+            ],
+            "textPreview": "Built backend products using JavaScript, Node.js, and Python within Docker conta"
+          },
+          {
+            "location": "experience[4].achievement[1]",
+            "flags": [
+              "missing-metric"
+            ],
+            "textPreview": "Designed relational and document data models (CouchDB, MongoDB), implementing va"
+          },
+          {
+            "location": "experience[4].achievement[2]",
+            "flags": [
+              "missing-metric",
+              "missing-action-verb"
+            ],
+            "textPreview": "Conducted code reviews and authored technical documentation including API specif"
+          }
+        ],
+        "passiveVoiceBullets": []
+      }
+    }
+  },
+  "quickWins": [
+    {
+      "type": "missing-metric",
+      "location": "summary[0]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Project Leader with 10+ years across the SDLC, leading cross-functional squads a...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-action-verb",
+      "location": "summary[0]",
+      "fix": "Start bullet with a strong action verb (e.g., Built, Led, Shipped, Scaled) instead of \"Project\".",
+      "priority": "medium"
+    },
+    {
+      "type": "missing-metric",
+      "location": "experience[0].achievement[0]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Owned end-to-end delivery of the 'Product Bundles' technical program — a complex...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-metric",
+      "location": "experience[1].achievement[0]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Designed and implemented scalable Java backend services for high-traffic Marketp...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-metric",
+      "location": "experience[1].achievement[1]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Transformed CI/CD and Git workflows, reducing deployment friction and improving ...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-metric",
+      "location": "experience[1].achievement[2]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Mentored Junior and Semi-Senior developers through structured code reviews and p...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-action-verb",
+      "location": "experience[2].achievement[0]",
+      "fix": "Start bullet with a strong action verb (e.g., Built, Led, Shipped, Scaled) instead of \"Maintained\".",
+      "priority": "medium"
+    },
+    {
+      "type": "missing-metric",
+      "location": "experience[2].achievement[1]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Reviewed 8–12 pull requests per week across a squad of 9, applying quality stand...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-action-verb",
+      "location": "experience[2].achievement[1]",
+      "fix": "Start bullet with a strong action verb (e.g., Built, Led, Shipped, Scaled) instead of \"Reviewed\".",
+      "priority": "medium"
+    },
+    {
+      "type": "missing-metric",
+      "location": "experience[2].achievement[2]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Led functional analysis and backlog refinement sessions, translating product req...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-metric",
+      "location": "experience[3].achievement[0]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Developed and maintained internal Java microservices and REST APIs, enforcing st...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-metric",
+      "location": "experience[3].achievement[1]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Participated in code review processes and production incident triage, building f...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-action-verb",
+      "location": "experience[3].achievement[1]",
+      "fix": "Start bullet with a strong action verb (e.g., Built, Led, Shipped, Scaled) instead of \"Participated\".",
+      "priority": "medium"
+    },
+    {
+      "type": "missing-metric",
+      "location": "experience[4].achievement[0]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Built backend products using JavaScript, Node.js, and Python within Docker conta...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-metric",
+      "location": "experience[4].achievement[1]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Designed relational and document data models (CouchDB, MongoDB), implementing va...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-metric",
+      "location": "experience[4].achievement[2]",
+      "fix": "Add a quantifiable metric (%, $, users, hours, RPM) to \"Conducted code reviews and authored technical documentation including API specif...\"",
+      "priority": "high"
+    },
+    {
+      "type": "missing-action-verb",
+      "location": "experience[4].achievement[2]",
+      "fix": "Start bullet with a strong action verb (e.g., Built, Led, Shipped, Scaled) instead of \"Conducted\".",
+      "priority": "medium"
+    }
+  ],
+  "gapToTarget": {
+    "target": 90,
+    "current": 82,
+    "gap": 8,
+    "highestGapCategory": "keywordAlignment",
+    "highestShortfall": 12,
+    "perCategory": [
+      {
+        "category": "atsParseability",
+        "shortfall": 0,
+        "targetContribution": 36,
+        "actualContribution": 40,
+        "percentage": 1,
+        "weight": 0.4
+      },
+      {
+        "category": "keywordAlignment",
+        "shortfall": 12,
+        "targetContribution": 27,
+        "actualContribution": 15,
+        "percentage": 0.51,
+        "weight": 0.3
+      },
+      {
+        "category": "recruiterAppeal",
+        "shortfall": 1,
+        "targetContribution": 27,
+        "actualContribution": 26,
+        "percentage": 0.88,
+        "weight": 0.3
+      }
+    ]
+  },
+  "metadata": {
+    "scoredAt": "2026-06-28T15:39:13.458Z",
+    "scorerVersion": "1.0.0",
+    "weightsUsed": {
+      "atsParseability": 0.4,
+      "keywordAlignment": 0.3,
+      "recruiterAppeal": 0.3
+    },
+    "targetScore": 90,
+    "processingTimeMs": 2
+  }
+}
