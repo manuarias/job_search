@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "CV optimization workflow with PDF generation",
   "scripts": {
-    "build-cv": "node pdf-builder/build-cv.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "validate-cv": "node scripts/validate-cv.mjs",
@@ -14,10 +13,10 @@
     "assemble-cv": "node scripts/assemble-cv.js",
     "cover-letter": "node scripts/generate-cover-letter.js",
     "analytics": "node scripts/analytics.js",
-    "hermes": "node scripts/hermes.js"
+    "hermes": "node scripts/hermes.js",
+    "pdf": "node scripts/build-pdf.js"
   },
   "dependencies": {
-    "markdown-it": "^14.0.0",
     "playwright": "^1.41.0"
   },
   "devDependencies": {

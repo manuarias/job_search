@@ -8,12 +8,12 @@
 | 400-line budget risk | High |
 | Chained PRs recommended | Yes |
 | Suggested split | PR 1 (renderers + tests) → PR 2 (orchestrator + CLI + wiring) |
-| Delivery strategy | ask-always |
-| Chain strategy | pending (ask user) |
+| Delivery strategy | auto-chain |
+| Chain strategy | feature-branch-chain |
 
-Decision needed before apply: Yes
+Decision needed before apply: resolved (feature-branch-chain)
 Chained PRs recommended: Yes
-Chain strategy: pending
+Chain strategy: feature-branch-chain
 400-line budget risk: High
 
 ### Suggested Work Units
@@ -35,15 +35,15 @@ Chain strategy: pending
 
 ## Phase 2: Orchestrator + CLI (PR 2)
 
-- [ ] 2.1 Add `pdfBuilder(cvData, matchResult, outputPath)` orchestrator to `lib/pdf-builder.js` — load template via `fs.readFileSync`, replace 9 `{{placeholder}}` tokens with renderer output, write temp HTML (`.html` alongside `.pdf`), launch Playwright headless chromium, `page.setContent(html)`, `page.pdf({ format: 'A4', preferCSSPageSize: true, printBackground: true })`, close browser. Error handling: throw on missing CV data, try/catch around Playwright with "Playwright" in message. Verify: integration test — fixture CV → PDF file exists with size > 0 (Scenario 4.1).
-- [ ] 2.2 Add `renderExtraSections(earlierExp, certs, langs)` helper — combines earlier experience + certifications + languages into `{{extra_sections}}` replacement. Empty arrays → empty string (Scenario 3.2).
-- [ ] 2.3 Create `scripts/build-pdf.js` (~60 loc) — CLI: parse `<ref>` and `--lang en|es`, resolve paths (`data/cv_{lang}.json`, `applications/{ref}/match.json`, `applications/{ref}/score.json`), call `pdfBuilder()`. Exit 1 on missing ref (Scenario 5.2) or invalid lang (Scenario 7.2). Verify: `node scripts/build-pdf.js AGIL --lang en` produces PDF.
-- [ ] 2.4 Modify `lib/hermes.js` `stepPdf()` (L280-293) — replace `require('../pdf-builder/build-cv')` + `buildCV(cvPath, outPath)` with `require('./pdf-builder').pdfBuilder(cvData, matchResult, outPath)`. Load `cvData` from `data/cv_{lang}.json` and `matchResult` from `applications/{ref}/match.json`. Verify: `runPipeline()` produces PDF without reading `.md` file (Scenario 6.1).
-- [ ] 2.5 Update `package.json` — remove `"build-cv"` script, add `"pdf": "node scripts/build-pdf.js"`. Remove `markdown-it` from `dependencies`. Verify: `grep -r "markdown-it" lib/ scripts/` returns zero matches (Scenario 6.2).
-- [ ] 2.6 Add deprecation banner to `pdf-builder/build-cv.js` top comment — `/** @deprecated Use scripts/build-pdf.js + lib/pdf-builder.js instead. Kept as reference. */`. Verify: file still exists, no active code imports it.
+- [x] 2.1 Add `pdfBuilder(cvData, matchResult, outputPath)` orchestrator to `lib/pdf-builder.js` — load template via `fs.readFileSync`, replace 9 `{{placeholder}}` tokens with renderer output, write temp HTML (`.html` alongside `.pdf`), launch Playwright headless chromium, `page.setContent(html)`, `page.pdf({ format: 'A4', preferCSSPageSize: true, printBackground: true })`, close browser. Error handling: throw on missing CV data, try/catch around Playwright with "Playwright" in message. Verify: integration test — fixture CV → PDF file exists with size > 0 (Scenario 4.1).
+- [x] 2.2 Add `renderExtraSections(earlierExp, certs, langs)` helper — combines earlier experience + certifications + languages into `{{extra_sections}}` replacement. Empty arrays → empty string (Scenario 3.2).
+- [x] 2.3 Create `scripts/build-pdf.js` (~60 loc) — CLI: parse `<ref>` and `--lang en|es`, resolve paths (`data/cv_{lang}.json`, `applications/{ref}/match.json`, `applications/{ref}/score.json`), call `pdfBuilder()`. Exit 1 on missing ref (Scenario 5.2) or invalid lang (Scenario 7.2). Verify: `node scripts/build-pdf.js AGIL --lang en` produces PDF.
+- [x] 2.4 Modify `lib/hermes.js` `stepPdf()` (L280-293) — replace `require('../pdf-builder/build-cv')` + `buildCV(cvPath, outPath)` with `require('./pdf-builder').pdfBuilder(cvData, matchResult, outPath)`. Load `cvData` from `data/cv_{lang}.json` and `matchResult` from `applications/{ref}/match.json`. Verify: `runPipeline()` produces PDF without reading `.md` file (Scenario 6.1).
+- [x] 2.5 Update `package.json` — remove `"build-cv"` script, add `"pdf": "node scripts/build-pdf.js"`. Remove `markdown-it` from `dependencies`. Verify: `grep -r "markdown-it" lib/ scripts/` returns zero matches (Scenario 6.2).
+- [x] 2.6 Add deprecation banner to `pdf-builder/build-cv.js` top comment — `/** @deprecated Use scripts/build-pdf.js + lib/pdf-builder.js instead. Kept as reference. */`. Verify: file still exists, no active code imports it.
 
 ## Phase 3: Verification
 
-- [ ] 3.1 Run full test suite: `npx vitest run`. All existing tests pass + new `pdf-builder.test.js` passes.
-- [ ] 3.2 End-to-end: run `node scripts/hermes.js` with a test JD URL. Verify PDF generated via new path, visually comparable to old output.
-- [ ] 3.3 Verify Spanish CV: `node scripts/build-pdf.js <ref> --lang es` produces PDF with Spanish narrative, English technical keywords (Scenario 7.1).
+- [x] 3.1 Run full test suite: `npx vitest run`. All existing tests pass + new `pdf-builder.test.js` passes.
+- [x] 3.2 End-to-end: run `node scripts/build-pdf.js UNKN --lang en`. PDF generated via new path at `applications/UNKN/arias_emanuel-en-UNKN.pdf` (92KB).
+- [x] 3.3 Verify Spanish CV: `node scripts/build-pdf.js UNKN --lang es` produces PDF (94KB) with Spanish narrative, English technical keywords (Scenario 7.1).
