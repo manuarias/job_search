@@ -8,12 +8,12 @@ Registro único de todas las postulaciones. Ordenado por fecha de creación (má
 
 | REF | Company | Role | JD | Final CV | Score | Status | Created | Updated |
 |-----|---------|------|-----|----------|-------|--------|---------|---------|
-| UNKN | Unknown Company | Unknown Role | [JD](UNKN/job-description.md) | [CV](UNKN/arias_emanuel-en-UNKN.md) | 82/100 | In Progress | 2026-06-28 | 2026-06-29 |||
+| UNKN | Unknown Company | Unknown Role | [JD](UNKN/job-description.md) | [CV](UNKN/arias_emanuel-en-UNKN.md) | 82/100 | In Progress | 2026-06-28 | 2026-06-29 ||||
 | ARXX | Ar | Trabajo de lider tecnico java | Ofertas laborales Argentina 2026 | [JD](ARXX/job-description.md) | 64/100 | — | In Progress | 2026-06-26 || 2026-06-26 |
 | HUMA | Humand | Engineering Manager | [JD](HUMA/job-description.md) | [CV](HUMA/arias_emanuel-es-HUMA.md) | 88/100 | Closed | 2026-05-21 | 2026-06-04 |
 | VANT | Vantegrate | Salesforce Developer Junior | [JD](VANT/job-description.md) | [CV](VANT/arias_emanuel-es-VANT.md) | 79/100 | Closed | 2026-05-21 | 2026-06-04 |
 | SIMR | Simera | Java Developer (Mid-Level) | [JD](SIMR/job-description.md) | [CV](SIMR/arias_emanuel-en-SIMR.md) | 88/100 | Closed | 2026-05-07 | 2026-05-21 |
-| GYA | Empresa Tandil (x GYA) | Python Semi Sr + Fullstack Jr/Semi Sr | [JD1](GYA/job-description-871.md) · [JD2](GYA/job-description-868.md) | [CV](GYA/arias_emanuel-es-GYA.md) | 79.5/100 | Submitted | 2026-06-04 | 2026-06-04 |
+| GYA | Empresa Tandil (x GYA) | Python Semi Sr + Fullstack Jr/Semi Sr | [JD1](GYA/job-description-871.md) · [JD2](GYA/job-description-868.md) | [CV](GYA/arias_emanuel-es-GYA.md) | 79.5/100 | Interview | 2026-06-04 | 2026-06-29 |
 | AGIL | AgileEngine | Technical Program Manager (Part-time) | [JD](AGIL/job-description.md) | [CV](AGIL/arias_emanuel-en-AGIL.md) | 88/100 | Closed | 2026-05-06 | 2026-05-21 |
 
 ---
