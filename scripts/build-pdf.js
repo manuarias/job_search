@@ -70,6 +70,44 @@ function main() {
     process.exit(1);
   }
 
+  // Validate CV data against schema
+  const schemaPath = path.join(PROJECT_ROOT, 'schemas', 'cv.schema.json');
+  let schema;
+  try {
+    schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
+  } catch (e) {
+    console.error(`Failed to load CV schema from ${schemaPath}: ${e.message}`);
+    process.exit(1);
+  }
+
+  try {
+    const Ajv = require('ajv');
+    const ajv = new Ajv({ allErrors: true });
+    const validate = ajv.compile(schema);
+    const valid = validate(cvData);
+    if (!valid) {
+      const fields = validate.errors.map(e => {
+        const path = e.instancePath || '(root)';
+        return `  ${path}: ${e.message}`;
+      }).join('\n');
+      console.error(`Invalid CV data in ${cvPath}:`);
+      console.error(fields);
+      process.exit(1);
+    }
+  } catch (e) {
+    // ajv not available or compilation error — fall back to manual required-fields check
+    const required = ['contact', 'professionalSummary', 'coreCompetencies', 'skills', 'professionalExperience'];
+    const missing = required.filter(f => !cvData[f]);
+    if (missing.length > 0) {
+      console.error(`Invalid CV data in ${cvPath}: missing required fields: ${missing.join(', ')}`);
+      process.exit(1);
+    }
+    if (!cvData.contact || !cvData.contact.name) {
+      console.error(`Invalid CV data in ${cvPath}: contact.name is required`);
+      process.exit(1);
+    }
+  }
+
   // Load match result (optional — clean CV if missing)
   let matchResult = null;
   const matchPath = path.join(appDir, 'match.json');
