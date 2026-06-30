@@ -161,7 +161,14 @@ job_search/
 │   ├── build-cv.js        ← @deprecated — use lib/pdf-builder.js instead
 │   └── cv-template.html   ← Professional HTML/CSS template (shared)
 ├── lib/                   ← Core modules
+│   ├── hermes.js          ← Pipeline API: runPipeline(jd, opts)
 │   ├── pdf-builder.js     ← JSON → HTML → PDF (F14)
+│   ├── matcher.js         ← CV-JD matching engine (F6)
+│   └── ...                ← (keyword-extractor, scorer, assembler, etc.)
+├── hermes-ia/             ← Hermes IA agent integration (F15)
+│   ├── SOUL.md            ← Agent personality
+│   ├── README.md          ← VPS setup guide
+│   └── skills/cv-pipeline/← Skill, blueprint, batch scripts
 ├── resumes/               ← Source CVs (DO NOT MODIFY)
 │   ├── cv_en.md           ← Master CV in English
 │   ├── cv_es.md           ← Master CV in Spanish

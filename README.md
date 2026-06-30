@@ -36,15 +36,19 @@ job_search/
 │   ├── keyword-taxonomy.json ← Diccionario de keywords técnicas
 │   └── ...                ← (más archivos de datos)
 ├── lib/                   ← Módulos core
-│   ├── keyword-extractor.js ← Extracción de keywords
-│   ├── jd-scraper.js      ← Scraper de JDs
-│   ├── matcher.js         ← Motor de matching CV-JD
-│   ├── scorer.js          ← Motor de scoring cuantitativo
-│   ├── assembler.js       ← Ensamblador de CV Markdown
-│   ├── cover-letter.js    ← Generador de cover letters
-│   └── analytics.js       ← Analytics y feedback
+│   ├── keyword-extractor.js ← Extracción de keywords (F4)
+│   ├── jd-scraper.js      ← Scraper de JDs (F5)
+│   ├── matcher.js         ← Motor de matching CV-JD (F6)
+│   ├── scorer.js          ← Motor de scoring cuantitativo (F7)
+│   ├── assembler.js       ← Ensamblador de CV Markdown (F8)
+│   ├── cover-letter.js    ← Generador de cover letters (F9)
+│   ├── analytics.js       ← Analytics y feedback (F10)
+│   ├── hermes.js          ← API programática del pipeline (F13)
+│   ├── pdf-builder.js     ← PDF desde datos estructurados (F14)
+│   └── reporter.js        ← Reporte post-pipeline (F12)
 ├── scripts/               ← CLI entry points
 │   ├── hermes.js          ← 🚀 Pipeline completo (un comando)
+│   ├── build-pdf.js       ← Generar PDF desde datos JSON
 │   ├── fetch-jd.js        ← Scrape JD desde URL
 │   ├── extract-keywords.js← Extraer keywords
 │   ├── match-cv.js        ← Matchear contra CV
@@ -52,8 +56,12 @@ job_search/
 │   ├── assemble-cv.js     ← Armar CV optimizado
 │   ├── generate-cover-letter.js ← Generar cover letter
 │   └── analytics.js       ← Generar reporte ANALYTICS.md
+├── hermes-ia/             ← Integración con Hermes IA (F15)
+│   ├── README.md          ← Guía de setup en VPS
+│   ├── SOUL.md            ← Personalidad del agente
+│   └── skills/cv-pipeline/← Skill + blueprint + scripts
 ├── schemas/               ← JSON Schemas
-├── pdf-builder/           ← Generador de PDFs
+├── pdf-builder/           ← Template HTML + builder legacy
 ├── resumes/               ← CVs fuente (NO MODIFICAR)
 ├── applications/          ← Postulaciones (una carpeta por empresa)
 │   ├── jd-tracking.md     ← Tracking de postulaciones
@@ -63,6 +71,7 @@ job_search/
 │       ├── keywords.json
 │       ├── match.json
 │       ├── score.json
+│       ├── REPORT.md
 │       ├── arias_emanuel-[en/es]-[REF].md
 │       └── cover-letter.md
 └── package.json
@@ -203,15 +212,19 @@ job_search/
 │   ├── cv_es.json         ← Structured CV in Spanish
 │   └── ...                ← (more data files)
 ├── lib/                   ← Core modules
+│   ├── hermes.js          ← Pipeline API: runPipeline(jd, opts) (F13)
+│   ├── pdf-builder.js     ← JSON → HTML → PDF (F14)
 │   ├── keyword-extractor.js ← Keyword extraction (F4)
 │   ├── jd-scraper.js      ← JD scraper (F5)
 │   ├── matcher.js         ← CV-JD matching engine (F6)
 │   ├── scorer.js          ← Scoring engine (F7)
 │   ├── assembler.js       ← CV Markdown assembler (F8)
 │   ├── cover-letter.js    ← Cover letter generator (F9)
+│   ├── reporter.js        ← Pipeline report (F12)
 │   └── analytics.js       ← Application analytics (F10)
 ├── scripts/               ← CLI entry points
 │   ├── hermes.js          ← 🚀 Full pipeline orchestrator
+│   ├── build-pdf.js       ← Generate PDF from structured data
 │   ├── fetch-jd.js        ← Scrape JD from URL
 │   ├── extract-keywords.js← Extract keywords
 │   ├── match-cv.js        ← Match CV against JD
@@ -219,8 +232,12 @@ job_search/
 │   ├── assemble-cv.js     ← Generate optimized CV
 │   ├── generate-cover-letter.js ← Generate cover letter
 │   └── analytics.js       ← Generate ANALYTICS.md
+├── hermes-ia/             ← Hermes IA agent integration (F15)
+│   ├── SOUL.md            ← Agent personality
+│   ├── README.md          ← VPS setup guide
+│   └── skills/cv-pipeline/← Skill, blueprint, batch scripts
 ├── schemas/               ← JSON Schemas
-├── pdf-builder/           ← PDF generator
+├── pdf-builder/           ← Template HTML + legacy builder
 ├── resumes/               ← Source CVs (DO NOT MODIFY)
 ├── applications/          ← Job applications (one folder per REF)
 │   ├── jd-tracking.md     ← Application tracking
@@ -325,6 +342,18 @@ Edit `applications/jd-tracking.md`:
 - 💾 **Save to Engram** — After every significant decision or completed step
 - 🗣️ **Communication** — Rioplatense Spanish (voseo) for user communication
 
+### 🤖 Hermes IA — Agent Automation
+
+This project includes a [Hermes IA](https://hermes-agent.nousresearch.com/) integration package to automate job searching and CV processing from a VPS via Telegram.
+
+**How it works:**
+1. A daily cron searches IT jobs in Argentina and saves them to `pending_jds.json`
+2. When you say "procesá las ofertas" via Telegram, the agent runs the pipeline in batch
+3. Each JD is auto-scored (≥ 75 → generates CV + PDF + cover letter)
+4. Results delivered to Telegram with attached files
+
+**Setup:** See [`hermes-ia/README.md`](hermes-ia/README.md) for the full VPS installation guide.
+
 ### Installation
 
 ```bash
@@ -351,6 +380,18 @@ The first time Playwright runs, it downloads Chromium automatically (~100MB).
 | `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description (F4) |
 | `node scripts/match-cv.js <cv.json> <keywords.json>` | Score a CV against JD keywords (F6) |
 | `npm test` | Run all tests (Vitest) |
+
+### 🤖 Hermes IA — Automatización con agente
+
+Este proyecto incluye un paquete de integración con [Hermes IA](https://hermes-agent.nousresearch.com/) para automatizar la búsqueda y procesamiento de ofertas desde un VPS con Telegram.
+
+**Cómo funciona:**
+1. Un cron diario busca ofertas IT en Argentina y las guarda en `pending_jds.json`
+2. Cuando decís "procesá las ofertas" por Telegram, el agente ejecuta el pipeline en batch
+3. Evalúa cada oferta con scoring automático (≥ 75 → genera CV + PDF + cover letter)
+4. Entrega resultados por Telegram con archivos adjuntos
+
+**Setup:** Ver [`hermes-ia/README.md`](hermes-ia/README.md) para la guía completa de instalación en tu VPS.
 
 ### F6 Matcher — Architecture
 
@@ -381,7 +422,7 @@ Local options (zero API cost): `@xenova/transformers` (ONNX runtime, all-MiniLM-
 | Command | Description |
 |---------|-------------|
 | `node scripts/hermes.js <jd-url-or-text>` | Full pipeline: scrape → CV → cover letter |
-| `node scripts/build-pdf.js <ref> [--lang en|es]` | Generate PDF from structured CV data |
+| `node scripts/build-pdf.js <ref> [--lang en\|es]` | Generate A4 PDF from structured CV data |
 | `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description |
 | `node scripts/match-cv.js <cv.json> <keywords.json>` | Score CV against JD keywords |
 | `npm install` | Install dependencies (run once) |

@@ -1,7 +1,7 @@
 # 🗺️ Roadmap — De Pipeline Manual a Agente Hermes
 
-> **Última actualización:** 2026-06-25 18:00 UTC-3 — **🎉 ROADMAP COMPLETO**
-> **Objetivo:** Convertir este pipeline de optimización de CV (guiado por LLM) en un agente Hermes autónomo con datos estructurados, matching algorítmico, y feedback loop.
+> **Última actualización:** 2026-06-29 18:00 UTC-3 — **🎉 ROADMAP COMPLETO**
+> **Objetivo:** Convertir este pipeline de optimización de CV (guiado por LLM) en un agente Hermes autónomo con datos estructurados, matching algorítmico, y feedback loop. Extender con PDF nativo desde datos estructurados e integración con Hermes IA para automatización end-to-end.
 > **Framework:** SDD (Spec-Driven Development) con worktrees paralelos para cambios independientes.
 
 ---
@@ -21,6 +21,10 @@
 | **F9** | Cover letter generator | F8 | 1 | ✅ Completo |
 | **F10** | Analytics y feedback loop | F6 + F7 | 1 | ✅ Completo |
 | **F11** | Agente Hermes (orquestador) | F8 + F9 + F10 | 1 | ✅ Completo |
+| **F12** | Pipeline Report | F11 | 1 | ✅ Completo |
+| **F13** | Librería Hermes (API programática) | F11 | 1 | ✅ Completo |
+| **F14** | PDF Builder (datos estructurados) | F13 | 1 | ✅ Completo |
+| **F15** | Hermes IA Integration (skill + cron) | F13 + F14 | 1 | ✅ Completo |
 
 ---
 
@@ -30,11 +34,12 @@ Los cambios se agrupan en **olas** según dependencias. Dentro de cada ola, se p
 
 ```
 Ola 1 (paralelo):        F1 ──┬── F2
-                              └── F3
+                               └── F3
 
 Ola 2 (paralelo):        F4 ──┬── F6 ──┬── F7
-                         F5 ──┘        ├── F8 ── F9
-                                       └── F10 ── F11
+                          F5 ──┘        ├── F8 ── F9
+                                        └── F10 ── F11 ── F12 ── F13 ──┬── F14
+                                                                          └── F15
 ```
 
 ### Reglas de worktree

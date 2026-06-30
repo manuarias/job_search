@@ -168,7 +168,7 @@ cd ~/job_search && node scripts/build-pdf.js TESTREF --lang es
 ```
 
 Si falla, revisar que `npm install` se haya ejecutado correctamente y que las
-dependencias (Playwright, markdown-it) estén instaladas.
+dependencias (Playwright) estén instaladas.
 
 ## Archivos generados por el pipeline
 
