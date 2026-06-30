@@ -140,7 +140,7 @@
     ]
   },
   "metadata": {
-    "matchedAt": "2026-06-28T15:39:13.454Z",
+    "matchedAt": "2026-06-30T02:55:23.069Z",
     "matcherVersion": "1.0.0",
     "weightsUsed": {
       "hardKeywords": 0.3,
@@ -149,6 +149,6 @@
       "seniorityFit": 0.15,
       "fuzzyMatch": 0.15
     },
-    "processingTimeMs": 7
+    "processingTimeMs": 2
   }
 }

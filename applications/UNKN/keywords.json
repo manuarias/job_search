@@ -46,11 +46,11 @@
     "title": "Unknown Role"
   },
   "metadata": {
-    "extractedAt": "2026-06-28T15:39:13.445Z",
+    "extractedAt": "2026-06-30T02:55:23.066Z",
     "taxonomyVersion": "1.0.0",
     "jdSource": "text",
     "jdWordCount": 19,
-    "processingTimeMs": 12,
+    "processingTimeMs": 10,
     "extractorVersion": "1.0.0"
   }
 }

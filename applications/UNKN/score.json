@@ -286,7 +286,7 @@
     ]
   },
   "metadata": {
-    "scoredAt": "2026-06-28T15:39:13.458Z",
+    "scoredAt": "2026-06-30T02:55:23.074Z",
     "scorerVersion": "1.0.0",
     "weightsUsed": {
       "atsParseability": 0.4,
@@ -294,6 +294,6 @@
       "recruiterAppeal": 0.3
     },
     "targetScore": 90,
-    "processingTimeMs": 2
+    "processingTimeMs": 4
   }
 }

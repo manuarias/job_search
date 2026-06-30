@@ -174,12 +174,11 @@ Editar `applications/jd-tracking.md`:
 ### Instalación
 
 ```bash
-cd /Users/earias/Documents/job_search
-npm install
+git clone <repo-url> && cd job_search
+pnpm install
 ```
 
 Dependencias:
-- `markdown-it` — Parseo de Markdown a HTML
 - `playwright` — Generación de PDF vía Chromium
 
 La primera vez que corre Playwright, descarga Chromium automáticamente (~100MB).
@@ -354,15 +353,12 @@ This project includes a [Hermes IA](https://hermes-agent.nousresearch.com/) inte
 
 **Setup:** See [`hermes-ia/README.md`](hermes-ia/README.md) for the full VPS installation guide.
 
-### Installation
-
 ```bash
-cd /Users/earias/Documents/job_search
-npm install
+git clone <repo-url> && cd job_search
+pnpm install
 ```
 
 Dependencies:
-- `markdown-it` — Markdown to HTML parser
 - `playwright` — PDF generation via Chromium
 
 The first time Playwright runs, it downloads Chromium automatically (~100MB).
@@ -379,7 +375,7 @@ The first time Playwright runs, it downloads Chromium automatically (~100MB).
 | `node scripts/build-pdf.js <ref> [--lang en\|es]` | Generate A4 PDF from structured CV data (F14) |
 | `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description (F4) |
 | `node scripts/match-cv.js <cv.json> <keywords.json>` | Score a CV against JD keywords (F6) |
-| `npm test` | Run all tests (Vitest) |
+| `pnpm test` | Run all tests (Vitest) |
 
 ### 🤖 Hermes IA — Automatización con agente
 
@@ -425,10 +421,10 @@ Local options (zero API cost): `@xenova/transformers` (ONNX runtime, all-MiniLM-
 | `node scripts/build-pdf.js <ref> [--lang en\|es]` | Generate A4 PDF from structured CV data |
 | `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description |
 | `node scripts/match-cv.js <cv.json> <keywords.json>` | Score CV against JD keywords |
-| `npm install` | Install dependencies (run once) |
-| `npm test` | Run all test suites |
-| `npm run hermes -- <jd-url>` | Hermes pipeline (via npm script) |
-| `npm run pdf <ref>` | Generate PDF from structured CV data |
+| `pnpm install` | Install dependencies (run once) |
+| `pnpm test` | Run all test suites |
+| `pnpm run hermes -- <jd-url>` | Hermes pipeline (via pnpm script) |
+| `pnpm run pdf <ref>` | Generate PDF from structured CV data |
 | `npx playwright install chromium` | Reinstall Chromium if needed |
 
 ## License

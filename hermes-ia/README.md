@@ -26,7 +26,7 @@ node --version  # Debe ser ≥ 18
 ```bash
 git clone https://github.com/tu-usuario/job_search.git ~/job_search
 cd ~/job_search
-npm install
+pnpm install
 ```
 
 ### 2. Copiar SOUL.md al perfil de Hermes IA
@@ -167,7 +167,7 @@ Verificar que `build-pdf.js` funcione:
 cd ~/job_search && node scripts/build-pdf.js TESTREF --lang es
 ```
 
-Si falla, revisar que `npm install` se haya ejecutado correctamente y que las
+Si falla, revisar que `pnpm install` se haya ejecutado correctamente y que las
 dependencias (Playwright) estén instaladas.
 
 ## Archivos generados por el pipeline
