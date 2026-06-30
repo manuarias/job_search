@@ -18,6 +18,7 @@
 const fs = require('fs');
 const path = require('path');
 const { pdfBuilder } = require('../lib/pdf-builder');
+const { getDataDir } = require('../lib/data-paths');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 
@@ -52,7 +53,7 @@ function main() {
   }
 
   // Resolve paths
-  const cvPath = path.join(PROJECT_ROOT, 'data', `cv_${lang}.json`);
+  const cvPath = path.join(getDataDir(), `cv_${lang}.json`);
   const appDir = path.join(PROJECT_ROOT, 'applications', ref);
 
   if (!fs.existsSync(appDir)) {
