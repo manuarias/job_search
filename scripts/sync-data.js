@@ -56,6 +56,9 @@ function findNewFields(template, userData, prefix = '') {
       added.push({ path: fullPath, value: clone(tplVal) });
     } else if (isPlainObject(tplVal) && isPlainObject(userData[key])) {
       added.push(...findNewFields(tplVal, userData[key], fullPath));
+    } else if (isPlainObject(tplVal) && typeof userData[key] !== 'undefined' && !isPlainObject(userData[key])) {
+      // Type conflict: template expects object, user has non-object
+      console.error(`⚠️  ${fullPath}: type conflict — template expects object, user has ${typeof userData[key]}. Skipping field.`);
     }
   }
   return added;
@@ -97,6 +100,13 @@ function processJson(templatePath, userPath) {
     userData = JSON.parse(fs.readFileSync(userPath, 'utf-8'));
   } catch (e) {
     console.error(`❌ ${path.relative(PROJECT_ROOT, userPath)}: invalid user JSON — ${e.message}`);
+    errorCount++;
+    return;
+  }
+
+  // Reject non-object/non-array user data (e.g. primitive was written)
+  if (userData !== null && !isPlainObject(userData) && !Array.isArray(userData)) {
+    console.error(`❌ ${path.relative(PROJECT_ROOT, userPath)}: user data must be an object or array, got ${typeof userData}`);
     errorCount++;
     return;
   }
@@ -162,11 +172,13 @@ function findTemplateFiles() {
     const dirPath = path.join(PROJECT_ROOT, dir);
     if (!fs.existsSync(dirPath)) continue;
 
-    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true, recursive: true });
     for (const entry of entries) {
       if (entry.isFile() && entry.name.endsWith('.template')) {
-        const templatePath = path.join(dirPath, entry.name);
-        // User file is template with .template suffix removed
+        // For recursive entries, entry.name is just the filename, entry.parentPath gives the directory
+        const entryDir = entry.parentPath || entry.path ? path.dirname(path.join(entry.parentPath || entry.path, entry.name)) : dirPath;
+        const templatePath = path.join(entryDir, entry.name);
+        // User file is template with .template suffix removed, in the same directory
         const userPath = templatePath.replace(/\.template$/, '');
         templates.push({ templatePath, userPath });
       }

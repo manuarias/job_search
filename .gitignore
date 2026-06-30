@@ -26,6 +26,8 @@ historial-laboral.md
 applications/*
 !applications/.gitkeep
 !applications/jd-tracking.md.template
+applications/ANALYTICS.md
+applications/FAKE*/
 
 # Hermes IA state file (runtime data, not source)
 pending_jds.json

@@ -98,7 +98,7 @@ try {
 ## Project Context
 
 - **Project Root:** `<project-root>` (the directory where you cloned this repo)
-- **Master CVs (source, NEVER modified):** `resumes/cv_en.md` (English) and `resumes/cv_es.md` (Spanish)
+- **Master CVs (source, NEVER modified):** `resumes/cv_en.md.template` (English) and `resumes/cv_es.md.template` (Spanish)
 - **Structured CV templates:** `data/cv_en.json.template` and `data/cv_es.json.template` — copy to `cv_en.json` / `cv_es.json` and edit with your info
 - **Markdown CV templates:** `resumes/cv_en.md.template` and `resumes/cv_es.md.template` — copy to `cv_en.md` / `cv_es.md` and fill in
 - **Optimized Template:** `resumes/resume_template/template_optimized.md`
@@ -218,7 +218,7 @@ El usuario pasa un link a la Job Description. El agente ejecuta todo el setup:
     - Verificar contra `jd-tracking.md`. Si ya existe, agregar número: `AGIL2`.
 5. **Crear carpeta:** `applications/[REF]/`
 6. **Guardar JD:** `applications/[REF]/job-description.md` (texto limpio extraído).
-7. **Leer source CV:** `resumes/cv_en.md` (o variante de idioma apropiada).
+7. **Leer source CV:** `resumes/cv_en.md.template` (o variante de idioma apropiada).
 8. **Leer template:** `resumes/resume_template/template_optimized.md`.
 9. **Actualizar tracking:** Agregar fila en `applications/jd-tracking.md` con Status: "In Progress", Created: fecha de hoy.
 10. **Confirmar al usuario:** Mostrar resumen (REF, empresa, rol) y preguntar "¿Procedemos al Step 1?" antes de continuar.
@@ -240,7 +240,7 @@ El usuario pega el texto de la JD directamente. Proceder con los pasos manuales 
     - Examples: `AGIL`, `AETP`, `MELI`, `EXCO`, `FANG`, `NEAR`
 3. Create folder: `applications/[REF]/`
 4. Save the JD as `applications/[REF]/job-description.md`
-5. Read the source CV: `resumes/cv_en.md` (or the appropriate language variant)
+5. Read the source CV: `resumes/cv_en.md.template` (or the appropriate language variant)
 6. Read the optimized template: `resumes/resume_template/template_optimized.md`
 7. Update `applications/jd-tracking.md` with a new row (Status: "In Progress")
 
@@ -440,7 +440,7 @@ Update `applications/jd-tracking.md`:
 
 ## Golden Rules
 
-1. **Original CV is sacred.** `cv_en.md` is read-only. Always output to `applications/[REF]/`.
+1. **Original CV is sacred.** `cv_en.md.template` is read-only. Always output to `applications/[REF]/`.
 2. **Reference codes are permanent.** Once assigned, never change. They tie together folder, files, and tracking table.
 3. **Metrics are mandatory.** No bullet without a number, %, or time savings.
 4. **No keyword stuffing.** If you didn't do it, don't claim it. Use semantic equivalents instead.
@@ -525,7 +525,7 @@ mem_session_summary:
 
 ## User Preferences (Non-Negotiable)
 
-- **CV Original:** Never modify `resumes/cv_en.md`. It is the source of truth.
+- **CV Original:** Never modify `resumes/cv_en.md.template`. It is the source of truth.
 - **Process Order:** Always follow 1→2→3→4→5. Do not skip or reorder steps.
 - **Template:** Use `template_optimized.md` as the base for all final CVs.
 - **Output Naming:** `arias_emanuel-[en/es]-[REF].md`

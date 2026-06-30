@@ -1,1 +1,0 @@
-⚠️ Cover letter refused: Match score (32%) is below the 35% threshold. A meaningful cover letter cannot be generated with this level of keyword alignment. Consider upskilling or targeting a different role.

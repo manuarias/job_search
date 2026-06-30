@@ -23,12 +23,11 @@ job_search/
 │   ├── build-cv.js                 ← Script principal
 │   ├── cv-template.html            ← Template HTML con CSS embebido
 │   └── README.md                   ← Este archivo
-└── resumes/
-    └── applications/
-        └── AGIL/
-            ├── arias_emanuel-en-AGIL.md      ← Input: CV en Markdown
-            ├── arias_emanuel-en-AGIL.html    ← Output: HTML intermedio
-            └── arias_emanuel-en-AGIL.pdf     ← Output: PDF final
+└── applications/
+    └── AGIL/
+        ├── arias_emanuel-en-AGIL.md      ← Input: CV en Markdown
+        ├── arias_emanuel-en-AGIL.html    ← Output: HTML intermedio
+        └── arias_emanuel-en-AGIL.pdf     ← Output: PDF final
 ```
 
 ---
@@ -39,7 +38,7 @@ Las dependencias se instalan **una sola vez** en el root del proyecto:
 
 ```bash
 cd <project-root>
-npm install
+pnpm install
 ```
 
 Esto instala:
