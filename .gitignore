@@ -11,3 +11,9 @@ node_modules/
 # Generated artifacts (regenerable from .md sources)
 applications/**/*.pdf
 applications/**/*.html
+
+# Hermes IA state file (runtime data, not source)
+pending_jds.json
+
+# Temp files from atomic writes
+*.tmp
