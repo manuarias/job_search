@@ -1,0 +1,36 @@
+{
+  "version": "1",
+  "ref": "UNKN",
+  "company": "Unknown Company",
+  "role": "Unknown Role",
+  "lang": "en",
+  "input": "Test JD: We are hiring a Senior Engineer with 5 years experience in AWS and Python.",
+  "dir": "/Users/earias/Documents/job_search/applications/UNKN",
+  "steps": {
+    "scrape": {
+      "status": "done",
+      "ts": "2026-06-30T02:57:34.110Z"
+    },
+    "extract": {
+      "status": "done",
+      "ts": "2026-06-30T02:57:34.124Z"
+    },
+    "match": {
+      "status": "done",
+      "ts": "2026-06-30T02:57:34.130Z"
+    },
+    "score": {
+      "status": "done",
+      "ts": "2026-06-30T02:57:34.135Z"
+    },
+    "assemble": {
+      "status": "done",
+      "ts": "2026-06-30T02:57:34.156Z"
+    },
+    "cover": {
+      "status": "done",
+      "ts": "2026-06-30T02:57:34.163Z"
+    }
+  },
+  "createdAt": "2026-06-30T02:57:34.108Z"
+}
