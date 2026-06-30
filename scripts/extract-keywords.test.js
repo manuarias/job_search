@@ -2,7 +2,7 @@
  * extract-keywords.test.js — Integration tests for the CLI wrapper.
  *
  * Tests cover:
- *   1. CLI exits 0 with valid JSON for real JDs (AGIL, VANT)
+ *   1. CLI exits 0 with valid JSON for fixture JDs (EN, ES)
  *   2. CLI exits 1 on missing argument, nonexistent file, empty file
  *   3. CLI output matches keyword-output.schema.json
  *   4. Round-trip: CLI → parse JSON → validate with extractKeywords()
@@ -38,14 +38,14 @@ function runCLI(args = '') {
 // ── CLI exit codes ──────────────────────────────────────────────────────────
 
 describe('extract-keywords CLI — exit codes', () => {
-  it('exits 0 when given a valid JD file (AGIL)', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'AGIL', 'job-description.md');
+  it('exits 0 when given a valid JD file (EN)', () => {
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-en.md');
     const result = runCLI(jdPath);
     expect(result.exitCode).toBe(0);
   });
 
-  it('exits 0 when given a valid JD file (VANT)', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'VANT', 'job-description.md');
+  it('exits 0 when given a valid JD file (ES)', () => {
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-es.md');
     const result = runCLI(jdPath);
     expect(result.exitCode).toBe(0);
   });
@@ -87,7 +87,7 @@ describe('extract-keywords CLI — exit codes', () => {
 
 describe('extract-keywords CLI — JSON output', () => {
   it('produces valid JSON on stdout', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'AGIL', 'job-description.md');
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-en.md');
     const result = runCLI(jdPath);
     expect(result.exitCode).toBe(0);
 
@@ -97,7 +97,7 @@ describe('extract-keywords CLI — JSON output', () => {
   });
 
   it('output JSON has all required top-level keys', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'AGIL', 'job-description.md');
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-en.md');
     const result = runCLI(jdPath);
     const parsed = JSON.parse(result.stdout);
 
@@ -108,7 +108,7 @@ describe('extract-keywords CLI — JSON output', () => {
   });
 
   it('hardKeywords are an array with correct shape', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'AGIL', 'job-description.md');
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-en.md');
     const result = runCLI(jdPath);
     const parsed = JSON.parse(result.stdout);
 
@@ -129,7 +129,7 @@ describe('extract-keywords CLI — JSON output', () => {
   });
 
   it('softKeywords are an array with correct shape', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'AGIL', 'job-description.md');
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-en.md');
     const result = runCLI(jdPath);
     const parsed = JSON.parse(result.stdout);
 
@@ -146,7 +146,7 @@ describe('extract-keywords CLI — JSON output', () => {
   });
 
   it('senioritySignals has correct shape', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'AGIL', 'job-description.md');
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-en.md');
     const result = runCLI(jdPath);
     const parsed = JSON.parse(result.stdout);
 
@@ -159,7 +159,7 @@ describe('extract-keywords CLI — JSON output', () => {
   });
 
   it('metadata has correct shape', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'AGIL', 'job-description.md');
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-en.md');
     const result = runCLI(jdPath);
     const parsed = JSON.parse(result.stdout);
 
@@ -173,7 +173,7 @@ describe('extract-keywords CLI — JSON output', () => {
   });
 
   it('stdout has no stderr noise on success', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'AGIL', 'job-description.md');
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-en.md');
     const result = runCLI(jdPath);
     expect(result.exitCode).toBe(0);
     expect(result.stderr).toBe('');
@@ -182,9 +182,9 @@ describe('extract-keywords CLI — JSON output', () => {
 
 // ── Real JD content checks ──────────────────────────────────────────────────
 
-describe('extract-keywords CLI — real JD content', () => {
-  it('AGIL: extracts Jira, GitHub, Agile from stdout', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'AGIL', 'job-description.md');
+describe('extract-keywords CLI — fixture JD content', () => {
+  it('EN: extracts Jira, GitHub, Agile from stdout', () => {
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-en.md');
     const result = runCLI(jdPath);
     const parsed = JSON.parse(result.stdout);
 
@@ -194,16 +194,16 @@ describe('extract-keywords CLI — real JD content', () => {
     expect(terms).toContain('Agile');
   });
 
-  it('AGIL: detects 5+ years experience', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'AGIL', 'job-description.md');
+  it('EN: detects 5+ years experience', () => {
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-en.md');
     const result = runCLI(jdPath);
     const parsed = JSON.parse(result.stdout);
 
     expect(parsed.senioritySignals.yearsMinimum).toBe(5);
   });
 
-  it('VANT: extracts keywords from Spanish JD', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'VANT', 'job-description.md');
+  it('ES: extracts keywords from Spanish JD', () => {
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-es.md');
     const result = runCLI(jdPath);
     const parsed = JSON.parse(result.stdout);
 
@@ -213,8 +213,8 @@ describe('extract-keywords CLI — real JD content', () => {
     expect(terms).toContain('Python');
   });
 
-  it('VANT: detects semi-senior level', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'VANT', 'job-description.md');
+  it('ES: detects semi-senior level', () => {
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-es.md');
     const result = runCLI(jdPath);
     const parsed = JSON.parse(result.stdout);
 
@@ -226,7 +226,7 @@ describe('extract-keywords CLI — real JD content', () => {
 
 describe('extract-keywords CLI — output formatting', () => {
   it('produces pretty-printed JSON with 2-space indentation', () => {
-    const jdPath = path.join(__dirname, '..', 'applications', 'AGIL', 'job-description.md');
+    const jdPath = path.join(__dirname, '..', 'test-fixtures', 'anonymous-jd-en.md');
     const result = runCLI(jdPath);
 
     // Check that the output is multi-line (pretty-printed)

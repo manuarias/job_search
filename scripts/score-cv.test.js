@@ -40,9 +40,9 @@ function runCLI(args = '') {
 
 // ── Paths to real data files ────────────────────────────────────────────────
 
-const CV_PATH = path.join(__dirname, '..', 'data', 'cv_en.json');
+const CV_PATH = path.join(__dirname, '..', 'test-fixtures', 'anonymous-cv.json');
 const MATCH_PATH = path.join(__dirname, '..', 'test-fixtures', 'sample-match.json');
-const CV_MD_PATH = path.join(__dirname, '..', 'resumes', 'cv_en.md');
+const CV_MD_PATH = path.join(__dirname, '..', 'test-fixtures', 'anonymous-cv.md');
 const PKG_PATH = path.join(__dirname, '..', 'package.json'); // valid JSON, wrong shape
 
 // ── CLI exit codes ──────────────────────────────────────────────────────────
