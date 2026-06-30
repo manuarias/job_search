@@ -38,7 +38,7 @@ job_search/
 Las dependencias se instalan **una sola vez** en el root del proyecto:
 
 ```bash
-cd /Users/earias/Documents/job_search
+cd <project-root>
 npm install
 ```
 
@@ -65,7 +65,7 @@ node pdf-builder/build-cv.js <input.md> <output.pdf>
 ### Ejemplo (legacy)
 
 ```bash
-cd /Users/earias/Documents/job_search
+cd <project-root>
 node pdf-builder/build-cv.js \
   applications/AGIL/arias_emanuel-en-AGIL.md \
   applications/AGIL/arias_emanuel-en-AGIL.pdf

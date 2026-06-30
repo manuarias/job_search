@@ -97,12 +97,14 @@ try {
 
 ## Project Context
 
-- **Project Root:** `/Users/earias/Documents/job_search/`
+- **Project Root:** `<project-root>` (the directory where you cloned this repo)
 - **Master CVs (source, NEVER modified):** `resumes/cv_en.md` (English) and `resumes/cv_es.md` (Spanish)
-- **Structured CV data:** `data/cv_en.json` and `data/cv_es.json` (auto-generated, used by pipeline)
+- **Structured CV templates:** `data/cv_en.json.template` and `data/cv_es.json.template` — copy to `cv_en.json` / `cv_es.json` and edit with your info
+- **Markdown CV templates:** `resumes/cv_en.md.template` and `resumes/cv_es.md.template` — copy to `cv_en.md` / `cv_es.md` and fill in
 - **Optimized Template:** `resumes/resume_template/template_optimized.md`
 - **Applications Directory:** `applications/` (all JD-specific optimizations go here)
 - **Tracking File:** `applications/jd-tracking.md`
+- **Data Sync Tool:** `scripts/sync-data.js` — merge new template fields into your personal data
 
 ---
 
@@ -125,8 +127,10 @@ job_search/
 ├── ROADMAP.md             ← Improvement roadmap (completed ✅)
 ├── README.md              ← Project overview & usage
 ├── data/                  ← Structured data (CVs, taxonomies, configs)
-│   ├── cv_en.json         ← Structured CV in English
-│   ├── cv_es.json         ← Structured CV in Spanish
+│   ├── cv_en.json.template← CV template (copy & edit with your info)
+│   ├── cv_es.json.template← Spanish CV template
+│   ├── cv_en.json         ← (gitignored — your real data)
+│   ├── cv_es.json         ← (gitignored — your real data)
 │   ├── keyword-taxonomy.json  ← Tech keyword dictionary (~117 terms)
 │   ├── soft-synonyms.json ← Soft skill synonym mappings
 │   ├── domain-mapping.json← Keyword → domain lookup table
@@ -156,6 +160,7 @@ job_search/
 │   ├── assemble-cv.js     ← Generate optimized CV Markdown
 │   ├── generate-cover-letter.js ← Generate cover letter skeleton
 │   ├── analytics.js       ← Generate ANALYTICS.md report
+│   ├── sync-data.js       ← Merge new template fields into user data
 │   └── validate-cv.mjs    ← Validate CV JSON against schema
 ├── pdf-builder/           ← PDF generator (deprecated)
 │   ├── build-cv.js        ← @deprecated — use lib/pdf-builder.js instead
@@ -163,6 +168,7 @@ job_search/
 ├── lib/                   ← Core modules
 │   ├── hermes.js          ← Pipeline API: runPipeline(jd, opts)
 │   ├── pdf-builder.js     ← JSON → HTML → PDF (F14)
+│   ├── data-paths.js      ← Dynamic JS_DATA_DIR resolution
 │   ├── matcher.js         ← CV-JD matching engine (F6)
 │   └── ...                ← (keyword-extractor, scorer, assembler, etc.)
 ├── hermes-ia/             ← Hermes IA agent integration (F15)
@@ -170,8 +176,10 @@ job_search/
 │   ├── README.md          ← VPS setup guide
 │   └── skills/cv-pipeline/← Skill, blueprint, batch scripts
 ├── resumes/               ← Source CVs (DO NOT MODIFY)
-│   ├── cv_en.md           ← Master CV in English
-│   ├── cv_es.md           ← Master CV in Spanish
+│   ├── cv_en.md.template  ← Markdown CV template
+│   ├── cv_es.md.template  ← Spanish Markdown CV template
+│   ├── cv_en.md           ← (gitignored — your real CV)
+│   ├── cv_es.md           ← (gitignored — your real CV)
 │   ├── archive/           ← Archived CV versions
 │   └── resume_template/
 │       └── template_optimized.md
@@ -542,11 +550,19 @@ If a code is taken, append a number: `AGIL2`, `META3`.
 
 ## Quick Start Checklist for New Optimizations
 
+**First-time setup:** copy the template files to your personal data files:
+```bash
+cp data/cv_en.json.template data/cv_en.json     # edit with your info
+cp data/cv_es.json.template data/cv_es.json
+cp resumes/cv_en.md.template resumes/cv_en.md
+cp resumes/cv_es.md.template resumes/cv_es.md
+```
+
 **Option A — Automatic (URL):**
 - [ ] User provides JD URL
 - [ ] Agent fetches, extracts clean text, auto-generates REF
 - [ ] Agent creates folder, saves JD, updates tracking
-- [ ] Agent reads source CV and template
+- [ ] Agent reads source CV and template (from `.template` files)
 - [ ] Agent confirms setup with user before proceeding
 
 **Option B — Manual (text):**

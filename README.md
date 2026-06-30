@@ -11,6 +11,35 @@
 
 ---
 
+## 🚀 Quick Start
+
+```bash
+git clone <repo-url> && cd job_search && pnpm install
+cp data/cv_en.json.template data/cv_en.json     # edit with your info
+cp data/cv_es.json.template data/cv_es.json
+cp resumes/cv_en.md.template resumes/cv_en.md
+cp resumes/cv_es.md.template resumes/cv_es.md
+pnpm test                                        # all tests pass with fixtures
+
+# Optional: set a custom data directory
+export JS_DATA_DIR=/path/to/your/private/data
+
+# Run the pipeline
+node scripts/hermes.js "https://..."             # optimize your first CV
+
+# Keep templates in sync
+node scripts/sync-data.js --dry-run
+```
+
+> **New users**: copy the `.template` files above and edit them with your real information.
+> The `.json` and `.md` files (without `.template`) are gitignored — your data stays private.
+>
+> **`JS_DATA_DIR`** (optional): point to a separate directory with your real CV data.
+> The pipeline loads from `data/` by default. Set `JS_DATA_DIR` to keep your private
+> data outside the repo (e.g., `JS_DATA_DIR=$HOME/private-job-data`).
+
+---
+
 <div id="español">
 
 ## 🇪🇸 Español
@@ -31,8 +60,10 @@ job_search/
 ├── ROADMAP.md             ← Plan de mejoras (completado ✅)
 ├── README.md              ← Este archivo
 ├── data/                  ← Datos estructurados (CVs, taxonomías, configs)
-│   ├── cv_en.json         ← CV estructurado en inglés
-│   ├── cv_es.json         ← CV estructurado en español
+│   ├── cv_en.json.template← Template de CV (copiá y editá con tus datos)
+│   ├── cv_es.json.template← Template de CV en español
+│   ├── cv_en.json         ← (gitignored — tus datos reales)
+│   ├── cv_es.json         ← (gitignored — tus datos reales)
 │   ├── keyword-taxonomy.json ← Diccionario de keywords técnicas
 │   └── ...                ← (más archivos de datos)
 ├── lib/                   ← Módulos core
@@ -45,10 +76,12 @@ job_search/
 │   ├── analytics.js       ← Analytics y feedback (F10)
 │   ├── hermes.js          ← API programática del pipeline (F13)
 │   ├── pdf-builder.js     ← PDF desde datos estructurados (F14)
+│   ├── data-paths.js      ← Resolución dinámica de JS_DATA_DIR
 │   └── reporter.js        ← Reporte post-pipeline (F12)
 ├── scripts/               ← CLI entry points
 │   ├── hermes.js          ← 🚀 Pipeline completo (un comando)
 │   ├── build-pdf.js       ← Generar PDF desde datos JSON
+│   ├── sync-data.js       ← Sincronizar templates con datos reales
 │   ├── fetch-jd.js        ← Scrape JD desde URL
 │   ├── extract-keywords.js← Extraer keywords
 │   ├── match-cv.js        ← Matchear contra CV
@@ -63,6 +96,10 @@ job_search/
 ├── schemas/               ← JSON Schemas
 ├── pdf-builder/           ← Template HTML + builder legacy
 ├── resumes/               ← CVs fuente (NO MODIFICAR)
+│   ├── cv_en.md.template  ← Template de CV Markdown
+│   ├── cv_es.md.template  ← Template de CV Markdown en español
+│   ├── cv_en.md           ← (gitignored — tu CV real)
+│   ├── cv_es.md           ← (gitignored — tu CV real)
 ├── applications/          ← Postulaciones (una carpeta por empresa)
 │   ├── jd-tracking.md     ← Tracking de postulaciones
 │   ├── ANALYTICS.md       ← Reporte de analytics
@@ -207,12 +244,15 @@ job_search/
 ├── ROADMAP.md             ← Improvement plan (completed ✅)
 ├── README.md              ← This file
 ├── data/                  ← Structured data (CVs, taxonomies, configs)
-│   ├── cv_en.json         ← Structured CV in English
-│   ├── cv_es.json         ← Structured CV in Spanish
+│   ├── cv_en.json.template← CV template (copy & edit with your info)
+│   ├── cv_es.json.template← Spanish CV template
+│   ├── cv_en.json         ← (gitignored — your real data)
+│   ├── cv_es.json         ← (gitignored — your real data)
 │   └── ...                ← (more data files)
 ├── lib/                   ← Core modules
 │   ├── hermes.js          ← Pipeline API: runPipeline(jd, opts) (F13)
 │   ├── pdf-builder.js     ← JSON → HTML → PDF (F14)
+│   ├── data-paths.js      ← Dynamic JS_DATA_DIR resolution
 │   ├── keyword-extractor.js ← Keyword extraction (F4)
 │   ├── jd-scraper.js      ← JD scraper (F5)
 │   ├── matcher.js         ← CV-JD matching engine (F6)
@@ -224,6 +264,7 @@ job_search/
 ├── scripts/               ← CLI entry points
 │   ├── hermes.js          ← 🚀 Full pipeline orchestrator
 │   ├── build-pdf.js       ← Generate PDF from structured data
+│   ├── sync-data.js       ← Sync templates with real data
 │   ├── fetch-jd.js        ← Scrape JD from URL
 │   ├── extract-keywords.js← Extract keywords
 │   ├── match-cv.js        ← Match CV against JD
@@ -238,6 +279,10 @@ job_search/
 ├── schemas/               ← JSON Schemas
 ├── pdf-builder/           ← Template HTML + legacy builder
 ├── resumes/               ← Source CVs (DO NOT MODIFY)
+│   ├── cv_en.md.template  ← Markdown CV template
+│   ├── cv_es.md.template  ← Spanish Markdown CV template
+│   ├── cv_en.md           ← (gitignored — your real CV)
+│   ├── cv_es.md           ← (gitignored — your real CV)
 ├── applications/          ← Job applications (one folder per REF)
 │   ├── jd-tracking.md     ← Application tracking
 │   ├── ANALYTICS.md       ← Analytics report
@@ -429,7 +474,7 @@ Local options (zero API cost): `@xenova/transformers` (ONNX runtime, all-MiniLM-
 
 ## License
 
-Personal use only. This is a private CV optimization system.
+MIT — see [LICENSE](./LICENSE) for details.
 
 ---
 

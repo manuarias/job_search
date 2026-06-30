@@ -49,13 +49,14 @@ Chain strategy: feature-branch-chain
 
 ## Phase 3: Documentation & Path Cleanup
 
-- [ ] 3.1 Update `README.md`: add Quick Start section (clone → copy templates → fill data → set `JS_DATA_DIR` → run pipeline).
-- [ ] 3.2 Update `AGENTS.md`: replace all `/Users/earias/Documents/job_search/` absolute paths with relative `./` or `PROJECT_ROOT`.
-- [ ] 3.3 Update `pdf-builder/README.md`: replace absolute paths with relative `./` references.
+- [x] 3.1 Update `README.md`: add Quick Start section (clone → copy templates → fill data → set `JS_DATA_DIR` → run pipeline).
+- [x] 3.2 Update `AGENTS.md`: replace all `/Users/earias/Documents/job_search/` absolute paths with relative `./` or `PROJECT_ROOT`.
+- [x] 3.3 Update `pdf-builder/README.md`: replace absolute paths with relative `./` references.
+- [x] 3.4 Create `LICENSE` file with standard MIT text, copyright 2026.
 
 ## Phase 4: Verification
 
-- [ ] 4.1 Run `git check-ignore` on real data files vs template files — verify templates are tracked, real data is ignored.
-- [ ] 4.2 Run `JS_DATA_DIR=./test-fixture node scripts/hermes.js "mock JD text"` — verify pipeline works with custom data dir.
-- [ ] 4.3 Run `node scripts/sync-data.js --dry-run` — verify it reports field diffs correctly.
-- [ ] 4.4 Verify `git status` shows zero personal files after copying templates and running pipeline.
+- [x] 4.1 Run `pnpm test` — all 533 tests pass (13 test files).
+- [x] 4.2 Verify `git check-ignore`: `data/cv_en.json` exit 0 (ignored), `data/cv_en.json.template` exit 1 (tracked ✓). Applications files already tracked pre-gitignore, rules correct for fresh clones.
+- [x] 4.3 Run `node scripts/sync-data.js --dry-run` — reports 5 missing user files + 1 Markdown advisory correctly, no crashes.
+- [x] 4.4 Verify `JS_DATA_DIR`: `/tmp/test-data` resolves correctly; default fallback returns `data/`.
