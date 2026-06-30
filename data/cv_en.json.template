@@ -1,0 +1,207 @@
+{
+  "$schema": "../schemas/cv.schema.json",
+  "lang": "en",
+  "contact": {
+    "name": "Jane Smith",
+    "titles": [
+      "TODO: Your Primary Title",
+      "TODO: Your Secondary Title"
+    ],
+    "location": "TODO: City, State/Country",
+    "phone": "+1 555-0199",
+    "email": "jane.smith@example.com",
+    "linkedin": "TODO: https://www.linkedin.com/in/yourusername"
+  },
+  "professionalSummary": [
+    {
+      "text": "TODO: Role + years of experience + most relevant company + scale/impact. Example: Technical Program Manager with 8+ years across the SDLC, leading cross-functional teams at [Company] for systems handling [X] RPM.",
+      "tags": ["replace-me"]
+    },
+    {
+      "text": "TODO: Primary skill + key tools/methodologies. Example: Expert in Agile leadership, Scrum, and stakeholder alignment; proficient in Jira, GitHub, and CI/CD pipelines.",
+      "tags": ["replace-me"]
+    },
+    {
+      "text": "TODO: Differentiator + most impressive metric. Example: Proven track record of reducing incident backlog by 70% and eliminating 8+ hours/week of overhead through automation.",
+      "tags": ["replace-me"]
+    }
+  ],
+  "coreCompetencies": [
+    {
+      "title": "TODO: Competency 1 — must match a JD Must-Have",
+      "description": "TODO: 2-3 sentences describing your expertise in this area, ideally with a metric or concrete outcome.",
+      "tags": ["replace-me"]
+    },
+    {
+      "title": "TODO: Competency 2 — must match a JD Must-Have",
+      "description": "TODO: 2-3 sentences describing your expertise in this area, ideally with a metric or concrete outcome.",
+      "tags": ["replace-me"]
+    },
+    {
+      "title": "TODO: Competency 3 — must match a JD Must-Have",
+      "description": "TODO: 2-3 sentences describing your expertise in this area, ideally with a metric or concrete outcome.",
+      "tags": ["replace-me"]
+    },
+    {
+      "title": "TODO: Competency 4 — must match a JD Must-Have",
+      "description": "TODO: 2-3 sentences describing your expertise in this area, ideally with a metric or concrete outcome.",
+      "tags": ["replace-me"]
+    }
+  ],
+  "skills": [
+    {
+      "category": "TODO: Skill Category 1 (e.g. Program Management)",
+      "items": [
+        "TODO: Skill 1",
+        "TODO: Skill 2",
+        "TODO: Skill 3"
+      ],
+      "tags": ["replace-me"]
+    },
+    {
+      "category": "TODO: Skill Category 2 (e.g. Technical Background)",
+      "items": [
+        "TODO: Skill 1",
+        "TODO: Skill 2"
+      ],
+      "tags": ["replace-me"]
+    }
+  ],
+  "professionalExperience": [
+    {
+      "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+      "company": "TODO: Your Current/Most Recent Company",
+      "role": "TODO: Your Job Title (English)",
+      "location": "TODO: City, Country or Remote",
+      "dates": {
+        "start": "2023-01",
+        "end": "Present"
+      },
+      "description": "TODO: One-liner context about team scope, product, or responsibilities. Example: Led a cross-functional squad of 9 responsible for critical APIs handling 20,000+ RPM.",
+      "achievements": [
+        {
+          "id": "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e",
+          "text": "TODO: Strong verb + what you did + context/scale + result/metric. Example: Owned end-to-end delivery of the 'Product Bundles' program, defining milestones across 3 teams, driving alignment with Product and Architecture.",
+          "metrics": [
+            {
+              "type": "other",
+              "value": "TODO: [ADD METRIC — e.g. number of users impacted or % improvement]"
+            }
+          ],
+          "technologies": [],
+          "domains": ["delivery-management"],
+          "impact": "high",
+          "tags": ["replace-me"]
+        },
+        {
+          "id": "c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f",
+          "text": "TODO: Strong verb + what you did + context/scale + result/metric. Example: Architected and deployed a debugging engine that reduced incident backlog by 70% and cut RCA time from ~2 hours to ~30 minutes.",
+          "metrics": [
+            {
+              "type": "percentage-improvement",
+              "value": "70%"
+            }
+          ],
+          "technologies": [],
+          "domains": ["backend-engineering"],
+          "impact": "high",
+          "tags": ["replace-me"]
+        },
+        {
+          "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a",
+          "text": "TODO: Strong verb + what you did + context/scale + result/metric. Example: Overhauled squad operating model, restructuring Jira workflows and implementing automation that recovered ~18–20 hours/week of engineering capacity.",
+          "metrics": [
+            {
+              "type": "time-reduction",
+              "value": "~18–20 hours/week"
+            }
+          ],
+          "technologies": ["Jira"],
+          "domains": ["automation"],
+          "impact": "high",
+          "tags": ["replace-me"]
+        }
+      ],
+      "tags": ["replace-me"]
+    },
+    {
+      "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b",
+      "company": "TODO: Your Previous Company",
+      "role": "TODO: Your Previous Job Title (English)",
+      "location": "TODO: City, Country or Remote",
+      "dates": {
+        "start": "2020-01",
+        "end": "2022-12"
+      },
+      "description": "TODO: One-liner context about team scope, product, or responsibilities.",
+      "achievements": [
+        {
+          "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c",
+          "text": "TODO: Strong verb + what you did + context/scale + result/metric. Example: Designed and implemented scalable backend services optimizing performance under peak loads of 20,000+ RPM.",
+          "metrics": [
+            {
+              "type": "other",
+              "value": "TODO: [ADD METRIC]"
+            }
+          ],
+          "technologies": [],
+          "domains": ["backend-engineering"],
+          "impact": "medium",
+          "tags": ["replace-me"]
+        },
+        {
+          "id": "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d",
+          "text": "TODO: Strong verb + what you did + context/scale + result/metric. Example: Transformed CI/CD and Git workflows, reducing deployment friction and improving code quality gates.",
+          "metrics": [
+            {
+              "type": "time-reduction",
+              "value": "TODO: [ADD METRIC]"
+            }
+          ],
+          "technologies": ["CI/CD"],
+          "domains": ["devops"],
+          "impact": "medium",
+          "tags": ["replace-me"]
+        },
+        {
+          "id": "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e",
+          "text": "TODO: Strong verb + what you did + context/scale + result/metric. Example: Mentored Junior developers through structured code reviews and pair programming, accelerating their path to independent contributors.",
+          "metrics": [
+            {
+              "type": "other",
+              "value": "TODO: [ADD METRIC — e.g. number of developers mentored]"
+            }
+          ],
+          "technologies": [],
+          "domains": ["leadership"],
+          "impact": "medium",
+          "tags": ["replace-me"]
+        }
+      ],
+      "tags": ["replace-me"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "TODO: Degree Name",
+      "institution": "TODO: Institution Name",
+      "year": "TODO: YYYY"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "proficiency": "TODO: native | fluent | advanced | intermediate | basic"
+    },
+    {
+      "language": "Spanish",
+      "proficiency": "TODO: native | fluent | advanced | intermediate | basic"
+    }
+  ],
+  "certifications": [],
+  "$metadata": {
+    "schemaVersion": "1.0.0",
+    "generatedBy": "f17-public-repo-separation",
+    "version": "1.0.0"
+  }
+}

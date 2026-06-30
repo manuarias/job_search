@@ -1,0 +1,26 @@
+# Job Description — CV Tracking
+
+Registro único de todas las postulaciones. Ordenado por fecha de creación (más reciente arriba).
+
+---
+
+## Postulaciones
+
+| REF | Company | Role | JD | Final CV | Score | Status | Created | Updated |
+|-----|---------|------|-----|----------|-------|--------|---------|---------|
+| TODO: Add your application rows here. See AGENTS.md for the full workflow. | | | | | | | | |
+
+---
+
+## Estados
+
+| Status | Significado |
+|--------|-------------|
+| **In Progress** | Optimización en curso (pasos 1-5) |
+| **Ready** | CV finalizado, listo para enviar |
+| **Submitted** | Enviado a la empresa |
+| **Interview** | En proceso de entrevistas |
+| **Offer** | Oferta recibida |
+| **Rejected** | No continuó |
+| **Withdrawn** | Me retiré |
+| **Closed** | Sin respuesta después de un tiempo prolongado |

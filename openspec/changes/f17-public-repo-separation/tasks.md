@@ -1,0 +1,62 @@
+# Tasks: Public/Private Repository Separation
+
+## Review Workload Forecast
+
+| Field | Value |
+|-------|-------|
+| Estimated changed lines | ~550 (18 files: 7 new, 11 modified) |
+| 400-line budget risk | High |
+| Chained PRs recommended | Yes |
+| Suggested split | PR 1 → PR 2 → PR 3 |
+| Delivery strategy | ask-always |
+| Chain strategy | feature-branch-chain |
+
+Decision needed before apply: Yes (resolved)
+Chained PRs recommended: Yes
+Chain strategy: feature-branch-chain
+400-line budget risk: High
+
+### Suggested Work Units
+
+| Unit | Goal | Likely PR | Notes |
+|------|------|-----------|-------|
+| 1 | `getDataDir()` module + refactor all lib/scripts to use it | PR 1 | Base: main. ~100 lines. Tests included. |
+| 2 | Template files + `.gitignore` + `sync-data.js` | PR 2 | Base: PR 1 branch or main. ~300 lines. |
+| 3 | Docs cleanup (README Quick Start, AGENTS.md paths, pdf-builder README) | PR 3 | Base: PR 2 branch or main. ~50 lines. |
+
+## Phase 1: Foundation — Data Directory Module
+
+- [x] 1.1 Create `lib/data-paths.js` with `getDataDir()`: reads `JS_DATA_DIR`, validates directory exists, resolves relative paths against `PROJECT_ROOT`, falls back to `data/` when unset or empty string, throws clear error when set but invalid.
+- [x] 1.2 Tests for `getDataDir()` in `scripts/score-cv.test.js`: 5 scenarios — env set (absolute), env set (relative), env unset fallback, empty string fallback, getApplicationsDir independent.
+- [x] 1.3 Refactor `lib/hermes.js` lines 33-37: replace `DATA_DIR` const with `getDataDir()` call; update `TRACKING_JSON`, `CV_EN`, `CV_ES` to use resolved dir.
+- [x] 1.4 Refactor `lib/matcher.js`: replace `require()` for `soft-synonyms.json`, `domain-mapping.json`, `match-weights.json` with `fs.readFileSync` + `JSON.parse` using `getDataDir()`.
+- [x] 1.5 Refactor `lib/keyword-extractor.js`: replace `require()` for `keyword-taxonomy.json` with `fs.readFileSync` + `JSON.parse` using `getDataDir()`.
+- [x] 1.6 Refactor `lib/scorer.js`: replace `require()` for `score-config.json` with `fs.readFileSync` + `JSON.parse` using `getDataDir()`.
+- [x] 1.7 Refactor `scripts/build-pdf.js`: resolve `cv_{lang}.json` path via `getDataDir()` instead of hardcoded `data/`.
+
+## Phase 2: Templates, Gitignore & Sync Tool
+
+- [x] 2.1 Create `data/cv_en.json.template`: valid JSON conforming to `cv.schema.json`, all personal fields replaced with `"TODO: ..."` placeholders, empty arrays/objects for collections.
+- [x] 2.2 Create `data/cv_es.json.template`: Spanish variant of the same template structure.
+- [x] 2.3 Create `data/jd-tracking.json.template`: empty array `[]`.
+- [x] 2.4 Create `resumes/cv_en.md.template`: based on `template_optimized.md` structure, header/contact with `[TODO]` placeholders, example work history.
+- [x] 2.5 Create `resumes/cv_es.md.template`: Spanish variant.
+- [x] 2.6 Create `applications/jd-tracking.md.template`: table header + separator row only.
+- [x] 2.7 Create `applications/.gitkeep`: empty file.
+- [x] 2.8 Update `.gitignore`: add patterns for all personal data files; `applications/*` with exceptions for `.gitkeep` and `.template`; `data/cv_*.json`, `data/jd-tracking.json`, `resumes/cv_*.md`, `resumes/archive/`, `resumes/CV_*.pdf`, `historial-laboral.md`. Personal data files `git rm --cached` so gitignore applies.
+- [x] 2.9 Create `scripts/sync-data.js`: deep-merge algorithm per design (recursive object walk), `--dry-run` flag, clear error messages for missing files, summary output with field paths.
+- [x] 2.10 Run `pnpm test` — all 533 tests pass (13 test files). Templates don't affect tests.
+
+## Phase 3: Documentation & Path Cleanup
+
+- [x] 3.1 Update `README.md`: add Quick Start section (clone → copy templates → fill data → set `JS_DATA_DIR` → run pipeline).
+- [x] 3.2 Update `AGENTS.md`: replace all `/Users/earias/Documents/job_search/` absolute paths with relative `./` or `PROJECT_ROOT`.
+- [x] 3.3 Update `pdf-builder/README.md`: replace absolute paths with relative `./` references.
+- [x] 3.4 Create `LICENSE` file with standard MIT text, copyright 2026.
+
+## Phase 4: Verification
+
+- [x] 4.1 Run `pnpm test` — all 533 tests pass (13 test files).
+- [x] 4.2 Verify `git check-ignore`: `data/cv_en.json` exit 0 (ignored), `data/cv_en.json.template` exit 1 (tracked ✓). Applications files already tracked pre-gitignore, rules correct for fresh clones.
+- [x] 4.3 Run `node scripts/sync-data.js --dry-run` — reports 5 missing user files + 1 Markdown advisory correctly, no crashes.
+- [x] 4.4 Verify `JS_DATA_DIR`: `/tmp/test-data` resolves correctly; default fallback returns `data/`.

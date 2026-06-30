@@ -325,3 +325,60 @@ describe('score-cv CLI — real CV scoring', () => {
     expect(parsed.categories.recruiterAppeal.percentage).toBeGreaterThanOrEqual(0);
   });
 });
+
+// ── JS_DATA_DIR environment variable resolution ─────────────────────────────
+//
+// Tests for lib/data-paths.js: verifies getDataDir() respects JS_DATA_DIR
+// env var and falls back to data/ when unset.
+
+describe('JS_DATA_DIR — data path resolution', () => {
+  const { getDataDir, getApplicationsDir } = require('../lib/data-paths');
+  const path = require('path');
+  const fs = require('fs');
+
+  const ORIGINAL_JS_DATA_DIR = process.env.JS_DATA_DIR;
+
+  afterEach(() => {
+    // Restore original env var after each test
+    if (ORIGINAL_JS_DATA_DIR === undefined) {
+      delete process.env.JS_DATA_DIR;
+    } else {
+      process.env.JS_DATA_DIR = ORIGINAL_JS_DATA_DIR;
+    }
+  });
+
+  it('falls back to data/ when JS_DATA_DIR is unset', () => {
+    delete process.env.JS_DATA_DIR;
+    const dir = getDataDir();
+    expect(dir).toMatch(/data$/);
+    expect(fs.existsSync(dir)).toBe(true);
+  });
+
+  it('falls back to data/ when JS_DATA_DIR is empty string', () => {
+    process.env.JS_DATA_DIR = '';
+    const dir = getDataDir();
+    expect(dir).toMatch(/data$/);
+    expect(fs.existsSync(dir)).toBe(true);
+  });
+
+  it('uses JS_DATA_DIR when set to a valid absolute path', () => {
+    // Use the existing test-fixtures directory as a valid data dir
+    const fixturesDir = path.join(__dirname, '..', 'test-fixtures');
+    process.env.JS_DATA_DIR = fixturesDir;
+    const dir = getDataDir();
+    expect(dir).toBe(fixturesDir);
+  });
+
+  it('uses JS_DATA_DIR when set to a valid relative path', () => {
+    process.env.JS_DATA_DIR = 'test-fixtures';
+    const dir = getDataDir();
+    expect(dir).toMatch(/job_search\/test-fixtures$/);
+    expect(fs.existsSync(dir)).toBe(true);
+  });
+
+  it('getApplicationsDir returns applications/ at project root regardless of env', () => {
+    delete process.env.JS_DATA_DIR;
+    const appsDir = getApplicationsDir();
+    expect(appsDir).toMatch(/applications$/);
+  });
+});
