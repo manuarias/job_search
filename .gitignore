@@ -8,14 +8,27 @@ node_modules/
 .atl/
 .pi/
 
-# Generated artifacts (regenerable from .md sources)
-applications/**/*.pdf
-applications/**/*.html
+# Personal CV data — populate from templates
+data/cv_en.json
+data/cv_es.json
+data/jd-tracking.json
+
+# Personal resumes — populate from templates
+resumes/cv_en.md
+resumes/cv_es.md
+resumes/archive/
+resumes/CV_*.pdf
+
+# Employment history
+historial-laboral.md
+
+# Application data — personal (allow .gitkeep and .template files)
+applications/*
+!applications/.gitkeep
+!applications/jd-tracking.md.template
 
 # Hermes IA state file (runtime data, not source)
 pending_jds.json
 
 # Temp files from atomic writes
 *.tmp
-
-applications/UNKN/

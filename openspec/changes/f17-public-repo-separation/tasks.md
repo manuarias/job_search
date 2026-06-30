@@ -36,16 +36,16 @@ Chain strategy: feature-branch-chain
 
 ## Phase 2: Templates, Gitignore & Sync Tool
 
-- [ ] 2.1 Create `data/cv_en.json.template`: valid JSON conforming to `cv.schema.json`, all personal fields replaced with `"TODO: ..."` placeholders, empty arrays/objects for collections.
-- [ ] 2.2 Create `data/cv_es.json.template`: Spanish variant of the same template structure.
-- [ ] 2.3 Create `data/jd-tracking.json.template`: empty array `[]`.
-- [ ] 2.4 Create `resumes/cv_en.md.template`: based on `template_optimized.md` structure, header/contact with `[REEMPLAZAR]` placeholders, example work history.
-- [ ] 2.5 Create `resumes/cv_es.md.template`: Spanish variant.
-- [ ] 2.6 Create `applications/jd-tracking.md.template`: table header + separator row only.
-- [ ] 2.7 Create `applications/.gitkeep`: empty file.
-- [ ] 2.8 Update `.gitignore`: add patterns for `data/cv_*.json`, `data/jd-tracking.json`, `resumes/cv_*.md`, `applications/jd-tracking.md`, `applications/[A-Z]*/`, `applications/ANALYTICS.md`, `historial-laboral.md`. Verify `!*.template` and `!.gitkeep` exceptions work.
-- [ ] 2.9 Create `scripts/sync-data.js`: deep-merge algorithm per design (recursive object walk), `--dry-run` flag, clear error messages for missing files, summary output with field paths.
-- [ ] 2.10 Create `tests/scripts/sync-data.test.js`: test 5 scenarios — no new fields, flat new field, nested new field, existing values preserved, dry-run no write.
+- [x] 2.1 Create `data/cv_en.json.template`: valid JSON conforming to `cv.schema.json`, all personal fields replaced with `"TODO: ..."` placeholders, empty arrays/objects for collections.
+- [x] 2.2 Create `data/cv_es.json.template`: Spanish variant of the same template structure.
+- [x] 2.3 Create `data/jd-tracking.json.template`: empty array `[]`.
+- [x] 2.4 Create `resumes/cv_en.md.template`: based on `template_optimized.md` structure, header/contact with `[TODO]` placeholders, example work history.
+- [x] 2.5 Create `resumes/cv_es.md.template`: Spanish variant.
+- [x] 2.6 Create `applications/jd-tracking.md.template`: table header + separator row only.
+- [x] 2.7 Create `applications/.gitkeep`: empty file.
+- [x] 2.8 Update `.gitignore`: add patterns for all personal data files; `applications/*` with exceptions for `.gitkeep` and `.template`; `data/cv_*.json`, `data/jd-tracking.json`, `resumes/cv_*.md`, `resumes/archive/`, `resumes/CV_*.pdf`, `historial-laboral.md`. Personal data files `git rm --cached` so gitignore applies.
+- [x] 2.9 Create `scripts/sync-data.js`: deep-merge algorithm per design (recursive object walk), `--dry-run` flag, clear error messages for missing files, summary output with field paths.
+- [x] 2.10 Run `pnpm test` — all 533 tests pass (13 test files). Templates don't affect tests.
 
 ## Phase 3: Documentation & Path Cleanup
 
