@@ -17,3 +17,5 @@ pending_jds.json
 
 # Temp files from atomic writes
 *.tmp
+
+applications/UNKN/
