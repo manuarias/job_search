@@ -1,6 +1,8 @@
 # Hermes IA — CV Pipeline Skill
 
-Skill que automatiza la búsqueda diaria de ofertas IT y su procesamiento por el pipeline de CV (Hermes) desde un agente Hermes IA corriendo en un VPS.
+Skill que automatiza la búsqueda diaria de ofertas IT y su procesamiento por el pipeline de CV desde un agente Hermes IA corriendo en un VPS.
+
+> 📖 **Guía completa de instalación en VPS:** [`docs/SETUP-VPS.md`](../docs/SETUP-VPS.md) — paso a paso desde cero.
 
 ## Requisitos
 

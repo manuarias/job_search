@@ -37,6 +37,8 @@ node scripts/sync-data.js --dry-run
 > **`JS_DATA_DIR`** (optional): point to a separate directory with your real CV data.
 > The pipeline loads from `data/` by default. Set `JS_DATA_DIR` to keep your private
 > data outside the repo (e.g., `JS_DATA_DIR=$HOME/private-job-data`).
+>
+> 🤖 **Hermes IA integration:** [Full VPS setup guide →](docs/SETUP-VPS.md)
 
 ---
 
@@ -227,6 +229,28 @@ La primera vez que corre Playwright, descarga Chromium automáticamente (~100MB)
 <div id="english">
 
 ## 🇬🇧 English
+
+### 🚀 Quick Start
+
+```bash
+git clone <repo-url> && cd job_search && pnpm install
+cp data/cv_en.json.template data/cv_en.json     # edit with your info
+cp data/cv_es.json.template data/cv_es.json
+cp resumes/cv_en.md.template resumes/cv_en.md
+cp resumes/cv_es.md.template resumes/cv_es.md
+pnpm test                                        # all tests pass with fixtures
+
+# Optional: set a custom data directory
+export JS_DATA_DIR=/path/to/your/private/data
+
+# Run the pipeline
+node scripts/hermes.js "https://..."             # optimize your first CV
+
+# Keep templates in sync
+node scripts/sync-data.js --dry-run
+```
+
+> 🤖 **Hermes IA integration:** [Full VPS setup guide →](docs/SETUP-VPS.md)
 
 ### What does this project do?
 
