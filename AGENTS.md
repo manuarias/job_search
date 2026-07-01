@@ -197,6 +197,43 @@ job_search/
 
 ---
 
+## Engineering: Matcher Architecture
+
+The `lib/matcher.js` module scores a structured CV against JD keywords across five dimensions:
+
+| Scorer | Weight | What it measures |
+|--------|--------|------------------|
+| Hard Keywords | 30% | Direct match of technical terms in CV text |
+| Soft Keywords | 20% | Behavioral skill match via synonym expansion (`data/soft-synonyms.json`) |
+| Domain Match | 20% | Keyword-to-domain alignment via Jaccard similarity (`data/domain-mapping.json`) |
+| Seniority Fit | 15% | Years of experience + role level comparison |
+| Fuzzy Match | 15% | Bigram token overlap (lexical similarity) |
+
+Weights are configurable in `data/match-weights.json`.
+
+**Future extension — Embedding-based semantic matching:**
+
+The `fuzzyMatch` scorer currently uses bigram overlap (lexical). This is an intentional placeholder. To upgrade:
+
+1. Replace `scoreFuzzyMatch()` in `lib/matcher.js` with an embedding model call
+2. Embed CV narrative text (`flattenCVText`) → vector
+3. Embed JD text (reconstructed from keywords) → vector
+4. Return cosine similarity of the two vectors
+5. No other scorer or interface changes needed
+
+Local options (zero API cost): `@xenova/transformers` (ONNX runtime, `all-MiniLM-L6-v2`) or Supabase edge-runtime-compatible models. API-based: OpenAI embeddings, Cohere, or any OpenAI-compatible endpoint.
+
+### Engineering Tools (for agents)
+
+| Command | Description |
+|---------|-------------|
+| `node scripts/hermes.js <jd-url-or-text>` | Full pipeline: scrape → CV → cover letter |
+| `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description |
+| `node scripts/match-cv.js <cv.json> <keywords.json>` | Score a CV against JD keywords |
+| `pnpm test` | Run all tests (Vitest) |
+
+---
+
 ## Workflow: 5-Step Optimization Process
 
 When the user wants to optimize a CV for a new JD, follow these steps in EXACT order.

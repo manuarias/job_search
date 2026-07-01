@@ -1,48 +1,66 @@
 # 🎯 CV Optimization Engine
 
-<div align="center">
-
-**Optimizá tu CV para cada Job Description y convertilo en PDF profesional.**
-
-[![Español](https://img.shields.io/badge/🇪🇸_Español-Abrir-blue)](#español)
-[![English](https://img.shields.io/badge/🇬🇧_English-Open-blue)](#english)
-
-</div>
+> Optimizá tu CV para cada Job Description y convertilo en PDF profesional.
+> Optimize your CV for each Job Description and turn it into a professional PDF.
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start / Inicio rápido
+
+### 1. Clonar e instalar / Clone and install
 
 ```bash
-git clone <repo-url> && cd job_search && pnpm install
-cp data/cv_en.json.template data/cv_en.json     # edit with your info
-cp data/cv_es.json.template data/cv_es.json
-cp resumes/cv_en.md.template resumes/cv_en.md
-cp resumes/cv_es.md.template resumes/cv_es.md
-pnpm test                                        # all tests pass with fixtures
-
-# Optional: set a custom data directory
-export JS_DATA_DIR=/path/to/your/private/data
-
-# Run the pipeline
-node scripts/hermes.js "https://..."             # optimize your first CV
-
-# Keep templates in sync
-node scripts/sync-data.js --dry-run
+git clone https://github.com/manuarias/job_search.git && cd job_search
+pnpm install
 ```
 
-> **New users**: copy the `.template` files above and edit them with your real information.
-> The `.json` and `.md` files (without `.template`) are gitignored — your data stays private.
->
-> **`JS_DATA_DIR`** (optional): point to a separate directory with your real CV data.
-> The pipeline loads from `data/` by default. Set `JS_DATA_DIR` to keep your private
-> data outside the repo (e.g., `JS_DATA_DIR=$HOME/private-job-data`).
->
-> 🤖 **Hermes IA integration:** [Full VPS setup guide →](docs/SETUP-VPS.md)
+### 2. Configurar tus datos / Set up your data
+
+```bash
+cp data/cv_en.json.template data/cv_en.json   # edit with your real info
+cp data/cv_es.json.template data/cv_es.json   # editá con tus datos reales
+cp resumes/cv_en.md.template resumes/cv_en.md # optional Markdown version
+cp resumes/cv_es.md.template resumes/cv_es.md
+```
+
+> ✏️ Abrí `data/cv_en.json` y completá con tu nombre, experiencia, skills, etc.
+> ✏️ Open `data/cv_en.json` and fill in your name, experience, skills, etc.
+
+### 3. Verificar que todo funciona / Verify everything works
+
+```bash
+pnpm test
+# → 500+ tests pass (using anonymous fixtures — no personal data needed)
+```
+
+### 4. Tu primera optimización / Your first optimization
+
+```bash
+# Desde URL — From URL
+node scripts/hermes.js "https://boards.greenhouse.io/example/jobs/12345" --lang en --pdf
+
+# Desde texto — From text
+node scripts/hermes.js "We are looking for a Senior Engineer with Java and AWS experience..."
+
+# Modo interactivo (aprobación paso a paso) — Interactive mode
+node scripts/hermes.js "https://..." --interactive
+```
+
+### 5. Ver el resultado / Check the output
+
+```bash
+ls applications/EXAM/
+# → arias_emanuel-en-EXAM.md   cover-letter.md   REPORT.md   score.json
+# → arias_emanuel-en-EXAM.pdf  (si usaste --pdf)
+```
+
+### Próximos pasos / Next steps
+
+- 📖 [Guía completa de uso →](AGENTS.md)
+- 🤖 [Hermes IA — Setup en VPS →](docs/SETUP-VPS.md)
+- 📊 [Roadmap del proyecto →](ROADMAP.md)
 
 ---
-
-<div id="español">
 
 ## 🇪🇸 Español
 
@@ -58,54 +76,43 @@ Sistema completo para optimizar currículums vitae (CVs) contra descripciones de
 
 ```
 job_search/
-├── AGENTS.md              ← Reglas del flujo de optimización (leer primero)
+├── AGENTS.md              ← Reglas del flujo de optimización
 ├── ROADMAP.md             ← Plan de mejoras (completado ✅)
-├── README.md              ← Este archivo
 ├── data/                  ← Datos estructurados (CVs, taxonomías, configs)
 │   ├── cv_en.json.template← Template de CV (copiá y editá con tus datos)
 │   ├── cv_es.json.template← Template de CV en español
-│   ├── cv_en.json         ← (gitignored — tus datos reales)
-│   ├── cv_es.json         ← (gitignored — tus datos reales)
 │   ├── keyword-taxonomy.json ← Diccionario de keywords técnicas
-│   └── ...                ← (más archivos de datos)
+│   ├── soft-synonyms.json ← Sinónimos de soft skills
+│   ├── domain-mapping.json← Keyword → dominio
+│   └── match-weights.json ← Pesos del motor de matching
 ├── lib/                   ← Módulos core
-│   ├── keyword-extractor.js ← Extracción de keywords (F4)
-│   ├── jd-scraper.js      ← Scraper de JDs (F5)
-│   ├── matcher.js         ← Motor de matching CV-JD (F6)
-│   ├── scorer.js          ← Motor de scoring cuantitativo (F7)
-│   ├── assembler.js       ← Ensamblador de CV Markdown (F8)
-│   ├── cover-letter.js    ← Generador de cover letters (F9)
-│   ├── analytics.js       ← Analytics y feedback (F10)
-│   ├── hermes.js          ← API programática del pipeline (F13)
-│   ├── pdf-builder.js     ← PDF desde datos estructurados (F14)
-│   ├── data-paths.js      ← Resolución dinámica de JS_DATA_DIR
-│   └── reporter.js        ← Reporte post-pipeline (F12)
+│   ├── hermes.js          ← API programática del pipeline
+│   ├── pdf-builder.js     ← JSON → HTML → PDF
+│   ├── keyword-extractor.js ← Extracción de keywords
+│   ├── jd-scraper.js      ← Scraper de JDs
+│   ├── matcher.js         ← Motor de matching CV-JD
+│   ├── scorer.js          ← Motor de scoring
+│   ├── assembler.js       ← Ensamblador de CV Markdown
+│   ├── cover-letter.js    ← Generador de cover letters
+│   ├── reporter.js        ← Reporte post-pipeline
+│   └── analytics.js       ← Analytics de postulaciones
 ├── scripts/               ← CLI entry points
 │   ├── hermes.js          ← 🚀 Pipeline completo (un comando)
 │   ├── build-pdf.js       ← Generar PDF desde datos JSON
 │   ├── sync-data.js       ← Sincronizar templates con datos reales
-│   ├── fetch-jd.js        ← Scrape JD desde URL
-│   ├── extract-keywords.js← Extraer keywords
-│   ├── match-cv.js        ← Matchear contra CV
-│   ├── score-cv.js        ← Puntuar alineación
-│   ├── assemble-cv.js     ← Armar CV optimizado
-│   ├── generate-cover-letter.js ← Generar cover letter
-│   └── analytics.js       ← Generar reporte ANALYTICS.md
-├── hermes-ia/             ← Integración con Hermes IA (F15)
+│   └── ...                ← (fetch, extract, match, score, etc.)
+├── hermes-ia/             ← Integración con Hermes IA
 │   ├── README.md          ← Guía de setup en VPS
 │   ├── SOUL.md            ← Personalidad del agente
 │   └── skills/cv-pipeline/← Skill + blueprint + scripts
 ├── schemas/               ← JSON Schemas
-├── pdf-builder/           ← Template HTML + builder legacy
 ├── resumes/               ← CVs fuente (NO MODIFICAR)
 │   ├── cv_en.md.template  ← Template de CV Markdown
 │   ├── cv_es.md.template  ← Template de CV Markdown en español
-│   ├── cv_en.md           ← (gitignored — tu CV real)
-│   ├── cv_es.md           ← (gitignored — tu CV real)
+│   └── resume_template/   ← Template optimizado
 ├── applications/          ← Postulaciones (una carpeta por empresa)
 │   ├── jd-tracking.md     ← Tracking de postulaciones
-│   ├── ANALYTICS.md       ← Reporte de analytics
-│   └── [REF]/             ← Ej: AGIL/, META/, GOOG/
+│   └── [REF]/             ← Ej: AGIL/, META/
 │       ├── job-description.md
 │       ├── keywords.json
 │       ├── match.json
@@ -116,141 +123,45 @@ job_search/
 └── package.json
 ```
 
-### 🚀 Hermes — Pipeline automatizado
+> 💾 Los archivos `cv_en.json`, `cv_es.json`, `cv_en.md`, y `cv_es.md` (sin `.template`) están gitignoreados — tus datos nunca se suben al repo.
 
-Hermes (`scripts/hermes.js`) automatiza todo el pipeline de optimización en un solo comando. Encadena los pasos: scrape → extraer keywords → matchear → puntuar → ensamblar CV → cover letter. Persiste estado en disco para sobrevivir crashes.
+### Cómo usarlo
 
 ```bash
-# Desde URL
+# Pipeline automático (desde URL)
 node scripts/hermes.js https://boards.greenhouse.io/empresa/jobs/123
 
-# Desde texto
+# Pipeline automático (desde texto)
 node scripts/hermes.js "Buscamos un Senior Engineer con experiencia en..."
 
-# Modo interactivo (aprobación paso a paso)
-node scripts/hermes.js https://... --interactive
-
-# Batch (un archivo con una URL por línea)
-node scripts/hermes.js --batch urls.txt
-
-# Forzar idioma + generar PDF
-node scripts/hermes.js https://... --lang en --pdf
+# Con opciones
+node scripts/hermes.js https://... --lang es --pdf --interactive
 ```
 
 Opciones: `--lang en|es`, `--interactive`, `--batch <file>`, `--pdf`, `--help`
 
-> **Para agentes de IA:** usá la API programática en vez del CLI. Ver [`AGENTS.md`](./AGENTS.md#for-ai-agents-) para ejemplos con `require('./lib/hermes').runPipeline()`.
-
-### Cómo usarlo (flujo completo)
-
-#### Paso 0: Inicializar la postulación
-
-**Opción A — Automático (URL):**
-Pasame el link de la Job Description y hago todo solo:
-- Fetch del contenido
-- Extracción de texto limpio
-- Generación automática del código REF
-- Creación de carpeta y archivos
-- Actualización del tracking
-
-**Opción B — Manual (texto):**
-```bash
-# 1. Elegir un código REF único (4+ letras)
-# Ejemplos: AGIL (AgileEngine), META (Meta), GOOG (Google)
-
-# 2. Crear la carpeta
-mkdir applications/AGIL
-
-# 3. Guardar la Job Description
-cp ~/Downloads/job-description.md applications/AGIL/job-description.md
-
-# 4. Agregar al tracking
-# Editar applications/jd-tracking.md y agregar fila con Status: "In Progress"
-```
-
-#### Paso 1-5: Ejecutar la optimización
-
-Seguir el flujo definido en `AGENTS.md`:
-
-1. **ATS Diagnostic** — Verificar que el ATS pueda leer el CV y encontrar gaps de keywords
-2. **Recruiter Eye Test** — Simular la revisión de un reclutador (7s + 30s)
-3. **Achievement Rewrite** — Transformar responsabilidades en logros cuantificados
-4. **Keyword Fusion** — Integrar keywords faltantes de forma natural
-5. **Final Score** — Puntuar y encontrar quick wins para superar 90/100
-
-> ⚠️ **Regla de oro:** Nunca se inventan métricas. Si el CV original no tiene un número, se marca como `[NEEDS METRIC]` y se consulta al usuario.
-
-#### Paso 6: Generar el PDF
+#### Generar PDF
 
 ```bash
-# Desde el root del proyecto
-node scripts/build-pdf.js AGIL --lang en
+node scripts/build-pdf.js AGIL --lang es
+# Genera applications/AGIL/arias_emanuel-es-AGIL.html (preview)
+# y applications/AGIL/arias_emanuel-es-AGIL.pdf (final)
 ```
 
-Esto genera:
-- `applications/AGIL/arias_emanuel-en-AGIL.html` — Preview para revisar
-- `applications/AGIL/arias_emanuel-en-AGIL.pdf` — PDF final listo para enviar
+> 📖 El flujo detallado paso a paso está en [`AGENTS.md`](AGENTS.md). Para la integración con Hermes IA en VPS, ver [`docs/SETUP-VPS.md`](docs/SETUP-VPS.md).
 
-El PDF se genera directo desde los datos estructurados (`data/cv_en.json` + `match.json`), sin parsear Markdown.
-
-#### Paso 7: Actualizar tracking
-
-Editar `applications/jd-tracking.md`:
-- Actualizar `Status` a "Ready" o "Submitted"
-- Completar `Score` con el puntaje del Step 5
-- Actualizar `Updated` con la fecha actual
-
-### Principios clave (Golden Rules)
+### Principios clave
 
 - ✅ **Un CV = Una JD** — Nunca mandar el mismo CV a dos roles distintos
 - ✅ **Métricas reales** — Solo números verificables del CV original. Nunca inventar.
-- ✅ **Keywords naturales** — Integrar sin "stuffing", solo lo que hiciste
+- ✅ **Keywords naturales** — Integrar sin "stuffing", solo lo que realmente hiciste
 - ✅ **Impact-first** — El reclutador debe entender tu perfil en 7 segundos
-- ❌ **No modificar** `resumes/cv_en.md` — Es el único source of truth
-- 💾 **Guardar en Engram** — Después de cada decisión importante o paso completado
+- ❌ **No modificar** `resumes/cv_en.md.template` — Es el único source of truth
 - 🗣️ **Comunicación** — Rioplatense Spanish (voseo) para hablar con el usuario
-
-### Instalación
-
-```bash
-git clone <repo-url> && cd job_search
-pnpm install
-```
-
-Dependencias:
-- `playwright` — Generación de PDF vía Chromium
-
-La primera vez que corre Playwright, descarga Chromium automáticamente (~100MB).
-
-</div>
 
 ---
 
-<div id="english">
-
 ## 🇬🇧 English
-
-### 🚀 Quick Start
-
-```bash
-git clone <repo-url> && cd job_search && pnpm install
-cp data/cv_en.json.template data/cv_en.json     # edit with your info
-cp data/cv_es.json.template data/cv_es.json
-cp resumes/cv_en.md.template resumes/cv_en.md
-cp resumes/cv_es.md.template resumes/cv_es.md
-pnpm test                                        # all tests pass with fixtures
-
-# Optional: set a custom data directory
-export JS_DATA_DIR=/path/to/your/private/data
-
-# Run the pipeline
-node scripts/hermes.js "https://..."             # optimize your first CV
-
-# Keep templates in sync
-node scripts/sync-data.js --dry-run
-```
-
-> 🤖 **Hermes IA integration:** [Full VPS setup guide →](docs/SETUP-VPS.md)
 
 ### What does this project do?
 
@@ -264,237 +175,103 @@ Complete system for optimizing Curriculum Vitae (CVs) against specific Job Descr
 
 ```
 job_search/
-├── AGENTS.md              ← Optimization workflow rules (read this first)
+├── AGENTS.md              ← Optimization workflow rules
 ├── ROADMAP.md             ← Improvement plan (completed ✅)
-├── README.md              ← This file
 ├── data/                  ← Structured data (CVs, taxonomies, configs)
 │   ├── cv_en.json.template← CV template (copy & edit with your info)
 │   ├── cv_es.json.template← Spanish CV template
-│   ├── cv_en.json         ← (gitignored — your real data)
-│   ├── cv_es.json         ← (gitignored — your real data)
-│   └── ...                ← (more data files)
+│   ├── keyword-taxonomy.json ← Tech keyword dictionary
+│   ├── soft-synonyms.json ← Soft skill synonym mappings
+│   ├── domain-mapping.json← Keyword → domain lookup table
+│   └── match-weights.json ← Matching engine weight config
 ├── lib/                   ← Core modules
-│   ├── hermes.js          ← Pipeline API: runPipeline(jd, opts) (F13)
-│   ├── pdf-builder.js     ← JSON → HTML → PDF (F14)
-│   ├── data-paths.js      ← Dynamic JS_DATA_DIR resolution
-│   ├── keyword-extractor.js ← Keyword extraction (F4)
-│   ├── jd-scraper.js      ← JD scraper (F5)
-│   ├── matcher.js         ← CV-JD matching engine (F6)
-│   ├── scorer.js          ← Scoring engine (F7)
-│   ├── assembler.js       ← CV Markdown assembler (F8)
-│   ├── cover-letter.js    ← Cover letter generator (F9)
-│   ├── reporter.js        ← Pipeline report (F12)
-│   └── analytics.js       ← Application analytics (F10)
+│   ├── hermes.js          ← Pipeline API
+│   ├── pdf-builder.js     ← JSON → HTML → PDF
+│   ├── keyword-extractor.js ← Keyword extraction
+│   ├── jd-scraper.js      ← JD scraper
+│   ├── matcher.js         ← CV-JD matching engine
+│   ├── scorer.js          ← Scoring engine
+│   ├── assembler.js       ← CV Markdown assembler
+│   ├── cover-letter.js    ← Cover letter generator
+│   ├── reporter.js        ← Pipeline report
+│   └── analytics.js       ← Application analytics
 ├── scripts/               ← CLI entry points
 │   ├── hermes.js          ← 🚀 Full pipeline orchestrator
 │   ├── build-pdf.js       ← Generate PDF from structured data
 │   ├── sync-data.js       ← Sync templates with real data
-│   ├── fetch-jd.js        ← Scrape JD from URL
-│   ├── extract-keywords.js← Extract keywords
-│   ├── match-cv.js        ← Match CV against JD
-│   ├── score-cv.js        ← Score CV-JD alignment
-│   ├── assemble-cv.js     ← Generate optimized CV
-│   ├── generate-cover-letter.js ← Generate cover letter
-│   └── analytics.js       ← Generate ANALYTICS.md
-├── hermes-ia/             ← Hermes IA agent integration (F15)
-│   ├── SOUL.md            ← Agent personality
+│   └── ...                ← (fetch, extract, match, score, etc.)
+├── hermes-ia/             ← Hermes IA agent integration
 │   ├── README.md          ← VPS setup guide
-│   └── skills/cv-pipeline/← Skill, blueprint, batch scripts
+│   ├── SOUL.md            ← Agent personality
+│   └── skills/cv-pipeline/← Skill + blueprint + scripts
 ├── schemas/               ← JSON Schemas
-├── pdf-builder/           ← Template HTML + legacy builder
 ├── resumes/               ← Source CVs (DO NOT MODIFY)
 │   ├── cv_en.md.template  ← Markdown CV template
 │   ├── cv_es.md.template  ← Spanish Markdown CV template
-│   ├── cv_en.md           ← (gitignored — your real CV)
-│   ├── cv_es.md           ← (gitignored — your real CV)
+│   └── resume_template/   ← Optimized template
 ├── applications/          ← Job applications (one folder per REF)
 │   ├── jd-tracking.md     ← Application tracking
-│   ├── ANALYTICS.md       ← Analytics report
 │   └── [REF]/             ← Ex: AGIL/, META/
 │       ├── job-description.md
 │       ├── keywords.json
 │       ├── match.json
 │       ├── score.json
+│       ├── REPORT.md
 │       ├── arias_emanuel-[en/es]-[REF].md
 │       └── cover-letter.md
 └── package.json
 ```
 
-### 🚀 Hermes — Automated Pipeline
+> 💾 The `cv_en.json`, `cv_es.json`, `cv_en.md`, and `cv_es.md` files (without `.template`) are gitignored — your data never gets committed.
 
-Hermes (`scripts/hermes.js`) automates the entire optimization pipeline in a single command. It chains the steps: scrape → extract keywords → match → score → assemble CV → cover letter. Filesystem-based state survives crashes.
+### How to use it
 
 ```bash
-# From URL
+# Automated pipeline (from URL)
 node scripts/hermes.js https://boards.greenhouse.io/company/jobs/123
 
-# From text
+# Automated pipeline (from text)
 node scripts/hermes.js "We are looking for a Senior Engineer with..."
 
-# Interactive mode (step-by-step approval)
-node scripts/hermes.js https://... --interactive
-
-# Batch mode (one URL per line)
-node scripts/hermes.js --batch urls.txt
-
-# Force language + generate PDF
-node scripts/hermes.js https://... --lang en --pdf
+# With options
+node scripts/hermes.js https://... --lang en --pdf --interactive
 ```
 
 Options: `--lang en|es`, `--interactive`, `--batch <file>`, `--pdf`, `--help`
 
-### How to use it (complete workflow)
-
-#### Step 0: Initialize the application
-
-**Option A — Automatic (URL):**
-Pass me the Job Description link and I'll handle everything:
-- Fetch content
-- Extract clean text
-- Auto-generate REF code
-- Create folder and files
-- Update tracking
-
-**Option B — Manual (text):**
-```bash
-# 1. Choose a unique REF code (4+ letters)
-# Examples: AGIL (AgileEngine), META (Meta), GOOG (Google)
-
-# 2. Create the folder
-mkdir applications/AGIL
-
-# 3. Save the Job Description
-cp ~/Downloads/job-description.md applications/AGIL/job-description.md
-
-# 4. Add to tracking
-# Edit applications/jd-tracking.md and add a row with Status: "In Progress"
-```
-
-#### Steps 1-5: Run the optimization
-
-Follow the workflow defined in `AGENTS.md`:
-
-1. **ATS Diagnostic** — Verify the ATS can read the CV and find keyword gaps
-2. **Recruiter Eye Test** — Simulate a recruiter's review (7s + 30s)
-3. **Achievement Rewrite** — Transform responsibilities into quantified achievements
-4. **Keyword Fusion** — Integrate missing keywords naturally
-5. **Final Score** — Score and find quick wins to push above 90/100
-
-> ⚠️ **Golden rule:** Metrics are never invented. If the original CV doesn't have a number, mark it as `[NEEDS METRIC]` and ask the user.
-
-#### Step 6: Generate the PDF
+#### Generate PDF
 
 ```bash
-# From the project root
 node scripts/build-pdf.js AGIL --lang en
+# Generates applications/AGIL/arias_emanuel-en-AGIL.html (preview)
+# and applications/AGIL/arias_emanuel-en-AGIL.pdf (final)
 ```
 
-This generates:
-- `applications/AGIL/arias_emanuel-en-AGIL.html` — Preview for review
-- `applications/AGIL/arias_emanuel-en-AGIL.pdf` — Final PDF ready to submit
+> 📖 The detailed step-by-step workflow is in [`AGENTS.md`](AGENTS.md). For Hermes IA VPS integration, see [`docs/SETUP-VPS.md`](docs/SETUP-VPS.md).
 
-#### Step 7: Update tracking
-
-Edit `applications/jd-tracking.md`:
-- Update `Status` to "Ready" or "Submitted"
-- Fill `Score` with the Step 5 result
-- Update `Updated` with today's date
-
-### Key Principles (Golden Rules)
+### Key Principles
 
 - ✅ **One CV = One JD** — Never send the same CV to two different roles
 - ✅ **Real metrics only** — Only verifiable numbers from the original CV. Never invent.
 - ✅ **Natural keywords** — Integrate without "stuffing", only what you actually did
 - ✅ **Impact-first** — The recruiter must understand your profile in 7 seconds
-- ❌ **Do not modify** `resumes/cv_en.md` — It is the single source of truth
-- 💾 **Save to Engram** — After every significant decision or completed step
+- ❌ **Do not modify** `resumes/cv_en.md.template` — It is the single source of truth
 - 🗣️ **Communication** — Rioplatense Spanish (voseo) for user communication
 
-### 🤖 Hermes IA — Agent Automation
-
-This project includes a [Hermes IA](https://hermes-agent.nousresearch.com/) integration package to automate job searching and CV processing from a VPS via Telegram.
-
-**How it works:**
-1. A daily cron searches IT jobs in Argentina and saves them to `pending_jds.json`
-2. When you say "procesá las ofertas" via Telegram, the agent runs the pipeline in batch
-3. Each JD is auto-scored (≥ 75 → generates CV + PDF + cover letter)
-4. Results delivered to Telegram with attached files
-
-**Setup:** See [`hermes-ia/README.md`](hermes-ia/README.md) for the full VPS installation guide.
-
-```bash
-git clone <repo-url> && cd job_search
-pnpm install
-```
-
-Dependencies:
-- `playwright` — PDF generation via Chromium
-
-The first time Playwright runs, it downloads Chromium automatically (~100MB).
-
-</div>
-
 ---
-
-## Engineering Tools
-
-| Command | Description |
-|---------|-------------|
-| `node scripts/hermes.js <jd-url-or-text>` | Full pipeline: scrape → CV → cover letter (F11) |
-| `node scripts/build-pdf.js <ref> [--lang en\|es]` | Generate A4 PDF from structured CV data (F14) |
-| `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description (F4) |
-| `node scripts/match-cv.js <cv.json> <keywords.json>` | Score a CV against JD keywords (F6) |
-| `pnpm test` | Run all tests (Vitest) |
-
-### 🤖 Hermes IA — Automatización con agente
-
-Este proyecto incluye un paquete de integración con [Hermes IA](https://hermes-agent.nousresearch.com/) para automatizar la búsqueda y procesamiento de ofertas desde un VPS con Telegram.
-
-**Cómo funciona:**
-1. Un cron diario busca ofertas IT en Argentina y las guarda en `pending_jds.json`
-2. Cuando decís "procesá las ofertas" por Telegram, el agente ejecuta el pipeline en batch
-3. Evalúa cada oferta con scoring automático (≥ 75 → genera CV + PDF + cover letter)
-4. Entrega resultados por Telegram con archivos adjuntos
-
-**Setup:** Ver [`hermes-ia/README.md`](hermes-ia/README.md) para la guía completa de instalación en tu VPS.
-
-### F6 Matcher — Architecture
-
-The `lib/matcher.js` module scores a structured CV against JD keywords across five dimensions:
-
-| Scorer | Weight | What it measures |
-|--------|--------|------------------|
-| Hard Keywords | 30% | Direct match of technical terms in CV text |
-| Soft Keywords | 20% | Behavioral skill match via synonym expansion |
-| Domain Match | 20% | Keyword-to-domain alignment (Jaccard similarity) |
-| Seniority Fit | 15% | Years of experience + role level comparison |
-| Fuzzy Match | 15% | Bigram token overlap (lexical similarity) |
-
-**Future extension — Embedding-based semantic matching:**
-
-The `fuzzyMatch` scorer currently uses bigram overlap (lexical). This is an intentional placeholder. To upgrade:
-
-1. Replace `scoreFuzzyMatch()` in `lib/matcher.js` with an embedding model call
-2. Embed CV narrative text (flattenCVText) → vector
-3. Embed JD text (reconstructed from keywords) → vector
-4. Return cosine similarity of the two vectors
-5. No other scorer or interface changes needed
-
-Local options (zero API cost): `@xenova/transformers` (ONNX runtime, all-MiniLM-L6-v2) or `@supabase/edge-runtime` compatible models. API-based options: OpenAI embeddings, Cohere, or any OpenAI-compatible endpoint.
 
 ## Quick Reference
 
 | Command | Description |
 |---------|-------------|
-| `node scripts/hermes.js <jd-url-or-text>` | Full pipeline: scrape → CV → cover letter |
-| `node scripts/build-pdf.js <ref> [--lang en\|es]` | Generate A4 PDF from structured CV data |
-| `node scripts/extract-keywords.js <jd.md>` | Extract keywords from a job description |
-| `node scripts/match-cv.js <cv.json> <keywords.json>` | Score CV against JD keywords |
 | `pnpm install` | Install dependencies (run once) |
 | `pnpm test` | Run all test suites |
-| `pnpm run hermes -- <jd-url>` | Hermes pipeline (via pnpm script) |
-| `pnpm run pdf <ref>` | Generate PDF from structured CV data |
-| `npx playwright install chromium` | Reinstall Chromium if needed |
+| `node scripts/hermes.js <url-or-text>` | Full pipeline: scrape → CV → cover letter → PDF |
+| `node scripts/hermes.js <url> --lang en --pdf` | Pipeline + force English + PDF output |
+| `node scripts/hermes.js --batch urls.txt` | Batch process multiple JDs |
+| `node scripts/build-pdf.js <ref> [--lang en\|es]` | Generate A4 PDF from structured CV data |
+| `node scripts/sync-data.js --dry-run` | Preview template sync changes |
+| `node scripts/sync-data.js` | Merge new template fields into your data |
 
 ## License
 
